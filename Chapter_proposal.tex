@@ -1,0 +1,147 @@
+\documentclass[11pt]{article}
+
+\usepackage{natbib} 
+\bibpunct{[}{]}{;}{n}{,}{,} % square brackets
+% "Greater/Less than or of order" symbols
+\def \la {\mathrel{\vcenter
+     {\hbox{$<$}\nointerlineskip\hbox{$\sim$}}}}
+\def \ga {\mathrel{\vcenter
+     {\hbox{$>$}\nointerlineskip\hbox{$\sim$}}}}
+
+\textwidth 6.1in
+\textheight 8.25in
+\oddsidemargin 0.24in
+%\evensidemargin -0.5in
+\topmargin -0.25in
+
+
+\begin{document}
+%\maketitle
+\noindent{\center \large Proposal for a Chapter in Section 1}\\ 
+
+\noindent{\large{\bf Authors:}} Anshu Dubey (CRD, LBNL), Katherine
+Riley(ALCF, ANL) and Katie Antypas(NERSC, LBNL) \\
+The authors of the proposed chapter were instrumental in developing
+the software design, process and policies for FLASH. The FLASH code
+has been a successful community code for Astrophysics for nearly 15
+years and  several other communities for the past several years. 
+Anshu Dubey lead the team developing FLASH for over a decade, and
+oversaw 2 major version releases. She has several successful
+workshops on community codes, and software design for future.
+Katie Antypas heads the Computing and Data Services Department at
+NERSC, which includes the Advanced Technologies, Data and Analytics
+Services, Storage Systems, and User Services Groups. The Department
+works to increase the impact of science research conducted by NERSC
+users by providing exceptional services and user support, preparing
+users for future architectures, and providing comprehensive services to
+store, analyze, manage and share data. Katherine Riley is the Deputy Science
+Director for ALCF where her responsibilities include leading the team
+of computational scientists (Catalysts). The team collaborates with
+scientists using the largest supercomputers for their research by
+offering expertise in scalable algorithms, performance, and workflows.
+Katie and Katherine have dealt  with a wide variety of application
+codes, and have had close interactions with several groups about their
+software engineering needs and challenges. Katherine and Anshu
+also lead and organize the ``Software Engineering and Community
+Codes'' track in the Argonne Training Program for Extreme Scale
+Computing (ATPESC). \\ 
+
+
+\noindent{\large \bf Title : Software Process for Multicomponent Multiphysics
+  Codes}\\ \\
+\noindent{\large \bf Abstract: }
+Multiphysics multicomponent scientific codes have increasingly been
+adopting software processes derived from outside the scientific
+domain. The driving force behind adoption is usually the realization
+that without using software engineering practices, the development,
+verification and maintenance of code becomes intractable. However,
+many software best practices need modification and/or customization.  Sometimes the inherent physics of scientific applications require different software methodologies, while other times a premium is placed on performance rather than architecture.  Still others are more sociological and due to the
+type of institutions that are the typical homes for such codes. The
+challenges for scientific applications range from their architecture to the process for their
+maintenance and growth. For example, sometimes modularity and
+encapsulation principles are challenged by the need to tightly couple physics solvers to data structures.  Scientific codes are
+designed to explore phenomena that are not very well understood, so
+their verification strategies have to be customized. The
+components of scientific codes must also consider accuracy and stability, and
+interoperability between components must not
+violate physical constraints. These constraints are particularly challenging for
+numerical software because a wrong answer may not be detected to be wrong
+because of the exploratory nature of the problems being addressed.  Finally, as
+the research in the field evolves, codes may have to undergo radical
+changes in base algorithms to include the newly acquired knowledge. And
+the metrics of success are harder to define. 
+
+The institutional challenges in developing and maintaining scientific codes arise because the 
+research institutions in which they are developed often have an unreliable
+funding model and a transient developer population of graduate students. There are
+rarely enough resources  to have any redundancy in expertise which makes
+procedures like code review difficult. Intellectual ownership, code
+distribution, attribution of credit and contribution policies can all
+become thorny issues because there is often a lack of communication
+and sometimes even distrust among the stakeholders. Documentation
+takes on a different kind of urgency because of transient expertise,
+and yet it is notoriously difficult to persuade the 
+developers in the field to spend their limited time providing
+exhaustive documentation. 
+
+We propose a chapter which will elaborate on the above challenges and
+how they were addressed in FLASH, a code that has been extremely
+successful as a community code for several research communities. We
+will outline specific solutions used by FLASH, and discuss their
+possible generalizations that are usable by other similar software
+efforts. In particular, we will address the issues related to software
+architecture and modularization, design of a testing regime,
+unique documentation needs and challenges, use of versioning system 
+for managing projects, and the tension between intellectual property
+management and open science. \\
+
+
+\noindent{\large \bf Chapter Outline}
+\begin{itemize}
+\item {\bf Introduction} : this section will give an overview of what
+  this chapter is about
+\vspace {-0.1in}
+\item{\bf Domain Challenges} : this section will outline challenges
+  that are unique to scientific codes because of the nature of
+  problems they try to solve
+\vspace {-0.1in}
+\item {\bf Institutional Challenges}: this section will talk about
+  challenges that come about because of the kind of institutions in
+  which these codes are developed
+\vspace {-0.1in}
+\item {\bf Case Study} : How they were addressed by the FLASH team
+\begin{itemize}
+\vspace {-0.1in}
+\item In the code design
+\vspace {-0.1in}
+\item In the software process
+\vspace {-0.1in}
+\item in the policies
+\end{itemize}
+\vspace {-0.1in}
+\item{\bf Generalization} : this section will discuss those aspects of
+  FLASH solutions that are generalizable
+\vspace {-0.1in}
+\item{\bf Additional Future Considerations}: How the software,
+  design and policies might need to change in Future.
+\end{itemize}
+
+\noindent{\large \bf Justification For the Chapter:}
+The software engineering practices outlined in the chapter have been
+in use in almost all the successful community codes in various
+scientific domains. All communities arrived at what looks like
+remarkably similar solutions as we found in an NSF funded workshop on
+community codes held at the University of Chicago in 2012. Even the
+modifications to the software engineering practices were similar. This
+content has also been included in the ``Software Engineering and
+Community Codes'' track in ATPESC, the two week training program that Argonne National
+Laboratory has been conducting for the past two years. The students
+have been extremely appreciative of the track and have found it to be
+useful in their work. Therefore we believe that this chapter will be
+of real practical use to the domain scientists and developers of
+scientific software.
+\end{document}
+
+
+
+
