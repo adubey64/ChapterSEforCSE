@@ -1,11 +1,93 @@
 \begin{itemize}
 \item diverse algorithms - different data layout needs
-\item less logical complexity more numerical complexity - hard to achieve data locality 
-\item robustness and stability as important as accuracy
+Multiphysics codes, by their definition, have more than one
+mathematical model that they are solving. A typical code combines 3-4
+diverse models, the more extreme ones may employ as many as a
+dozen. In a rare calculation all models work with the same
+discretization using similar algorithmic approach (for instance
+stencil computations in explicit PDE solvers). More common is to have
+models with diverse discretizations and algorithms. Each operator has
+its own preferred data layout and  movement, and it usually differs
+from those needed by the other operators.  Normally these challenges
+can be mitigated through encapsulation and well defined API's. The outer
+wrapper layers of the operators can carry out data transformations as
+needed. There are two factors against taking this approach in CSE
+codes: (1) physics is not always
+friendly to encapsulation, and (2) the codes are performance sensitive
+and wholesale data movement significantly degrades performance.
+
 \item physics is messy - encapsulation can be challenging
+The simulation codes are modeling the physical world which does not
+have neat encapsulations. Various phenonema have tightly coupled
+dependencies that are hard to break. These dependencies and tight
+coupling also translates into their mathematical models and it becomes
+hard to eliminate lateral interactions among code modules implementing
+the models. An attempt to force encapsulations by hoisting up the
+lateral interactions to the API level can explode the size of the
+API. And if not done carefully this can also lead to data
+movement. The module designs, therefore, have to be cognizant of
+potential lateral interactions and make allowances for them.
+Similarly the data structures have to take into account the diverse
+demands placed on them by different operators and carefully consider
+the trade-offs during software design. Considerations such as these
+are not common on software outside of CSE.  
+
+\item less logical complexity more numerical complexity - hard to achieve data locality 
+
+In a CSE software design, separation of concerns is of utmost
+importance. Orthogonalizing expertise requirements into different code
+components allows developers to focus on what they know best.  
+Another natural fallout of this approach is that different dimensions of
+complexities in the algorithm space are handled separately. The
+numerical algorithms associated with physics operators are complex
+because of accuracy and stability concerns, and require mathematical
+expertise. They are not logically as complex. Whereas machinery for
+managing the discretizations and interoperability among code
+components is likely to be less complex numerically, but could be very
+complex logically. A third axis of concern is parallelization, which
+brings in some features that are unique to CSE codes, such as domain
+decomposition, aspects of synchronization and dependencies, and
+performance impact of the design choices. With appropriate separation
+of concerns not only do these aspects of software development not 
+interfere with one another, they help make the development tractable. 
+
+\item need for third party software 
+Multiphysics multiscale codes are almost unique in the software world
+in their need to tightly integrate third party software, which comes
+in the form of numerical libraries. Because multiphysics codes combine
+expertise from many domains, the numerical solvers they use also
+require diverse applied mathematics expertise. It is nearly impossible
+for any one team to assemble all the necessary expertise. The only
+form in which such expertise is encoded is in the form of numerical
+libraries or other third party software. The developers are faced with
+a choice between integrating third party software, or develop their
+own technology which is likely to yield inferior quality of solution. 
+
 \item unit testing insufficient, not even always possible
+% Some of these issues are addressed in the chapter on testing,
+% we can perhaps cross reference.
 \item integrated and system level testing very critical
+\item robustness and stability as important as accuracy
+
+
 \item performance portability important
-\item no replication of expertise and great depth in expertise is needed at times
+Another unique aspect of multiphysics CSE software is its need for
+performance portability. HPC machines are expensive and rare resource,
+they need to be used efficiently. In order to do that codes should
+ideally be optimized for each machine. However, yypical lifecycle of a
+multiphysics software spans many generations of HPC platform
+lifecycle, which is about 3-4 years. Depending upon the size of the
+code optimization for a specific target platform can take a
+significant fraction of the platform lifecycle. During the
+optimization phase, the code is not available for science. Thus a
+large fraction of scientists' time is lost in porting and optimizing
+the code over and over. Another dimension of this problem is that even
+within the same generation the platforms differ from one another. So
+machine specific optimization ties a code to one machine. These
+factors make platform-specific optimizations unattractive. Instead,
+HPC CSE codes consider the trade-offs and opt to design their software
+using constructs that perform modestly well across a range of
+platforms. 
+
 \end{itemize}
 
