@@ -1,9 +1,84 @@
-\begin{itemize}
-\item resources are rarely available for software infrastructure - carved out of scientific goal oriented funding
-\item consumers of the software on short term deadlines
-\item concepts learned on the job
-\item organic growth of codes - difficult to impose structure on existing codes
-\item no replication of expertise and great depth in expertise is
-  needed at times
-\item transient population, minimal institutional support
-\end{itemize}
+
+%\begin{itemize}
+%\item resources are rarely available for software infrastructure - carved out of scientific goal oriented funding
+Many adaptations in the software engineering described in the previous
+section pertained to software design and testing. In particular they
+spoke to challenges to modularity, performance and unit-testing because of the
+intertwined nature of the problems being tackled by these
+codes. However, all challenges faced by the CSE codes are not only
+because of the nature of problems they solve. Many challenges are
+specific to the kind of organizations and the research communities
+where the codes are developed. The most crippling and pervasive
+challenge faced by CSE codes in general and multiphysics codes in
+particular is that they rarely get funding for development of software
+infrastructure. There is evidence that when software is designed well
+it pays huge dividends in scientific productivity, collected from the
+miniscule number of projects that secured such funding for software
+infrastructure design. Even with the evidence the scientific
+establishment remains unconvinced about the criticality of investment
+in software engineering. The funding is carved out of scientific goal
+oriented funding which has its own priorities and time line which end
+up short-changing the software engineering.
+
+%\item consumers of the software on short term deadlines
+%\item organic growth of codes - difficult to impose structure on existing codes
+
+The scientific output is measured in terms of publications which in
+turn depend upon the data produced by the simulations. Therefore in a
+project driven purely by scientific objectives, the short-term science
+goals can lead to compromise on the quality of software
+design. Quick-and-dirty often triumphs over long term planning. The
+cost of future lost productivity is not appreciated until it is too
+late. By the time design deficiencies are realized usually the
+software has grown too large to remove the deficiencies in any easy
+way.  Software engineering is forcibly imposed on the code, which it
+at best a band-aid solution. This is another reason why many of the
+software practices are not embraced by the CSE community. 
+
+%\item concepts learned on the job
+Another instituitional challenge faced by SE for CSE is the
+training. Multiphysics codes require a broad range of expertise in
+domain science from their developers, software engineering is an added
+requirement. The developers are not trained in SE, many learn them on
+the job through reading or talking to colleagues. The practices are
+applied as they understand them, usually picking only what is of most
+importance for their own development. This can be both good and
+bad. Good because it sifts out the unnecessary aspects of the SE
+practice, and bad because it is not always true that the sifted out
+aspects were really not necessary. It just means that the person
+adopting the practice did not understand how to use them, or their
+importance. 
+
+% \item no replication of expertise and great depth in expertise is
+%   needed at times
+% \item transient population, minimal institutional support
+
+And finally the institutional challenges arise from scarcity of
+resources and stability. The domain and numerical algorithmic
+expertise is rarely replicated in a team developing the multiphysics
+CSE application. Even otherwise, deep expertise in the domain may be
+needed to model the phenomenon right, and that kind of expertise is
+hard to come by. Then there is the challenge to communicating the
+model to the software engineer if there is one on the team, or to
+other members of the team with other expertise. It requires at least a
+few developers in the team who can act as interpreters for the various
+domain expertise and are able to integrate them. Such abilities take a
+great deal of time and interaction to develop, neither of which are
+possible in the academic institutions where these codes are typically
+organically grown. The model of human resource there is that of
+post-docs and students with no software professionals who can retain
+the institutional knowledge about the code. This, and the fact that
+the developer of a complex physics module is almost definitely going
+to move on with possibly no replacement, documentation of various kind
+takes on a crucial role. It becomes necessary to document the
+algorithm, the implementation choices, and the range of operation. The
+general practice of ``writing code that does not need inline
+documentation'' does not apply. To an expert in the field, who has
+comprehensive understanding of the underlying math, such a code might
+be accessible without inline documentation. But to all others, and
+there are many who have reasons to look at the code, it would be
+equivalnt of having equations without accompanying explanation
+in the text. For longevity and extensibility, a scientific code must
+have inline documentation explaining the implementation logic, and the
+reasons behind the choices made. 
+%\end{itemize}

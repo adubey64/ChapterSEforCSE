@@ -1,5 +1,6 @@
-\begin{itemize}
-\item diverse algorithms - different data layout needs
+%\begin{itemize}
+\%item diverse algorithms - different data layout needs
+
 Multiphysics codes, by their definition, have more than one
 mathematical model that they are solving. A typical code combines 3-4
 diverse models, the more extreme ones may employ as many as a
@@ -12,27 +13,27 @@ from those needed by the other operators.  Normally these challenges
 can be mitigated through encapsulation and well defined API's. The outer
 wrapper layers of the operators can carry out data transformations as
 needed. There are two factors against taking this approach in CSE
-codes: (1) physics is not always
-friendly to encapsulation, and (2) the codes are performance sensitive
-and wholesale data movement significantly degrades performance.
+codes: (1) physics is not always friendly to encapsulation, and (2)
+the codes are performance sensitive and wholesale data movement
+significantly degrades performance. 
 
-\item physics is messy - encapsulation can be challenging
-The simulation codes are modeling the physical world which does not
-have neat encapsulations. Various phenonema have tightly coupled
+%\item physics is messy - encapsulation can be challenging
+The CSE simulation codes model the physical world which does not
+have neat modularization. Various phenonema have tightly coupled
 dependencies that are hard to break. These dependencies and tight
-coupling also translates into their mathematical models and it becomes
+couplings also translate into their mathematical models and it becomes
 hard to eliminate lateral interactions among code modules implementing
 the models. An attempt to force encapsulations by hoisting up the
 lateral interactions to the API level can explode the size of the
-API. And if not done carefully this can also lead to data
+API. And if not done carefully this can also lead to extra data
 movement. The module designs, therefore, have to be cognizant of
 potential lateral interactions and make allowances for them.
 Similarly the data structures have to take into account the diverse
 demands placed on them by different operators and carefully consider
 the trade-offs during software design. Considerations such as these
-are not common on software outside of CSE.  
+are not common in software outside of CSE.  
 
-\item less logical complexity more numerical complexity - hard to achieve data locality 
+%\item less logical complexity more numerical complexity - hard to achieve data locality 
 
 In a CSE software design, separation of concerns is of utmost
 importance. Orthogonalizing expertise requirements into different code
@@ -51,7 +52,7 @@ performance impact of the design choices. With appropriate separation
 of concerns not only do these aspects of software development not 
 interfere with one another, they help make the development tractable. 
 
-\item need for third party software 
+%\item need for third party software 
 Multiphysics multiscale codes are almost unique in the software world
 in their need to tightly integrate third party software, which comes
 in the form of numerical libraries. Because multiphysics codes combine
@@ -63,14 +64,25 @@ libraries or other third party software. The developers are faced with
 a choice between integrating third party software, or develop their
 own technology which is likely to yield inferior quality of solution. 
 
-\item unit testing insufficient, not even always possible
+%\item unit testing insufficient, not even always possible
 % Some of these issues are addressed in the chapter on testing,
 % we can perhaps cross reference.
-\item integrated and system level testing very critical
-\item robustness and stability as important as accuracy
+%\item integrated and system level testing very critical
+%\item robustness and stability as important as accuracy
+Testing of CSE software needs to reflect the layered complexity that
+the codes themselves have. The first line of attack is the unit tests
+where possible. However, as mentioned in chapter \ref{chp: }, some
+dependencies are impossible to break in mathematical software, and
+where such dependences exist a unit test cannot be devised. Testing
+relies upon no-change tests where minimum possible combination of
+units are used within the dependence constraints. In effect these
+minimally combined tests play the same role in the testing regime that
+unit tests do. Multicomponent CSE software also relies upon integrated
+and system level testing. This is because the components can be
+permuted and combined in many different ways, and all configurations
+have to work within the accuracy and stability constraints. 
 
-
-\item performance portability important
+%\item performance portability important
 Another unique aspect of multiphysics CSE software is its need for
 performance portability. HPC machines are expensive and rare resource,
 they need to be used efficiently. In order to do that codes should
@@ -89,5 +101,5 @@ HPC CSE codes consider the trade-offs and opt to design their software
 using constructs that perform modestly well across a range of
 platforms. 
 
-\end{itemize}
+%\end{itemize}
 

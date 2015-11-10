@@ -1,23 +1,46 @@
 The computational science and engineering (CSE) communities have a mixed record
 of using software engineering and adopting good software
-practices. Majority of codes adopt software practices when the size
+practices. Many codes adopt software practices when the size
 and composition of the code makes it impossible to make progress
 without them. In rarer instances code projects start with an awareness
-of the importance of software process and build it into the DNA of the
-code. As more codes have crossed the threshold of being manageable
-without software engineering they have increasingly been 
+of the importance of software process and build it in from the
+beginning. As more codes have crossed the threshold of being
+manageable without software engineering they have increasingly been  
 adopting software processes derived from outside the scientific
 domain. The driving force behind adoption is usually the realization
 that without using software engineering practices, the development,
-verification and maintenance of code becomes intractable. However,
+verification and maintenance of code becomes
+intractable. State-of-the-art software for software engineering
+practices in CSE codes lags behind that in the software
+industry. There are many reasons for it, but the primary one is that
+not all software engineering practices can be adopted by the CSE code
+developers. 
+
 many software best practices are not well-suited for CSE codes without
-modification and/or customization. Sometimes the inherent physics of
-scientific applications require different software methodologies,
-while other times a premium is placed on performance rather than
-code architecture.  Still others are more sociological and due to the
-type of institutions that are the typical homes for such codes. The
-challenges for scientific applications range from their architecture
-to the process for their maintenance and growth. 
+modification and/or customization, in particular to multiphysics
+multicomponents codes that run on the largest HPC platforms. Sometimes
+the inherent physics of scientific applications require different
+software methodologies, while other times a premium is placed on
+performance rather than code architecture.  Still others are more
+sociological and due to the type of institutions that are the typical
+homes for such codes. The challenges for scientific applications range
+from their architecture to the process for their maintenance and
+growth. The standard practices adopted by the CSE codes include
+repositories for code version control, modular code design, licensing
+process, regular testing, documentation, release and distribution
+policies and contribution policies. Less frequently used practices
+include code-review and code-depracation. Agile developmenet methods
+tend to have more limited usefulness in the CSE lifecycle, only a
+select subset of those are used. The degree of adoption and
+sophistication in using these  practices varies among teams. Many of
+the reasons behind less penetration are discussed in section
+\ref{sec:institutional-challenges}. Almost all the software
+engineering practices mentioned above have to be modified and
+customized for CSE software. The next two sections outline the
+challenges that are either unique to, or are more dominant in this
+domain than elsewhere. 
+
+
 % For example,
 % sometimes modularity and encapsulation principles are challenged by
 % the need to tightly couple physics solvers to data structures.

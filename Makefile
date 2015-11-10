@@ -1,5 +1,5 @@
 #FIGURES = Figures/*
-TEXFILES = *.tex
+TEXFILES = SEforCSE.tex
 BIBFILES = *.bib
 PDFLATEX ?= pdflatex
 
