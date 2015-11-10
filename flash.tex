@@ -4,8 +4,8 @@
 From the outset FLASH was required to have composability because the
 simulations of interest needed capabilities in different permutations
 and combinations. For example, most simulations needed compressible
-hydrodynamics, but plugging into them were different equations of
-state. Some needed to include self-gravity while others did not. An
+hydrodynamics, but with different equations of state. Some needed to
+include self-gravity while others did not. An 
 obvious solution was to use object-oriented programming model with
 common API's and specializations to account for the different
 models. However, the physics capabilities were mostly legacy with F77
@@ -13,14 +13,15 @@ implementations. Rewriting the code in an object oriented language was
 not an option. A compromise was found by exploiting the unix directory
 structure for inheritence, where for a code unit the top level
 directory defined the API and the subdirectories contained the
-multiple alternative implementations of the API. Meta-information
+multiple alternative implementations of the API.  Meta-information
 about the role of the directory level in the object oriented framework
-was encoded in a very limited domain-specific language. The
-meta-information also included state and runtime variables
+was encoded in a very limited domain-specific language (configuration
+DSL). The meta-information also included state and runtime variables
 requirements, dependences on other code units etc. A ``setup tool''
-parsed this information to configure a consistent ``application''. 
-For more details about FLASH's object oriented framework
-see \cite{Dubey2009, Fryxell2000}.  
+parsed this information to configure a consistent ``application''. The
+setup tool also interpreted the configuration DSL to implement 
+inheritence using the directory structure. For more details about
+FLASH's object oriented framework see \cite{Dubey2009, Fryxell2000}.   
 
 FLASH design is aware of the need for separation of concerns and
 achieves it by separating the infrastural components
@@ -28,7 +29,7 @@ from physics. The abstraction that permits this approach is very
 well known in CSE, that of decomposing a physical domain into
 rectangular form, and surrounding each of the subdomains with halo
 cells copied over from the surrounding neighborin subdomains. To the
-physics view, whole domain is not distinguishable from a sub-domain. 
+physics whole domain is not distinguishable from a sub-domain. 
 It is also important not to let any of the  physics own the state
 variables. They are owned by the infrastructure, which 
 decomposes the domain into blocks. A further separation of concern
@@ -40,69 +41,67 @@ of physics operators. To distance the solvers from their parallel
 constructs, the required parallel operations provide an API with
 corresponding functions implemented as a subunit. The implementation
 of numerical algorithms for physics operators is sequential,
-interspersed with calls to the parallel API as needed. This does
+interspersed with access to the parallel API as needed. This does
 impose bulk synchronous communication model on the code, and may need
 to be modified.
 
-
-% Another early design choice that has proved its value was to use
-% parallel I/O libraries with self-describing data formats. Porting the
-% code to new HPC platforms would have become a recurring resource drain
-% without this choice. The ability to develop general analysis tools and
-% use third party tools has been an added benefit. However, these
-% benefits were not obvious in the early years of the code. FLASH had
-% adopted the parallel I/O libraries before they had reached maturity or
-% were supported on all platforms. I/O was consistently the barrier to
-% early access on new HPC platforms because  the libraries did not
-% immediately become available. The libraries are now very stable and
-% they get on the new platforms in roughly the same time frame as
-% compilers do.  At the scale at which FLASH is used for production now,
-% any other form of I/O would cause unacceptable delay in scientific
-% analysis of the data produced by the simulations.   
-
-% Many architectural elements, such as inheritance, customization, and
-% the existence of multiple alternative implementations, have stayed the same
-% throughout the evolution of the code. Some others, such as data
-% management and scoping and encapsulation of code components, changed
-% over time, while several others, such as the formalization of unit
-% architecture and the unit testing framework, were introduced
-% later. However, the philosophy of the FLASH architecture is
-% essentially what was laid down in the early versions
-% \citep{Fryxell2000}.
-
-% The most influential design choice made for FLASH3 was to dispense
-% with backward compatibility with earlier versions. This choice was
-% made easier by the deep changes in PARAMESH and HDF at roughly the
-% same time. It led to a three-fold benefit: (1) it was possible to make
-% fundamental changes to the structure of the code units and their data
-% management, (2) we could re-examine the lateral interactions between
-% units dictated by physics in ways that enabled unit encapsulation and
-% therefore extensibility, and (3) it permitted pruning of the source tree
-% where needed to help unclutter the code infrastructure. 
-
-% FLASH3 also focused on eliminating limitations to extensibility that
-% came from  the specifications of the FLASH's mesh being tied very
-% closely to those of PARAMESH. For example, all blocks have the same
-% number of cells in PARAMESH, therefore, FLASH up to version 2 fixed
-% number of cells per block at configuration
-% level. Similarly, the order of indices in the solution data arrays
-% followed the PARAMESH mode, where field variables were the first index
-% in a Fortran 90 array. These assumptions effectively eliminated
-% the possibility of using other available AMR packages. 
-% With these limitations removed, other block structured AMR packages
-% can be considered for inclusion in FLASH. For example, 
-% the release of version 4 includes Chombo \citep{Chombo2009} as an
-% alternative AMR mesh within FLASH. Several other modifications
-% to code architecture and functionality used in FLASH3, 
-% such as formalization of the code unit architecture, are described in
-% \citet{Dubey2009}.  The architecture of FLASH3 has proved to be robust
-% enough that it has not required any major infrastructure revision for
-% adding the new capabilities for HEDP and FSI. Even though FLASH4 is a
-% major version change, it inherited its architecture and software
-% engineering practices from FLASH3. It is only the advent of a major
-% shift in hardware architecture that is proving to be a challenge and
-% is likely to result in fundamental refactoring of the code
-% infrastructure in future.
+Minimization of data movement is achieved by letting the state be
+completely owned by the infrastructure modules. The dominant
+infrastructure module is the {\em Eulerian} mesh, owned and managed by
+the {\em Grid} unit. The physics modules query the {\em Grid} unit
+for the bounds and extent of the block they are operating on, and
+get a pointer to the physical data. This arrangement works in most
+cases, but gets tricky where  the data access pattern does not conform
+to the underlying mesh. An example is any physics dealing with
+Lagrangian entities (LE's). They need a different data structure, and
+the movement of data has nothing in common with the way the data moves
+on the mesh. The added difficulty is that the entities do need to
+interact with the mesh, so physical proximity of the corresponding
+mesh cell is important in distributing the LE's. This is one of the
+examples of unavoidable lateral interaction between modules. In order
+to advance, LE's need to get some field quantities from the mesh and
+then determine their new locations internally. In some applications
+they have to apply near- and far-field forces, and in some
+applications they have to pass some information along to the mesh. And
+after advacing in time they may need to be redistributed. FLASH solves
+this conundrum through keeping the LE data structure extremely simple,
+and using argument passing by reference in the API's. The LE's are
+attached to the block in the mesh that has the nearest cell, an LE
+leaves its block when its location no longer overlaps with the
+block. Migration to the new block is an independent operation from
+everything else that goes on with the LE's In FLASH parlance this is
+the Lagrangian framework (see \cite{Dubey2012} for more details). The
+combination of {\em Eulerian} and {\em Lagrangian} frameworks that
+interoperate well with one another has succeeded in meeting all the
+performance critical data management needs of the code so far. 
 
 \subsection{Software Process}
+The software process of FLASH has evolved organically with the growth
+of the code. For instance, in the first version there was no clear
+design document, the second version had a loosely implied design
+guidance, whereas the third version documented the whole design
+process. The third version also published the developer's guide which
+is a straight adaptation from the design document. Because of multiple
+developers with different production targets versioning repository was
+introduced early in the code life cycle. The repository used has been
+SVN since 2003, though its branching system has been used in some very
+unorthodox ways to meet peculiar needs of the Flash Center. Unlike
+most software projects where branches are kept for somewhat isolated
+development purposes, FLASH uses branches also to manage multiple
+ongoing production projects. This particular need arose because at a
+point there were four different streams of production simulations going
+on simulataneously in three different scientific domains. All projects
+needed some stable code from the trunk, but also needed some
+development flexibility in their own branches. And it was understood
+that very little of the code added to the branches will make its way
+back into the repository. This would have been easy with the
+distributed repositories that have become available relatively
+recently, but it is difficult in SVN. This was accomplished by turning
+the trunk into essentially a merge area, with a separate {\em
+  production} branch becoming the base for forward code merges to the
+individual projects. The path was tagged-trunk => production =>
+projects => merge into trunk => tag trunk when stabilized. Note that
+the production branch was never allowed a backward merge to avoid the
+possible inadvertent breaking of code for one project by another one.
+
 \subsection{Policies}
