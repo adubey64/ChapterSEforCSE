@@ -72,8 +72,8 @@ block. Migration to the new block is an independent operation from
 everything else that goes on with the LE's In FLASH parlance this is
 the Lagrangian framework (see \cite{Dubey2012} for more details). The
 combination of {\em Eulerian} and {\em Lagrangian} frameworks that
-interoperate well with one another has succeeded in meeting all the
-performance critical data management needs of the code so far. 
+interoperate well with one another has succeeded in largely meeting the
+performance critical data management needs of the code. 
 
 \subsection{Software Process}
 The software process of FLASH has evolved organically with the growth
@@ -88,20 +88,69 @@ SVN since 2003, though its branching system has been used in some very
 unorthodox ways to meet peculiar needs of the Flash Center. Unlike
 most software projects where branches are kept for somewhat isolated
 development purposes, FLASH uses branches also to manage multiple
-ongoing production projects. This particular need arose because at a
-point there were four different streams of production simulations going
-on simulataneously in three different scientific domains. All projects
-needed some stable code from the trunk, but also needed some
-development flexibility in their own branches. And it was understood
-that very little of the code added to the branches will make its way
-back into the repository. This would have been easy with the
-distributed repositories that have become available relatively
-recently, but it is difficult in SVN. This was accomplished by turning
-the trunk into essentially a merge area, with a separate {\em
-  production} branch becoming the base for forward code merges to the
-individual projects. The path was tagged-trunk => production =>
-projects => merge into trunk => tag trunk when stabilized. Note that
-the production branch was never allowed a backward merge to avoid the
-possible inadvertent breaking of code for one project by another one.
+ongoing projects. This particular need arose when there were four
+different streams physics capabilities being added to the code. All
+projects needed some code from the trunk, but the code being added was
+mostly exclusive to the individual project. It was important that the
+branches stay more or less in sync with the trunk and that the new
+code be tested regularly. This was accomplished by turning the trunk
+into essentially a merge area, with a schedule of merge from from
+individual branches, and an intermediate branch for forward merge. The
+path was tagged-trunk => forward-branch => projects => merge into
+trunk => tag trunk when stabilized. Note that the forward branch was
+never allowed a backward merge to avoid the possible inadvertent
+breaking of code for one project by another one. For the same reason
+the project branches never did a forward merge directly from the
+trunk. 
 
+Testing is another area where the standard practices do not adequately
+meet the needs of the code. Many multiphysics codes have legacy
+components in them that are written in early versions of
+Fortran. Contrary to popular belief, a great deal of new development
+continues in Fortran as well because it still is the best HPC language
+in which to express mathematical algorithms. All of solver code in
+FLASH is F90, so the general unit test harnesses aren't available for
+use. Small scale unit tests can only be devised for infrastructural
+code because all the physics has to interact with the mesh. Also,
+because regular testing became a part of FLASH development process
+long before formal incorporation of software engineering practices in
+the process, FLASH's designation of tests only loosely follows the
+standard definitions. So a unit test in FLASH can rely on other parts
+of the code, as long as the feature being tested is isolated. For
+example testing for correct filling of halo cells uses a lot of AMR
+code that has little to do with the halo filling, but it is termed
+unit test in FLASH parlance because it exclusively tests a single
+limited functionality. The dominant form of regular testing is
+integration testing, where more than one code  capability is combined to
+configure an executable. The results of the run are compared against
+pre-approved results to verify that nothing changed. Because of a
+large space of possible valid and useful combinations selected of tests
+becomes a challenging task. FLASH's methodology for test design and
+selection is described in detail in \cite{Dubey2015}, and follows the
+matrix method described in chapter \ref{chp:testing}
+
+FLASH's documentation takes a comprehensive approach with having a
+user's guide, developer's guide, robodocced API, inline documentation,
+and online resources. Each type of documentation serves a different
+purpose and is indispensable to the developers and users of the code.  
+There are scripts in place that look for violations of coding
+standards and documentation requirements. User's guide documents the
+mathematical formulation, algorithms used and instructions on using
+various code components. The user's guide also includes examples of
+relevant applications explaining the use of each code module. The
+developer's guide specifies the design principles and coding standards
+with an extensive example of the module architecture. Each function in
+the API is required to have a robodoc header explaining the
+input/output, function and special features of the function. Except
+for the third party software, every non-trivial function in the code
+is required to have sufficient inline documentation that a non-expert
+can understand and maintain the code.
+
+FLASH effectively has two versions of release - internal, which
+is close to the agile model, and external, which is no more than twice
+a year. The internal release amounts to tagging a stable version in
+the repository for the internal users of the code. This is signal to
+the users that a forward merge into their production branch is not
+going to break the code. The external releases have a more rigorous
+process which makes them infrequent. 
 \subsection{Policies}
