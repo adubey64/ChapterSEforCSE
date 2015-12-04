@@ -11,10 +11,10 @@ common API's and specializations to account for the different
 models. However, the physics capabilities were mostly legacy with F77
 implementations. Rewriting the code in an object oriented language was
 not an option. A compromise was found by exploiting the unix directory
-structure for inheritence, where for a code unit the top level
+structure for inheritence, where, for a code unit the top level
 directory defined the API and the subdirectories contained the
 multiple alternative implementations of the API.  Meta-information
-about the role of the directory level in the object oriented framework
+about the role of a particular directory level in the object oriented framework
 was encoded in a very limited domain-specific language (configuration
 DSL). The meta-information also included state and runtime variables
 requirements, dependences on other code units etc. A ``setup tool''
@@ -27,23 +27,21 @@ FLASH design is aware of the need for separation of concerns and
 achieves it by separating the infrastural components
 from physics. The abstraction that permits this approach is very
 well known in CSE, that of decomposing a physical domain into
-rectangular form, and surrounding each of the subdomains with halo
-cells copied over from the surrounding neighborin subdomains. To the
-physics whole domain is not distinguishable from a sub-domain. 
-It is also important not to let any of the  physics own the state
-variables. They are owned by the infrastructure, which 
+rectangular blocks surrounded by halo cells copied over from the
+surrounding neighboring blocks. To a physics operator whole domain is
+not distinguishable from a box. Another necessary aspect of the abstraction 
+is not to let any of the  physics own the state
+variables. They are owned by the infrastructure that 
 decomposes the domain into blocks. A further separation of concern
 takes place within the units handling the infrastructure, that of
-isolating the parallel aspects from bulk of the code. Parallel
+isolating parallelism from the bulk of the code. Parallel
 operations such as ghost cell fill, refluxing or regridding have
 minimal interleaving with state update in the blocks from application
 of physics operators. To distance the solvers from their parallel
 constructs, the required parallel operations provide an API with
 corresponding functions implemented as a subunit. The implementation
 of numerical algorithms for physics operators is sequential,
-interspersed with access to the parallel API as needed. This does
-impose bulk synchronous communication model on the code, and may need
-to be modified.
+interspersed with access to the parallel API as needed. 
 
 Minimization of data movement is achieved by letting the state be
 completely owned by the infrastructure modules. The dominant
@@ -66,9 +64,9 @@ applications they have to pass some information along to the mesh. And
 after advacing in time they may need to be redistributed. FLASH solves
 this conundrum through keeping the LE data structure extremely simple,
 and using argument passing by reference in the API's. The LE's are
-attached to the block in the mesh that has the nearest cell, an LE
+attached to the block in the mesh that has the overlapping cell, an LE
 leaves its block when its location no longer overlaps with the
-block. Migration to the new block is an independent operation from
+block. Migration to a new block is an independent operation from
 everything else that goes on with the LE's In FLASH parlance this is
 the Lagrangian framework (see \cite{Dubey2012} for more details). The
 combination of {\em Eulerian} and {\em Lagrangian} frameworks that
@@ -82,19 +80,19 @@ design document, the second version had a loosely implied design
 guidance, whereas the third version documented the whole design
 process. The third version also published the developer's guide which
 is a straight adaptation from the design document. Because of multiple
-developers with different production targets versioning repository was
+developers with different production targets, versioning repository was
 introduced early in the code life cycle. The repository used has been
 SVN since 2003, though its branching system has been used in some very
 unorthodox ways to meet peculiar needs of the Flash Center. Unlike
 most software projects where branches are kept for somewhat isolated
 development purposes, FLASH uses branches also to manage multiple
 ongoing projects. This particular need arose when there were four
-different streams physics capabilities being added to the code. All
+different streams of physics capabilities being added to the code. All
 projects needed some code from the trunk, but the code being added was
 mostly exclusive to the individual project. It was important that the
 branches stay more or less in sync with the trunk and that the new
 code be tested regularly. This was accomplished by turning the trunk
-into essentially a merge area, with a schedule of merge from from
+into essentially a merge area, with a schedule of merge from 
 individual branches, and an intermediate branch for forward merge. The
 path was tagged-trunk => forward-branch => projects => merge into
 trunk => tag trunk when stabilized. Note that the forward branch was
@@ -107,7 +105,7 @@ Testing is another area where the standard practices do not adequately
 meet the needs of the code. Many multiphysics codes have legacy
 components in them that are written in early versions of
 Fortran. Contrary to popular belief, a great deal of new development
-continues in Fortran as well because it still is the best HPC language
+continues in Fortran because it still is the best HPC language
 in which to express mathematical algorithms. All of solver code in
 FLASH is F90, so the general unit test harnesses aren't available for
 use. Small scale unit tests can only be devised for infrastructural
@@ -121,16 +119,17 @@ example testing for correct filling of halo cells uses a lot of AMR
 code that has little to do with the halo filling, but it is termed
 unit test in FLASH parlance because it exclusively tests a single
 limited functionality. The dominant form of regular testing is
-integration testing, where more than one code  capability is combined to
+integration testing, where more than one code capability is combined to
 configure an executable. The results of the run are compared against
-pre-approved results to verify that nothing changed. Because of a
+pre-approved results to verify that changes are withing a specified
+acceptable range. Because of a
 large space of possible valid and useful combinations selected of tests
 becomes a challenging task. FLASH's methodology for test design and
 selection is described in detail in \cite{Dubey2015}, and follows the
 matrix method described in chapter \ref{chp:testing}
 
 FLASH's documentation takes a comprehensive approach with having a
-user's guide, developer's guide, robodocced API, inline documentation,
+user's guide, developer's guide, robodoc API, inline documentation,
 and online resources. Each type of documentation serves a different
 purpose and is indispensable to the developers and users of the code.  
 There are scripts in place that look for violations of coding
@@ -147,10 +146,93 @@ is required to have sufficient inline documentation that a non-expert
 can understand and maintain the code.
 
 FLASH effectively has two versions of release - internal, which
-is close to the agile model, and external, which is no more than twice
+is close to the agile model, and general, which is no more than twice
 a year. The internal release amounts to tagging a stable version in
 the repository for the internal users of the code. This is signal to
 the users that a forward merge into their production branch is not
-going to break the code. The external releases have a more rigorous
-process which makes them infrequent. 
+going to break the code. The general releases have a more rigorous
+process which makes them infrequent. The general releases undergo some
+amount of code pruning, check for compliance with coding and
+documentation standards and stringent requirements from the testing
+process. They are expensive in terms of developers resources. The
+dual model ensures that the quality of code and documentation are
+maintained without unduly straining the team resources, while
+near continuous code improvement is still possible for ongoing
+projects. 
+ 
 \subsection{Policies}
+In any project, policies regarding attributions, contributions and
+licensing matter. In CSE arena intellectual property rights,
+and interdisciplinary interactions are additional policy
+areas that are equally important. Some of these policy requirements
+are a direct consequence of the cathedral model \cite{} of development that
+majority of CSE publicly distributed software follow.  Many arguments
+are forwarded for dominance of the cathedral model in this domain, the
+most compelling one relates to maintaining the quality of
+software. Recollect that the developers in this domain are typically
+not trained in software engineering, and software quality control
+varies greatly between individuals and/or groups of
+developers. Because of tight, and sometimes lateral, coupling between
+functionalities of code modules a lower quality component introduced
+into the code base can have disproportionate impact on the overall
+reliability of output produced by the code. Strong gate-keeping is
+desirable, and that implies having policies in place for accepting
+contributions. FLASH again differentiates between internal and
+external contributors in this regard. The internal contributors are
+required to meet the quality requirements such as coding standards,
+documentation, and code verification in all of their
+development. Internal audit processes minimize the possibility of
+poorly written and tested code from getting into a release. The internal audit also goes
+through a periodic pruning to ensure that bad or redudant code gets
+eliminated.  
+
+The external contributors are required to work with a member of the
+internal team to include their code in the released version. The
+minimum set required from them is:  (1) code that meets coding standards,
+has been used or will be used for results reported in peer-reviewed
+publication, (2) at least one test that can be included in the
+test-suite for nightly testing, (3) documentation for user's guide,
+robodoc documentation for any API functions and inline documentation
+explaining the flow of the control, and finally (4) a commitment to answer
+questions on users mailing list. The contributors can negotiate the
+terms of release, a code section can be excluded from the release for
+a mutually agreed period of time to enable the contributor to complete
+their research and publish their work before it the code becomes
+public. This policy permits the potential contributors to be freed
+from the necessity of maintaining their code independently, while
+still retaining control over their software until the agreed upon
+release time.  As a useful side effect their code remains in sync with
+the developments in the main branch between releases.  
+
+There is another model of external contribution to FLASH that is
+without any intervention from the core gate-keeping team. In this
+model anyone can stage any FLASH compatible code on a site hosted by
+them. The code has no endorsement from the distributing entity, the
+Flash Center, which does not take any responsibility for its
+quality. The Flash Center maintains a list of externally hosted
+``as-is'' code sites, the support for these code sections are entirely
+the responsibility of hosting site. 
+
+The attribution practices in CSE are somewhat ad-hoc. For many
+developers, the only metric of importance are the scientific
+publications that result from using the software. When a team is
+dominated by such developers proper attribution is not given enough
+importance or thought. Other teams also employ computing professionals
+whose career growth depends upon their software artifacts, and
+publications describing their algorithms and artifacts. FLASH falls
+into the latter category, but the attribution policy does not reflect
+meet this challenge adequately. All
+contributors' names are included in the author list for the user's
+guide, the release notes explicitly mention new external
+contributions and their contributors, if any, for that
+release. Internal contributors rely upon software related publications
+for their attribution. This policy has not always worked well, and one
+of worst side effects has been citations scewed in favor of early
+developers. Users of FLASH cite a paper published in 2000
+\cite{Fryxell2000} which does not include any of the later code
+contributors in its author list, who are, therefore, deprived of legitimate
+recognition for citations.  Many major long running software projects
+have this problem, which is peculiar to the academic world where these
+codes reside and are used.  
+
+

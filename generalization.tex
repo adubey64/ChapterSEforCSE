@@ -1,0 +1,68 @@
+% this section will discuss those aspects of FLASH solutions that are generalizable
+Not all of the solutions described in the earlier sections for CSE
+specific challenges are generalizable to all scientific software, but
+the vast majority of them are. This is borne out by the fact that at a
+workshop on community codes in 2012 \cite{}, all represented codes
+had nearly identical stories to tell about their motivation for
+adopting software engineering practices and the ones that they
+adopted. This was true irrespective of the science domains these codes
+served, the algorithms and discretization methods they used and
+communities they represented. Even their driving design principles
+were similar at the fundamental level though the details differed. The
+codes represented state-of-the-art in their respective communities in
+terms of both model and algorithmic research incorporated and the
+software engineering practices. Note that these are the codes that
+have stood the test of time and won the respect in their respective
+communities. They are widely used and supported, and have more
+credibility for producing reproducible reliable results than smaller
+individualistic efforts. Therefore, it is worthwhile to discuss
+those practices in this chapter. At a minimum they provide a snapshot
+of the state of large scale computing and its dependence of software
+engineering in the era of relatively uniform computing platforms. 
+
+One practice that is universally adopted by all community codes and
+other large scale codes is versioning repositories. That is worthy of
+mention here because even this practice has not penetrated the whole
+computational science community. There are many small projects
+that still do not use versioning, though their number is steadily
+decreasing. Other common practice is that of licensing for public use
+and most codes are freely available to download along with their
+source. Testing is also universal, though the extent and methodologies
+for testing vary greatly. A general verification and validation regime
+is still relatively rare, though regression testing is more
+common. Unit tests are less common than integration tests and
+bounded-change tests. Almost all codes have user level documentation
+and user support practices in place. They also have well defined code
+contribution policies. 
+
+Another feature that stands out is the broader design philisophy of
+all multiphysics codes. Every code exercises separation of concerns
+between mathematical and structural parts and between sequential and
+parallel parts. In almost all cases this separation is dictated by the
+need to reduce complexity for efforts needing specific
+expertise. Also, all the codes have basic backbone frameworks which
+orchestrate the data movement and ownership. This is
+usually driven by the need for maintenance and flexibility. And where
+it is realized well it provides extensibility - the ability to add
+more physics and therefore greater capabilities and fidelity in the
+models being computed. Majority of frameworks are component based with
+composability of some sort. This is because different models need
+different capability combinations. Most codes use self-describing IO
+libraries for their output to facilitate the use of generally
+available analysis and visualization tools. 
+
+The degree to which teams from vastly different scientific domains
+producing community codes have arrived at essentially similar
+solutions is remarkable. It points to a possibility that seemingly
+diverse problems can have a uniform solution if they are trying to
+achieve similar objectives. For the codes highlighted in this section,
+the objectives were capabilities, extensibility, composability,
+reliability, portability and maintainability. They were achieved
+through design choices concious of trade-offs, most often with raw
+performance that individual components or specific platforms were
+capable of. The lesson here is that similar objectives can yield a
+general solution even if there is great diversity in the details of
+the individual problem. It is not beyond the realm of possibility that
+similar generalized solution will emerge for the next generation
+software faced with heterogeneous computing described in the next
+section.
