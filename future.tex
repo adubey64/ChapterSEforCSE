@@ -8,13 +8,13 @@ effective HPC machines in routine use for scientific computing were
 all vectors machines. They later gave way to parallel machines with
 {\em risc} processor as their main processing element. A code written
 for one machine of its time, if portable, would have reasonable
-performance on most contemporary machines. The abstract machine model
-to which the codes were programming was essentially the same for all
-machines of each era. It is true that wholesale changes had to occur
-in codes for transitioning from vector to risc-parallel machines. But
+performance on most of its contemporary machines. The abstract machine
+model to which the codes of the era were programming was essentially
+the same for all machines of that era. It is true that wholesale changes had to occur
+in codes for transitioning from vector to risc-parallel machines, but
 it was a transition from one long-term stable paradigm to another
 long-term stable paradigm. And the codes were not as large as the
-multiphysics codes of today. So the transition took time, and the
+multiphysics codes of today. So although the transitions took time, and the
 codes that adapted well to the prevailing machine model thrived for
 several years.  
 
@@ -28,7 +28,7 @@ completely different magnitude. More importantly, some aspects of the
 challenges are not unique to the large multiphysics codes. Because the
 deep architectural changes are occurring at the level of nodes that
 will go into all platforms, the change is ubiquitous and will
-affect everyone. There portability in general and performance
+affect everyone. Portability in general and performance
 portability in particular is an issue for everyone. At this writing
 the impact of this paradigm shift is not fully understood. Means of
 combating this challenge are understoon even less. There is a general
@@ -39,6 +39,10 @@ solution. Many solutions have been proposed, for example \cite{} (also
 see \cite{IDEAS Howtos} for a more comprehensive and updated
 list). Of these, some have undergone more testing and exercise under
 realistic application instances than others. None of the approaches
-provide a good road map for a general solution that can broadly
-applicable in the ways that optimizing compilers and MPI had provided
-in the past.
+provide a good road map for a general solution that can be broadly
+applicable in the ways that optimizing compilers and MPI were
+in the past. This is an urgent serious challenge facing the CSE
+community today, future viability of CSE codes depends upon
+significant help from software engineering expertise and motivation
+within the community. 
+

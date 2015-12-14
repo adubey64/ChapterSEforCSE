@@ -10,7 +10,7 @@ common API's and specializations to account for the different
 models. However, the physics capabilities were mostly legacy with F77
 implementations. Rewriting the code in an object oriented language was
 not an option. A compromise was found by exploiting the unix directory
-structure for inheritence, where, for a code unit the top level
+structure for inheritance, where, for a code unit the top level
 directory defined the API and the subdirectories contained the
 multiple alternative implementations of the API.  Meta-information
 about the role of a particular directory level in the object oriented framework
@@ -19,11 +19,11 @@ DSL). The meta-information also included state and runtime variables
 requirements, dependences on other code units etc. A ``setup tool''
 parsed this information to configure a consistent ``application''. The
 setup tool also interpreted the configuration DSL to implement 
-inheritence using the directory structure. For more details about
+inheritance using the directory structure. For more details about
 FLASH's object oriented framework see \cite{Dubey2009, Fryxell2000}.   
 
 FLASH design is aware of the need for separation of concerns and
-achieves it by separating the infrastural components
+achieves it by separating the infrastructural components
 from physics. The abstraction that permits this approach is very
 well known in CSE, that of decomposing a physical domain into
 rectangular blocks surrounded by halo cells copied over from the
@@ -60,7 +60,7 @@ to advance, LE's need to get some field quantities from the mesh and
 then determine their new locations internally. In some applications
 they have to apply near- and far-field forces, and in some
 applications they have to pass some information along to the mesh. And
-after advacing in time they may need to be redistributed. FLASH solves
+after advancing in time they may need to be redistributed. FLASH solves
 this conundrum through keeping the LE data structure extremely simple,
 and using argument passing by reference in the API's. The LE's are
 attached to the block in the mesh that has the overlapping cell, an LE
@@ -74,6 +74,83 @@ performance critical data management needs of the code.
 
 \subsection{Verification \& Validation}
 \label{sec:FLASHvandv}
+
+FLASH instituted a rigorous verification program early in its
+lifecycle. The earliest versions of FLASH were subjected to
+a battery of standard hydrodynamics verification tests
+\cite{Fryxell2000}. These verification tests were then used to set up
+an automated regression test suite run on a few local
+workstations. Since then the test suite has evolved into a
+combination of variety of tests that aim to provide comprehensive
+coverage for verifying correct operation of the code \cite{Dubey2013,
+  Calder2005}. Because FLASH is in a constant state of production and
+development, verification of its correctness on a regular basis is a
+critical requirement.  The testing is complicated both by the variety 
+of environments in which FLASH is run, and the sheer number of ways in
+which it can be configured. 
+
+FLASH's testing can be broadly classified into
+three categories: the daily testing to verify ongoing correctness of
+the code, more targeted testing  related to science production runs,
+and finally porting to and testing on new platforms. Daily testing is
+performed on multiple combinations of platforms and software
+stacks. It includes unit tests where possible, and a modified version
+of no-change tests elsewhere. Because of floating point related issues
+mentioned in section \ref{sec:lifecycle} a drift within a specified
+tolerance is accepted as {\em no-change}. These tests also include
+{\em restart} tests, because a typical simulation is larger than one
+instance of batch queue allocation. It is imperative that the
+simulation be able to resume transparently from a checkpoint. All
+no-change tests for FLASH also incorporate verification of transparent
+restart for the corresponding problem. 
+
+FLASH selects problem setups for no-change testing using the matrix
+approach to provide full block coverage \cite{Qu2008}. The process of  
+selecting problem setups is manual and relies upon the combined
+knowledge and expertise of code developers and in-house users.
+Following order is used for populating the matrix:
+\begin {enumerate}
+\item All unit tests.
+\item Where possible problem setups corresponding to ongoing research
+  simulations.
+\item Tests known to be sensitive to perturbations.
+\item Tests known to exercise solvers in unusual ways.
+\item Simplest problem setups that can fill the remaining gaps
+\end {enumerate}
+
+In preparing for a  production schedule, testing is a combination of
+scaling tests, cost estimation tests, and looking for potential
+trouble spots. Scientists and developers work closely to devise
+meaningful weak scaling tests (which can be difficult because of
+non-linearity and adaptive mesh refinement), and tests that can 
+exercise the vulnerable code sections without overwhelming the test
+suite resources. Sample smaller scale production runs are also done on
+the target platform for make informed estimates of cpu hours and disk
+space needed to complete the simulation. For more details on
+simulation planning see \cite{Dubey2012}. For porting the code to
+a new platform a successful production run from the past is used as a
+benchmark for exercising the code on a new platform, along with using
+a subset of the standard test suite.
+
+FLASH has had some opportunities for validation against
+experiments. For example FLASH could model a variety of laboratory
+experiments involving fluid instabilities
+\cite{Dimonte2004,Kane2001}. These efforts allowed researchers to
+probe the validity of models and code modules, and also served to
+bolster the experimental efforts by creating realistic simulation
+capabilities for use in experimental design. The newer high-energy
+density physics (HEDP) initiative involving FLASH  
+is directed at simulation-based validation and design of
+experiments at the major laser facilities in the US and
+Europe. Other forms of validation have been convergence tests for the
+flame model that is used for supernova simulations, and validation of
+various numerical algorithms against analytical solutions of some
+known problems. For example, the Sedov \cite{} problem, which is
+seeded by a pressure spike in the center that sends out a spherical
+shock-wave into the domain has a known analytical solution. It is used
+to validate hydrodynamics in the code. There are several other similar
+examples where a simple problem can help to validate a code capability
+through known analytical solutions. 
 
 \subsection{Software Process}
 \label{sec:FLASHSoftwareProcess} 
@@ -97,12 +174,45 @@ branches stay more or less in sync with the trunk and that the new
 code be tested regularly. This was accomplished by turning the trunk
 into essentially a merge area, with a schedule of merge from 
 individual branches, and an intermediate branch for forward merge. The
-path was tagged-trunk => forward-branch => projects => merge into
-trunk => tag trunk when stabilized. Note that the forward branch was
+path was tagged-trunk $=>$ forward-branch $=>$ projects $=>$ merge into
+trunk $=>$ tag trunk when stabilized. Note that the forward branch was
 never allowed a backward merge to avoid the possible inadvertent
 breaking of code for one project by another one. For the same reason
 the project branches never did a forward merge directly from the
 trunk. 
+
+One of the biggest challenges in managing a code like FLASH occurs
+during major version changes, when the infrastructure of the code
+undergoes deep changes. FLASH has undergone two such changes where the
+first transition took the approach of keeping the development branch
+synchronized with the main branch at all times. The new version also
+tried to keep itself backward compatible with the old version. During
+and after the process the team realized many shortcomings of this
+approach. One was that the code needed to have deeper structural
+changes than were possible under this approach. Also, the attempt to keep the development and
+production versions in sync placed undue demands on the developers of
+the new version, leading to inefficient use of their time. The adoption of the new version was delayed
+because keeping up with the ongoing modifications to the older version
+(needed by the scientists to do their work) turned the completion of
+the transition into a moving target. 
+
+Because of these lessons learned the second transition took a
+completely different tack and was much more successful. The
+infrastructural backbone/framework for the new version were built in
+isolation from the code base in a new repository. The framework design
+leveraged the knowledge gained by the developers about the
+idiosyncracies of the solvers in earlier versions and focussed on
+the needs of the future version. There was no attempt at backward
+compatibility with the framework of the previous version. Once the
+framework was thoroughly tested, physics modules were
+transitioned. Here the emphasis was on transitioning all the
+capabilities needed for one project at the same time, starting with
+the most stable modules. Once a module was moved to the new version it
+was effectively frozen in the old version (the reason for selecting
+the most stable and mature code sections). Any modification after that
+point had to be made simultaneously in the new version as well. Though
+it sounds like a lot of duplicate effort, in reality such instances
+were rare. This version transition was adopted by the scientists very quickly.
 
 Testing is another area where the standard practices do not adequately
 meet the needs of the code. Many multiphysics codes have legacy
@@ -124,15 +234,15 @@ unit test in FLASH parlance because it exclusively tests a single
 limited functionality. The dominant form of regular testing is
 integration testing, where more than one code capability is combined to
 configure an executable. The results of the run are compared against
-pre-approved results to verify that changes are withing a specified
+pre-approved results to verify that changes are within a specified
 acceptable range. Because of a
-large space of possible valid and useful combinations selected of tests
-becomes a challenging task. FLASH's methodology for test design and
+large space of possible valid and useful combinations selection of tests
+is challenging. FLASH's methodology for test design and
 selection is described in detail in \cite{Dubey2015}, and follows the
 matrix method described in chapter \ref{chp:testing}
 
-FLASH's documentation takes a comprehensive approach with having a
-user's guide, developer's guide, robodoc API, inline documentation,
+FLASH's documentation takes a comprehensive approach with a
+user's guide, a developer's guide, robodoc API, inline documentation,
 and online resources. Each type of documentation serves a different
 purpose and is indispensable to the developers and users of the code.  
 There are scripts in place that look for violations of coding
@@ -155,8 +265,8 @@ the repository for the internal users of the code. This is signal to
 the users that a forward merge into their production branch is not
 going to break the code. The general releases have a more rigorous
 process which makes them infrequent. The general releases undergo some
-amount of code pruning, check for compliance with coding and
-documentation standards and stringent requirements from the testing
+amount of code pruning, get checked for compliance with coding and
+documentation standards and meet stringent requirements from the testing
 process. They are expensive in terms of developers resources. The
 dual model ensures that the quality of code and documentation are
 maintained without unduly straining the team resources, while
@@ -187,7 +297,7 @@ required to meet the quality requirements such as coding standards,
 documentation, and code verification in all of their
 development. Internal audit processes minimize the possibility of
 poorly written and tested code from getting into a release. The internal audit also goes
-through a periodic pruning to ensure that bad or redudant code gets
+through a periodic pruning to ensure that bad or redundant code gets
 eliminated.  
 
 The external contributors are required to work with a member of the
@@ -201,10 +311,10 @@ explaining the flow of the control, and finally (4) a commitment to answer
 questions on users mailing list. The contributors can negotiate the
 terms of release, a code section can be excluded from the release for
 a mutually agreed period of time to enable the contributor to complete
-their research and publish their work before it the code becomes
+their research and publish their work before the code becomes
 public. This policy permits the potential contributors to be freed
 from the necessity of maintaining their code independently, while
-still retaining control over their software until the agreed upon
+still retaining control over their software until agreed upon
 release time.  As a useful side effect their code remains in sync with
 the developments in the main branch between releases.  
 
@@ -231,7 +341,7 @@ guide, the release notes explicitly mention new external
 contributions and their contributors, if any, for that
 release. Internal contributors rely upon software related publications
 for their attribution. This policy has not always worked well, and one
-of worst side effects has been citations scewed in favor of early
+of worst side effects has been citations skewed in favor of early
 developers. Users of FLASH cite a paper published in 2000
 \cite{Fryxell2000} which does not include any of the later code
 contributors in its author list, who are, therefore, deprived of legitimate
@@ -239,5 +349,5 @@ recognition for citations.  Many major long running software projects
 have this problem, which is peculiar to the academic world where these
 codes reside and are used.  
 
-\subsection{User Support}
-\label{sec:FLASHUsers}
+%\subsection{User Support}
+%\label{sec:FLASHUsers}

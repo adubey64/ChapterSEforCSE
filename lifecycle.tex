@@ -2,12 +2,12 @@
 Scientific software is designed to model some phenomena in the
 physical world. The phenomena may be at microscopic level, for example
 protein folding, or at really large scales, for example galaxy cluster
-mergers. We use the term physical to also include chemical and
+mergers, or have a range of scales. We use the term physical to also include chemical and
 biological systems since physical processes are underlying building
-blocks for all those systems also. Their physical characteristics are
+blocks for those systems too. Their physical characteristics are
 translated into mathematical models that are said to describe the
-essential features of the behaviour of the physical system being
-studied. These equations are then discretized and numerical algorithms
+essential features of the behaviour of the system being
+studied. These equations are then discretized, and numerical algorithms
 are used to solve them. In general there are many more degrees of
 freedom in the development and lifecycle of scientific software
 that are not encountered elsewhere. 
@@ -19,15 +19,15 @@ general class of behavior to be studied, for example the Navier-Stokes
 equations describe the flow of compressible and incompressible
 fluids, and Van-der-vaal equations describe force interactions among
 molecules in a material. There may be more than one set of equations
-if there behaviors that are not adequately captured by one
-equation. In translating the model from mathematical representation to
+if there are behaviors that are not adequately captured by one set.
+In translating the model from mathematical representation to
 computational representation two processes go on simultaneously,
 discretization and approximation. One can argue that discretization is
 by definition an approximation because it is in effect sampling
 continuous behavior where information is lost between sampling
 intervals. This loss shows up as error terms in the discretized
 equations. But error terms are not the only
-approximations. Depending upon the level of understanding of speicific
+approximations. Depending upon the level of understanding of specific
 sub-phenomena, and available compute resources, scientists also 
 use their judgement to make other approximations. Sometimes, to focus on a
 particular behavior, a term in an equation may be simplified or may be even completely
@@ -50,6 +50,16 @@ code. Figure \ref{Fig:dev-cycle} gives an example of the development
 cycle of a multiphysics application modeled using partial differential
 equations. 
 
+\begin{figure}[!t]
+\centering
+\includegraphics[ width=4.0in]{CSE-design}
+\vskip -0.25in
+\caption{Development cycle of modeling with partial differential equations}
+\label{Fig:dev-cycle}
+\end{figure}
+
+
+
 \subsection{Verification and Validation}
 \label{sec:vandv}
 There are many stages in the development cycle of scientific software 
@@ -67,8 +77,9 @@ validation. For example, validation can also apply to a numerical
 method through exercises such as code-to-code comparisons, and its
 order can be validated through convergence studies. Similarly the
 implementation of a solver can be validated against an analytically
-obtained solution for a simplifed application of the same
-solver. Irrespective of  specific defintions, what is true is that
+obtained solution for some model if the same solver can be
+applied and the analytical solution is also known.  Though this is not
+always possible.  Irrespective of  specific defintions, what is true is that
 correctness must be assured at all the stages from model to
 implementation.  
 
@@ -78,9 +89,9 @@ model must be carefully caliberated by scientific experts. Similarly,
 verification of a numerical method requires applied math expertise
 because the method needs verification of its stability, accuracy and
 order of  convergence in addition to correctness. Numerical methods
-have either own error analysis because of approximations. Many of
-these methods are themselves objects of ongoing research and therefore
-modification in implementation are needed from time to time. Whenever
+have their own error analysis because of approximations. Many of
+these methods are themselves objects of ongoing research, so their
+implementation may need modifications from time to time. Whenever
 that happens the entire gamut of verification and validation needs to
 be applied again. This is an instance of particular challenges in the
 CSE software where no amount of specification is enough to hand the
@@ -119,7 +130,7 @@ are mostly incremental when they incorporate new findings into an
 existing feature, they can also be substantial when new capabilities
 are added. The need for new capabilities may arise from 
 greater model fidelity, or from trying to simulate a more complex
-model. Sometimes a code designed for one scientific fiel may have
+model. Sometimes a code designed for one scientific field may have
 enough in common with another field that capabilities may be added to
 enable it for the new field.   
 
@@ -137,3 +148,5 @@ a couple of strategies that met the conflicting needs of developers and
 production users in both scenarios. Both required co-operation and
 buy-in from all the stakeholders to be successful. 
 
+\subsection{Using CSE Software}
+\input{using}

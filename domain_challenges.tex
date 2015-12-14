@@ -19,7 +19,7 @@ significantly degrades performance.
 
 %\item physics is messy - encapsulation can be challenging
 The CSE simulation codes model the physical world which does not
-have neat modularization. Various phenonema have tightly coupled
+have neat modularization. Various phenomena have tightly coupled
 dependencies that are hard to break. These dependencies and tight
 couplings also translate into their mathematical models and it becomes
 hard to eliminate lateral interactions among code modules implementing
@@ -36,7 +36,7 @@ are not common in software outside of CSE.
 %\item less logical complexity more numerical complexity - hard to achieve data locality 
 
 In a CSE software design, separation of concerns is of utmost
-importance. Orthogonalizing expertise requirements into different code
+importance. Orthogonalization of expertise requirements into different code
 components allows developers to focus on what they know best.  
 Another natural fallout of this approach is that different dimensions of
 complexities in the algorithm space are handled separately. The
@@ -61,8 +61,13 @@ require diverse applied mathematics expertise. It is nearly impossible
 for any one team to assemble all the necessary expertise. The only
 form in which such expertise is encoded is in the form of numerical
 libraries or other third party software. The developers are faced with
-a choice between integrating third party software, or develop their
-own technology which is likely to yield inferior quality of solution. 
+a choice between integrating third party software, or developing their
+own technology which is likely to yield inferior quality of
+solution. However, as mentioned in section \ref{sec:using}, the use of
+third party does not absolve them from understanding its appropriate
+use. Additionally, information about appropriate use of third party
+software within the context of a larger code must also be communicated
+to the users of the code.
 
 %\item unit testing insufficient, not even always possible
 % Some of these issues are addressed in the chapter on testing,
@@ -72,24 +77,25 @@ own technology which is likely to yield inferior quality of solution.
 Testing of CSE software needs to reflect the layered complexity that
 the codes themselves have. The first line of attack is the unit tests
 where possible. However, as mentioned in chapter \ref{chp: }, some
-dependencies are impossible to break in mathematical software, and
+dependencies are meaningless to break in mathematical software, and
 where such dependences exist a unit test cannot be devised. Testing
-relies upon no-change tests where minimum possible combination of
+relies upon no-change-within-bounds tests where minimum possible combination of
 units are used within the dependence constraints. In effect these
 minimally combined tests play the same role in the testing regime that
-unit tests do. Multicomponent CSE software also relies upon integrated
-and system level testing. This is because the components can be
-permuted and combined in many different ways, and all configurations
-have to work within the accuracy and stability constraints. 
+unit tests do because they focus on possible defects in a very narrow
+section of the code. Multicomponent CSE software have to test various 
+permutions and combination of components in many different ways. These
+tests verify that all configurations are within the accuracy and stability
+constraints.  
 
 %\item performance portability important
 Another unique aspect of multiphysics CSE software is its need for
-performance portability. HPC machines are expensive and rare resource,
+performance portability. HPC machines are expensive and rare resources,
 they need to be used efficiently. In order to do that codes should
-ideally be optimized for each machine. However, yypical lifecycle of a
+ideally be optimized for each machine. However, typical lifecycle of a
 multiphysics software spans many generations of HPC platform
 lifecycle, which is about 3-4 years. Depending upon the size of the
-code optimization for a specific target platform can take a
+code, optimization for a specific target platform can take a
 significant fraction of the platform lifecycle. During the
 optimization phase, the code is not available for science. Thus a
 large fraction of scientists' time is lost in porting and optimizing
