@@ -1,20 +1,20 @@
 \label{sec:lifecycle} 
 Scientific software is designed to model some phenomena in the
 physical world. The phenomena may be at microscopic level, for example
-protein folding, or at really large scales, for example galaxy cluster
-mergers, or have a range of scales. We use the term physical to also include chemical and
+protein folding, or at extremely large scales, for example galaxy cluster
+mergers.  In some applications multiple scales are modeled.  (The term 'physical' used here includes chemical and
 biological systems since physical processes are underlying building
-blocks for those systems too. Their physical characteristics are
+blocks for those systems too.) The physical characteristics of the systems being modeled are
 translated into mathematical models that are said to describe the
-essential features of the behaviour of the system being
+essential features of the behavior of the system being
 studied. These equations are then discretized, and numerical algorithms
-are used to solve them. In general there are many more degrees of
+are used to solve them. In general, there are many more degrees of
 freedom in the development and lifecycle of scientific software
-that are not encountered elsewhere. 
+that are not encountered elsewhere. (KA NOTE: Do we have any thing to support this claim?  If not I would just delete the sentence as it doesn't help our argument.)
 
 \subsection{Development Cycle}
 \label{sec:dev-cycle}
-For scientific simualtions, modeling begins with equations that describe the
+For scientific simulations, modeling begins with equations that describe the
 general class of behavior to be studied, for example the Navier-Stokes
 equations describe the flow of compressible and incompressible
 fluids, and Van-der-vaal equations describe force interactions among
@@ -22,29 +22,29 @@ molecules in a material. There may be more than one set of equations
 if there are behaviors that are not adequately captured by one set.
 In translating the model from mathematical representation to
 computational representation two processes go on simultaneously,
-discretization and approximation. One can argue that discretization is
-by definition an approximation because it is in effect sampling
+discretization and approximation. One can argue that discretization is,
+by definition, an approximation because it is in effect sampling
 continuous behavior where information is lost between sampling
-intervals. This loss shows up as error terms in the discretized
-equations. But error terms are not the only
+intervals. This loss manifests itself as error terms in the discretized
+equations, but error terms are not the only
 approximations. Depending upon the level of understanding of specific
 sub-phenomena, and available compute resources, scientists also 
 use their judgement to make other approximations. Sometimes, to focus on a
 particular behavior, a term in an equation may be simplified or may be even completely
 dropped. At other times some physical details may be dropped
 from the model because they are not understood well enough by the
-scientists. 
+scientists.  Or the model itself may be an approximation.  
 
 The next stage in developing the code is finding the appropriate
 numerical methods for each of the models. Sometimes good methods exists that
-can be used '' as-is'', at others they may need to be customized, or new
+can be used ''as-is''.  Other times, they may need to be customized, or new
 methods may need to be developed. There may need to be validation of
 the method's applicability to the model if the method is new or
 significantly modified. Unless an implementation of the method is
 readily available as a third party software (stand-alone or in a
 library), it has to be implemented and verified. It is at this stage
 that the development of a CSE code begins to resemble that of general
-software. The numerical algorithms is specified, the semantics are
+software. The numerical algorithms are specified, the semantics are
 understood, and they need to be translated into executable
 code. Figure \ref{Fig:dev-cycle} gives an example of the development
 cycle of a multiphysics application modeled using partial differential
