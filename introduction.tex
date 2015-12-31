@@ -12,26 +12,27 @@ developers.  Secondly, there is often little funding for code development and ma
 engineering community targeted to specific needs of CSE codes.
 
 Many software best practices are not well-suited for CSE codes without
-modification and/or customization, in particular to multiphysics
-multicomponents codes that run on the large HPC platforms. Sometimes
+modification and/or customization.  In particular, multiphysics and 
+multicomponents codes that run on the large High Performance Computing (HPC) platforms have specific requirements.  In some cases,
 the inherent physics of scientific applications require different
-software methodologies, at others a premium is placed on
-performance rather than code architecture.  Still others are more
+software methodologies.  In other cases, a large premium is placed on
+performance, rather than code architecture, making it necessary to sacrifice some known software engineering best practices.  Still others are more
 sociological and due to the type of institutions where such codes are
-developed. The challenges for scientific applications range
-from their architecture to the process for their maintenance and
-growth. The standard practices adopted by the CSE codes include
+developed.  (KA NOTE: This last sentence is vague...  can we clarify? Is this about about lack of funding for development and maintenance?)  
+The challenges in developing scientific and engineering applications range
+from data dependencies, to architectural trade-offs, to the process for their maintenance and
+growth.  (KA NOTE: see if you like what I re-wrote in last sentence.)The standard practices adopted by the CSE codes include
 repositories for code version control, modular code design, licensing
 process, regular testing, documentation, release and distribution
 policies and contribution policies. Less frequently used practices
 include code-review and code-depracation. Agile developmenet methods
 tend to have limited usefulness in the CSE lifecycle, only a
-select subset of those have met with success. The degree of adoption and
-sophistication in using these  practices varies among teams. Many of
-the reasons behind less penetration are discussed in section
+select subset of those have met with success.  (KA NOTE: NEED REF) The degree of adoption and
+sophistication in using these practices varies among teams. Many of
+the reasons for lower penetration of more formal software engineering practices are discussed in section
 \ref{sec:institutional-challenges}. Even among the widely adopted
 practices, most are modified and customized by the developers for
-their own needs. The next two sections outline the  challenges that
+their own needs. The next two sections outline the challenges that
 are either unique to, or are more dominant in this domain than
 elsewhere.  
 
