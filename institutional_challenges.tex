@@ -92,13 +92,20 @@ The above institutional challenges also provide a clue about why any
 set software development methodology is hard, and often even
 undesirable, to adopt in such projects. For example, the principles
 behind the agile manifesto apply, but not all the formalized processes
-do.  
-\comment {KA NOTE: Need to describe what the agile methods are
-here... because you refer to them later in the paragraph without
-introducing them.}
-\reponse{AD: agreed. will work on this later}
+do. Agile software methods are lightweight evolutionary development
+methods where focus is on adaptability and flexibility, as opposed to
+waterfall methods which is a sequential development process where
+progress is perceived as a downward flow. \cite{}. 
+% \comment {KA NOTE: Need to describe what the agile methods are
+% here... because you refer to them later in the paragraph without
+% introducing them.}
+% \reponse{AD: agreed. will work on this later}
+Agile methods aim to deliver working software as early as possible
+within the lifecycle and improve it based upon user feedback and
+changing needs. These aims fit well with the objectives of scientific
+software development as well. 
 These codes are developed by interdisciplinary teams where
-interactions and collaborations are preferred over process. The code
+interactions and collaborations are preferred over regimented process. The code
 development and its use for science go on in parallel, so the
 requirements change and there is quick feedback when they do.  For the
 same reason, the code needs to be in working condition almost all the
@@ -108,23 +115,26 @@ separation between the developer and the client, many developers of
 the code are also the scientists who use it for their research. 
 Because software development goes hand in hand with research and
 exploration of the algorithms it is impossible to do either within
-fixed time-frames. This constraint effectively eliminates using
-sprints.  The waterfall model is even less useful because it is
-impossible to do a full specification ahead of time. The code has to
-grow and alter organically as the scientific understanding grows, the
-effect of using technologies are digested and requirements change.
+fixed time-frames. This constraint effectively eliminates using agile
+methods such as sprints in a scrum \cite{}. Similarly, extreme
+programming is impossible to implement in an environment which has to
+incorporate research into the process. The waterfall model is even less
+useful because it is impossible to do a full specification ahead of
+time. The code has to grow and alter organically as the scientific
+understanding grows, the effect of using technologies are digested and
+requirements change. 
 
 The need for deep expertise, and the fact that the developer of a
 complex physics module is almost definitely going to leave with
 possibly no replacement, documentation of various kind takes on a
 crucial role. It becomes necessary to document the algorithm, the
-implementation choices, and the range of operation. The general
-practice of ``writing code that does not need inline documentation''
-does not apply. To an expert in the field, who has comprehensive
+implementation choices, and the range of operation. The generally
+preferred practice of writing self explanatory code helps, but does
+not suffice. To an expert in the field, who has comprehensive
 understanding of the underlying math, such a code might be accessible
-without inline documentation. But to all others, and there are many
-who have reasons to look at the code, it would be equivalent to having
-equations without accompanying explanation. For longevity and
+without inline documentation. But not to non-experts (i.e. from
+another field or a software engineer in the team if there is one) who
+may have reasons to look at the code. For longevity and
 extensibility, a scientific code must have inline documentation
 explaining the implementation logic, and reasons behind the
 choices made.   
