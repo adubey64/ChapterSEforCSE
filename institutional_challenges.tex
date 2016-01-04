@@ -2,34 +2,30 @@
 %\begin{itemize}
 %\item resources are rarely available for software infrastructure - carved out of scientific goal oriented funding
 \label{sec:instChallenges}
-Many adaptations in the software engineering described in the previous
+Many adaptations in the software engineering for CSE applicationsdescribed in the previous
 section pertained to software design and testing. In particular they
 spoke to challenges of modularity, performance and unit-testing because of the
 intertwined nature of the problems being tackled by these
-codes. However, all challenges faced by the CSE codes are not
-because of the nature of problems they solve. Many challenges are
-specific to the kind of organizations and the research communities
+codes. However, there are a number of challenges that arise in developing and maintaining CSE codes outside of architectural and performance challenges.  Many challenges are specific to the kind of organizations and the research communities
 where these codes are developed. The most crippling and pervasive
 challenge faced by CSE codes in general, and multiphysics codes in
-particular, is that they rarely get funding for development of software
-infrastructure. There is evidence that when software is designed well
+particular, funding for software development and maintenance is difficult to attain. 
+There is evidence that when software is designed well
 it pays huge dividends in scientific productivity from the
 miniscule number of projects that secured such funding for software
-infrastructure design. Even with the evidence the scientific
-establishment remains unconvinced about the criticality of investment
-in software engineering. The funding is carved out of scientific goal
+infrastructure design. (KA NOTE: cite the evidence here. NEED REF) Even in the face of the evidence, it remains difficult to obtain funding for investment in software engineering best practices.  Available funding is most often carved out of scientific goal
 oriented projects that have their own priorities and time-line. This
 model often ends up short-changing the software engineering.
 
 %\item consumers of the software on short term deadlines
 %\item organic growth of codes - difficult to impose structure on existing codes
 
-The scientific output is measured in terms of publications which in
-turn depend upon the data produced by the simulations. Therefore in a
+The scientific output of applications is measured in terms of publications, which in
+turn depend upon the data produced by the simulations. Therefore, in a
 project driven purely by scientific objectives, the short-term science
-goals can lead to compromise on the quality of software
-design. Quick-and-dirty often triumphs over long term planning. The
-cost of future lost productivity is not appreciated until it is too
+goals can lead to compromises on the quality of software
+design. Quick-and-dirty often triumphs over long term planning.  (KA NOTE: Do we have a reference or example to cite here?)
+The cost of future lost productivity is not appreciated until it is too
 late. By the time design deficiencies are realized usually the
 software has grown too large to remove the deficiencies in any easy
 way.  Software engineering is forcibly imposed on the code, which it
@@ -37,13 +33,13 @@ at best a band-aid solution. This is another reason why many of the
 software practices are not embraced by the CSE community. 
 
 %\item concepts learned on the job
-Another instituitional challenge faced by SE for CSE is the
-training. Multiphysics codes require a broad range of expertise in
-domain science from their developers, software engineering is an added
-requirement. The developers are not trained in SE, many learn them on
-the job through reading or talking to colleagues. The practices are
+Another institutional challenge faced developing good software engineering practices for CSE codes is 
+training students and staff to use the application properly. Multiphysics codes require a broad range of expertise in
+domain science from their developers and software engineering skills is an added
+requirement.  Often experts in a domain science who develop CSE codes are not trained in software engineering and many learn skills on
+the job through reading, or talking to colleagues. The practices are
 applied as they understand them, usually picking only what is of most
-importance for their own development. This can be both good and
+importance for their own development.  (KA NOTE: Do we have any reference?) This can be both good and
 bad. Good because it sifts out the unnecessary aspects of the SE
 practice, and bad because it is not always true that the sifted out
 aspects were really not necessary. It just means that the person
@@ -54,13 +50,13 @@ importance.
 %   needed at times
 % \item transient population, minimal institutional support
 
-Institutional challenges also arise from scarcity of
-resources and stability. The domain and numerical algorithmic
+Institutional challenges also arise from scarcity and stability of
+resources. The domain and numerical algorithmic
 expertise is rarely replicated in a team developing the multiphysics
-CSE application. Even otherwise, deep expertise in the domain may be
+CSE application.  Even otherwise, deep expertise in the domain may be
 needed to model the phenomenon right, and that kind of expertise is
 hard to come by. Then there is the challenge to communicating the
-model to the software engineer if there is one on the team, or to
+model to the software engineer, if there is one on the team, or to
 other members of the team with some other domain expertise. It requires at least a
 few developers in the team who can act as interpreters for various
 domain expertise and are able to integrate them. Such abilities take a
@@ -70,16 +66,17 @@ organically grown. The available human resources in these institutions
 are post-docs and students who move on, so there is no retention of
 institutional knowledge about the code.  A few projects that do see
 the need for software professionals struggle to find ways of funding
-them or to provide a path to professional growth. 
+them or to provide a path to professional growth. (KA NOTE: I think this section could use some examples.)
 
 The above institutional challenges also provide a clue about why any
 set software development methodology is hard, and often even
 undesirable, to adopt in such projects. For example, the principles
-behind the agile manifesto apply, but not all the formalized process
-does. These codes are developed by interdisciplinary teams where
+behind the agile manifesto apply, but not all the formalized processes
+do.  (KA NOTE: Need to describe what the agile methods are here... because you refer to them later in the paragraph without introducing them.)
+These codes are developed by interdisciplinary teams where
 interactions and collaborations are preferred over process. The code
 development and its use for science go on in parallel, so the
-requirements change and there is quick feedback when they do. For the
+requirements change and there is quick feedback when they do.  For the
 same reason, the code needs to be in working condition almost all the
 time. However, scarcity of resources does not allow the professional roles in
 the agile process to be played out efficiently.  There is no clear

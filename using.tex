@@ -10,7 +10,7 @@ methods in inappropriate ways and obtain scientifically useless
 results. Even worse, one may obtain wrong results and not even know
 that they are wrong. 
 This is because some phenomena are very sensitive
-to perturbations. If one applies a method without sufficient
+to perturbations (KA NOTE: in the model?  in what?  need to explain perturbations in this context.) If one applies a method without sufficient
 resolution, the perturbations may be filtered out and the outcome of
 the simulation may be physically valid while being completely wrong
 for the phenomenon being studied. Similarly, sometimes equations have
@@ -21,3 +21,5 @@ happen after significant wasteful use of resources.
 These are some of the reasons that also play a role in tendency of scientific
 codes to do strict gatekeeping for contributions,  and mostly operate
 in the cathedral mode.  
+
+(KA NOTE:  I have a couple issue with this section.  First, all codes have some level of abstraction to the user that is treated like a black box, so I think claiming there is a fundamental requirement to understand the code needs to be explained further.  For example, I would assume a large number of code users, think of math libraries somewhat like a black box, be it petsc or fftw.  In addition, users of bioinformatics software, like BLAST or other alignment software, may not really know the algorithm at all, so I think we need to soften the claim about 'good results', unless we can back it up more.  The second 1/2 is very vague....)
