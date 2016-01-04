@@ -8,9 +8,12 @@ blocks for those systems too.) The physical characteristics of the systems being
 translated into mathematical models that are said to describe the
 essential features of the behavior of the system being
 studied. These equations are then discretized, and numerical algorithms
-are used to solve them. In general, there are many more degrees of
-freedom in the development and lifecycle of scientific software
-that are not encountered elsewhere. (KA NOTE: Do we have any thing to support this claim?  If not I would just delete the sentence as it doesn't help our argument.)
+are used to solve them. This process requires diverse expertise and
+adds many stages in the development and lifecycle of scientific
+software that may not be encountered elsewhere. 
+\comment{KA NOTE: Do we have any thing to support this claim?  If not
+  I would just delete the sentence as it doesn't help our argument.} 
+\response{AD: Does that read better ?}
 
 \subsection{Development Cycle}
 \label{sec:dev-cycle}
@@ -62,17 +65,23 @@ equations.
 
 \subsection{Verification and Validation}
 \label{sec:vandv}
-There are many stages in the development cycle of scientific software 
-where errors can be introduced. Classes of these errors are mostly
-orthogonal to one another, a good verification and validation
-methodology will reflect and exploit that.  (KA NOTE: I don't know what the last sentence means...  can you expand a bit?  It pretty vague.)
-The terms verification and 
+% There are many stages in the development cycle of scientific software 
+% where errors can be introduced. 
+% Many of the errors introduced in one
+% stage have no correlation with those in other stages. A good verification and validation
+% methodology will exploit this knowledge .  
+\comment{KA NOTE: I don't know what the last sentence means...  can
+  you expand a bit?  It pretty vague.}
+\response_AD: Upon re-reading it seemed redundant, so I removed the
+whole argument}
+The terms verification and
 validation are often used interchangeably, but to some communities have specific definitions.  
 In one narrow definition, validation, ensures that the
 mathematical model correctly defines the physical phenomena, while
 verification makes sure that the implementation of the model is
 correct. In other words, a model is validated against observations or
-experiments from the physical world, whereas a model is verified by other forms of testing.   Other definitions give broader scope to
+experiments from the physical world, whereas a model is verified by
+other forms of testing.   Other definitions give broader scope to 
 validation. For example, validation of a numerical
 method may be constructed through code-to-code comparisons, and its
 order can be validated through convergence studies. Similarly, the
@@ -114,12 +123,19 @@ discussed in greater detail in chapter \ref{chp:testing}.
 
 \subsection{Maintenance and Extensions}
 \label{sec:maintain}
-In a simple software project, there is a design and development phase,
-followed by production and maintenance phase. (KA NOTE:  I'm not sure we want to make this claim.  I've softened it a bit.  Commercial codes are constantly releasing new features....)  This clearly
-defined lifecycle rarely applies to scientific codes. In most successful multi-physics
-codes the infrastructure and solver API's are the only entities that
-have a distinct development phase which does not spill over into the
-remainder of the lifecycle. (KA NOTE: NEED REF - can we claim 'most successful' here?) The development of CSE software is
+In a simplified view of software lifecycle, there is a design and development phase,
+followed by production and maintenance phase. \comment{KA NOTE:  I'm
+  not sure we want to make this claim.  I've softened it a bit.
+  Commercial codes are constantly releasing new features....}
+\response{AD: OK, I have further diluted it}   Even in well engineered
+codes this simplified view typically applies only to the
+infrastructure and API's which have a distinct development phase which
+has limited spill into the remainder of the lifecycle. The numerical
+algorithms and solvers can be in a constinually evolving state
+reflecting the advances in their respective fields.  
+\comment{KA NOTE: NEED REF - can we claim 'most successful' here?} 
+\response{AD: see if you like the revised version'}
+The development of CSE software is
 usually responding to an immediate scientific need, so the codes get
 employed in production as soon as a minimal set of computational
 modules necessary for even one scientific project are

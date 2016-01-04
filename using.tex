@@ -1,25 +1,53 @@
 \label{sec:using}
 There is a fundamental requirement from the users of scientific
 software that rarely comes into play for users of other kinds of
-software. For good results, the users of scientific software cannot
-treat it as a black box. They must understand the models well. They
-must also know and understand the range of applicability of numerical
-algorithms to their physical regimes, and also the accuracy and
-stability behavior of the algorithms. It is very possible to apply the
-methods in inappropriate ways and obtain scientifically useless
-results. Even worse, one may obtain wrong results and not even know
-that they are wrong. 
-This is because some phenomena are very sensitive
-to perturbations (KA NOTE: in the model?  in what?  need to explain perturbations in this context.) If one applies a method without sufficient
-resolution, the perturbations may be filtered out and the outcome of
-the simulation may be physically valid while being completely wrong
-for the phenomenon being studied. Similarly, sometimes equations have
-mathematically valid but physically invalid solution. A badly applied
-numerical scheme may converge to such a solution. Even though in this
-situation it becomes obvious that the solution is not right, it may
-happen after significant wasteful use of resources.
+software. For obtaining valid scientific results the users must 
+have a basic understanding of the phenomena being modeled and the
+approximations, and they must know which questions can be validly 
+addressed by these models. For example, Eulerian equations of
+hydrodynamics do not account for viscosity. If one is modeling a fluid
+where viscosity is important, one should not use a code that uses
+Eulerian equations to model the fluid. Similarly, they must know and
+understand the valid regimes for applicability of numerical
+algorithms, and also the accuracy and stability behavior of the
+algorithms. For example a numerical method that can resolve a smooth
+fluid flow only will fail if there are discontinuities. Similarly Fast
+Fourier Transform (FFT) methods work really well for periodic
+boundaries. For all other boundaries they either need some additional
+processing, or are not applicable. Also, in order to use the FFT
+method the user must know what is the highest mode they are
+resolving. If enough terms are not used in the Fourier series
+approximation the computed result may filter out important information
+and lead to wrong results.
+
+% It is very possible to apply the  
+% methods in inappropriate ways and obtain scientifically useless
+% results. Even worse, one may obtain wrong results and not even know
+% that they are wrong. 
+% This is because some phenomena are very sensitive
+% to perturbations (KA NOTE: in the model?  in what?  need to explain
+% perturbations in this context.) 
+% If one applies a method without sufficient
+% resolution, the perturbations may be filtered out and the outcome of
+% the simulation may be physically valid while being completely wrong
+% for the phenomenon being studied. 
+Similarly, sometimes equations have mathematically valid but
+physically invalid solution. A badly applied numerical scheme may
+converge to such a non-physical solution. At best any of the above
+situations may lead to a waste of computing resources if the defect in
+the solution is detected. At worst they may lead to wrong scientific
+conclusions being drawn. Some in the scientific community even argue
+that those who have not written at least some basic version of their
+own code for their own problem should not be using other's public or
+community code. Though that argument goes too far, it embodies a
+general belief in the scientific community that users of scientific
+codes have a great responsibility to know their tools and understand
+their capabilities and limitations. 
+% Even though in this 
+% situation it becomes obvious that the solution is not right, it may
+% happen after significant wasteful use of resources.
 These are some of the reasons that also play a role in tendency of scientific
 codes to do strict gatekeeping for contributions,  and mostly operate
 in the cathedral mode.  
 
-(KA NOTE:  I have a couple issue with this section.  First, all codes have some level of abstraction to the user that is treated like a black box, so I think claiming there is a fundamental requirement to understand the code needs to be explained further.  For example, I would assume a large number of code users, think of math libraries somewhat like a black box, be it petsc or fftw.  In addition, users of bioinformatics software, like BLAST or other alignment software, may not really know the algorithm at all, so I think we need to soften the claim about 'good results', unless we can back it up more.  The second 1/2 is very vague....)
+\comment{KA NOTE:  I have a couple issue with this section.  First, all codes have some level of abstraction to the user that is treated like a black box, so I think claiming there is a fundamental requirement to understand the code needs to be explained further.  For example, I would assume a large number of code users, think of math libraries somewhat like a black box, be it petsc or fftw.  In addition, users of bioinformatics software, like BLAST or other alignment software, may not really know the algorithm at all, so I think we need to soften the claim about 'good results', unless we can back it up more.  The second 1/2 is very vague....}

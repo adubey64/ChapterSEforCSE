@@ -73,7 +73,8 @@ to the users of the code.  And finally, with the addition of third party softwar
 % we can perhaps cross reference.
 %\item integrated and system level testing very critical
 %\item robustness and stability as important as accuracy
-(KA NOTE: consider bringing this testing section, and section below on application portability up to be a section behind 1.2.3 Maintenance and Extensions.  Both testing and application portability seem like they would do better under Lifecycle (and are more general) rather than keeping them under section 1.3 Domain Challenges.)
+\comment{KA NOTE: consider bringing this testing section, and section below on application portability up to be a section behind 1.2.3 Maintenance and Extensions.  Both testing and application portability seem like they would do better under Lifecycle (and are more general) rather than keeping them under section 1.3 Domain Challenges.}
+\response{AD: sure go ahead}
 Testing of CSE software needs to reflect the layered complexity that
 the codes themselves have. The first line of attack is to develop the unit tests which isolate testing of one component of the code.
 However, as mentioned in chapter \ref{chp: }, in CSE codes, often there are dependencies between different components of the code that can not be isolated, making unit testing more difficult. In these cases, testing should be done with a minimal possible combination of
@@ -86,7 +87,8 @@ that all configurations are within the accuracy and stability
 constraints.  
 
 %\item performance portability important
-(KA NOTE: consider expanding and making own section.  KA can work on it.  Consider bringing up a level to follow section 1.2.3 Maintenance and Extensions)
+\comment{KA NOTE: consider expanding and making own section.  KA can work on it.  Consider bringing up a level to follow section 1.2.3 Maintenance and Extensions}
+\response{AD: again, sure go ahead}
 Another aspect of multiphysics CSE software is its need for
 performance portability. HPC machines are expensive and rare resources and in order to achieve high application performance, codes need to be optimized for the unique HPC architectures.
  However, typical lifecycle of a

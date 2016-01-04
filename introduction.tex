@@ -1,34 +1,56 @@
 \label{sec:introduction}
-Computational science and engineering (CSE) communities develop complex applications to solve scientific and engineering challenges, but these communities have a have a mixed record of using software engineering best
-practices. Many codes developed by CSE communities adopt standard software practices only when the size and complexity of an appellation becomes too unwieldy to continue without them.  (KA NOTE: NEED REF) 
-As more codes cross the threshold into increasing complexity, software engineering processes are being adopted from practices derived outside of the scientific and engineering domain.  The driving force behind adoption is usually the realization
-that without using software engineering practices, the development,
-verification and maintenance of appliations becomes
-intractable. State-of-the-art for software engineering
-practices in CSE codes lags behind that in the commercial software
-space. (KA NOTE: Do we have any reference for this claim?) There are many reasons for it, first, is that
-not all software engineering practices can actually be adopted by the CSE code
-developers.  Secondly, there is often little funding for code development and maintenance. And finally, there is very little research in the software
-engineering community targeted to specific needs of CSE codes.
+Computational science and engineering (CSE) communities develop
+complex applications to solve scientific and engineering challenges,
+but these communities have a have a mixed record of using software
+engineering best practices. Many codes developed by CSE communities
+adopt standard software practices when the size and complexity of an
+application becomes too unwieldy to continue without them
+\cite{cc2012}. The driving force behind adoption is usually the
+realization that without using software engineering practices, the
+development, verification and maintenance of appliations can become
+intractable. As more codes cross the threshold into increasing
+complexity, software engineering processes are being adopted from
+practices derived outside of the scientific and engineering domain.
+State-of-the-art for software engineering practices in CSE codes lags
+behind that in the commercial software space. \comment{KA NOTE: Do we have any
+reference for this claim? AD: I don't know of one, though this seems
+to be the consensus} There are many reasons for it, first, is
+that not all software engineering practices can actually be adopted by
+the CSE code developers.  Secondly, there is often little funding for
+code development and maintenance. And finally, there is very little
+research in the software engineering community targeted to specific
+needs of CSE codes. 
 
 Many software best practices are not well-suited for CSE codes without
-modification and/or customization.  In particular, multiphysics and 
-multicomponents codes that run on the large High Performance Computing (HPC) platforms have specific requirements.  In some cases,
-the inherent physics of scientific applications require different
-software methodologies.  In other cases, a large premium is placed on
-performance, rather than code architecture, making it necessary to sacrifice some known software engineering best practices.  Still others are more
-sociological and due to the type of institutions where such codes are
-developed.  (KA NOTE: This last sentence is vague...  can we clarify? Is this about about lack of funding for development and maintenance?)  
+modification and/or customization.  In particular, multiphysics and
+multicomponents codes that run on the large High Performance Computing
+(HPC) platforms have specific requirements.  In some cases, the
+inherent physics of scientific applications require different software
+methodologies.  In other cases, a large premium is placed on
+performance, rather than code architecture, making it necessary to
+sacrifice some known software engineering best practices.  Still
+others are more sociological because codes may be developed by domain
+scientists and their graduate students who have different priorities
+and scientific goals.  
+\comment{KA NOTE: This last sentence is vague...  can we clarify? Is this about about lack of funding for development and maintenance?}
+\response{AD: does the modification address your point ? }
+%and due to the type of institutions where
+%such codes are developed.  
 The challenges in developing scientific and engineering applications range
 from data dependencies, to architectural trade-offs, to the process for their maintenance and
-growth.  (KA NOTE: see if you like what I re-wrote in last sentence.)The standard practices adopted by the CSE codes include
+growth. 
+% \comment{KA NOTE: see if you like what I re-wrote in last sentence.}
+The standard practices adopted by the CSE codes include
 repositories for code version control, modular code design, licensing
 process, regular testing, documentation, release and distribution
 policies and contribution policies. Less frequently used practices
-include code-review and code-depracation. Agile developmenet methods
-tend to have limited usefulness in the CSE lifecycle, only a
-select subset of those have met with success.  (KA NOTE: NEED REF) The degree of adoption and
-sophistication in using these practices varies among teams. Many of
+include code-review and code-depracation. 
+%Agile developmenet methods \cite{}
+%tend to have limited usefulness in the CSE lifecycle.
+% only a 
+%select subset of those have met with success.  (KA NOTE: NEED REF) 
+The degree of adoption and
+sophistication in using software engineering practices varies among teams. Many of
 the reasons for lower penetration of more formal software engineering practices are discussed in section
 \ref{sec:institutional-challenges}. Even among the widely adopted
 practices, most are modified and customized by the developers for
