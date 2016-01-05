@@ -1,13 +1,3 @@
-@ARTICLE{bergerOliger:1984,
-	AUTHOR = {M. Berger and J. Oliger},
-	TITLE = {Adaptive Mesh Refinement for Hyperbolic Partial Differential
-	Equations},
-	JOURNAL = {Journal of Computational Physics},
-	VOLUME = {53},
-	PAGES = {484--512},
-	YEAR = {1984}
-}
-
 @ARTICLE{armstrong2006,
   author = {Armstrong, R. and Kumfert, G. and McInnes, L.C. and Parker, S. and
 	Allan, B. and Sottile, M. and Epperly, T. and Dahlgren, T.},
@@ -19,17 +9,6 @@
   number = {2},
   owner = {lynnreid},
   timestamp = {2008.06.19}
-}
-
-@ARTICLE{bergerColella:1989,
-	AUTHOR = {M. J. Berger and P. Colella},
-	TITLE = {Local Adaptive Mesh Refinement for Shock Hydrodynamics},
-	JOURNAL={Journal of Computational Physics},
-	YEAR = {1989},
-	NUMBER = {1},
-	MONTH = {May},
-	VOLUME={82},
-	PAGES={64--84}
 }
 
 @TechReport{Chombo,
@@ -331,11 +310,20 @@ language={English}
   year = {2015},
 }
 
-@MISC{Dubey2015,
-  author = {A. Dubey and H. Fujita and Z. Rubenstein and B. Van Straalen and A. Chien},
-  title = {Hierarchical Resilience for Structured AMR },
-  howpublished = {\url{http://meetings.siam.org/sess/dsp_talk.cfm?p=66883}},
-  year = {2015},
+
+@INPROCEEDINGS{Dubey2015Heteropar,
+title = {A Design Proposal for a Next Generation Scientific Software Framework},
+author={{A. Dubey} and {D. Graves}},
+note = {HeteroPar'2015, colocated with Europar-2015},
+year = {},
+}
+
+
+@INPROCEEDINGS{Dubey2015,
+title = {Resilience Through Hierarchical State Saving and Differentiated Recovery},
+author={{A. Dubey} and {H. Fujita} and {Z.A. Rubenstein} and {B. Van Straalen} and {A. Chien}},
+note = {8th Workshop on Resiliency in High Performance Computing (Resilience) in Clusters, Clouds, and Grids},
+year = {2015},
 }
 
 @inproceedings{gysi2014stella,
@@ -355,3 +343,32 @@ language={English}
   year={2014},
   organization={ACM}
 }
+
+@MISC{cc2012,
+  author = {A. Dubey and D.Q. Lamb and E. Balaras},
+  title = {Building Community Codes for Effective Scientific Research on {HPC} Platforms},
+  howpublished = {http://flash.uchicago.edu/cc2012},
+  year = {2012},
+}
+
+@ARTICLE{Enzo2013,
+   author = {{The Enzo Collaboration} and {Bryan}, G.~L. and {Norman}, M.~L. and 
+	{O'Shea}, B.~W. and {Abel}, T. and {Wise}, J.~H. and {Turk}, M.~J. and 
+	{Reynolds}, D.~R. and {Collins}, D.~C. and {Wang}, P. and {Skillman}, S.~W. and 
+	{Smith}, B. and {Harkness}, R.~P. and {Bordner}, J. and {Kim}, J.-h. and 
+	{Kuhlen}, M. and {Xu}, H. and {Goldbaum}, N. and {Hummels}, C. and 
+	{Kritsuk}, A.~G. and {Tasker}, E. and {Skory}, S. and {Simpson}, C.~M. and 
+	{Hahn}, O. and {Oishi}, J.~S. and {So}, G.~C and {Zhao}, F. and 
+	{Cen}, R. and {Li}, Y.},
+    title = "{Enzo: An Adaptive Mesh Refinement Code for Astrophysics}",
+  journal = {ArXiv e-prints},
+archivePrefix = "arXiv",
+   eprint = {1307.2265},
+ primaryClass = "astro-ph.IM",
+ keywords = {Astrophysics - Instrumentation and Methods for Astrophysics},
+     year = 2013,
+    month = jul,
+   adsurl = {http://adsabs.harvard.edu/abs/2013arXiv1307.2265T},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
