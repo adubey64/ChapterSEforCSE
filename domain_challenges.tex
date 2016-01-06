@@ -4,7 +4,7 @@
 Multiphysics codes, by their definition, have more than one
 mathematical model that they are solving. A typical code combines 3-4
 diverse models, the more extreme ones may employ as many as a
-dozen. (KA NOTE: NEED REF)  In a rare calculation all models work with the same
+dozen. \comment[(KA NOTE: NEED REF)]  In a rare calculation all models work with the same
 discretization using similar algorithmic approach (for instance
 stencil computations in explicit PDE solvers). More common is to have
 models with diverse discretizations and algorithms. In this case, each operator has
@@ -31,12 +31,12 @@ potential lateral interactions and make allowances for them.
 Similarly, the data structures have to take into account the diverse
 demands placed on them by different operators and carefully consider
 the trade-offs during software design. Considerations such as these
-are not common in software outside of CSE.  (KA NOTE: NEED REF - can we back up this claim?)
+are not common in software outside of CSE.  \comment[(KA NOTE: NEED REF - can we back up this claim?)}
 
 %\item less logical complexity more numerical complexity - hard to achieve data locality 
 
 In a CSE software design, separation of concerns is of utmost
-importance. (KA NOTE:  I don't know what this last sentence means.  Do you mean modular design is important?)
+importance. \comment[(KA NOTE:  I don't know what this last sentence means.  Do you mean modular design is important?)}
 Orthogonalization of expertise requirements into different code
 components allows developers to focus on what they know best.  
 Another natural fallout of this approach is that different dimensions of
@@ -46,14 +46,14 @@ because of accuracy and stability concerns, and require mathematical
 expertise. They are not logically as complex. Whereas machinery for
 managing the discretizations and interoperability among code
 components is likely to be less complex numerically, but could be very
-complex logically. (KA NOTE:  I don't think logically complex and accuracy complex are well known terms.  I think the point we're trying to make isn't coming through here.  Is it important?)  A third axis of concern is parallelization, which
+complex logically. \comment[(KA NOTE:  I don't think logically complex and accuracy complex are well known terms.  I think the point we're trying to make isn't coming through here.  Is it important?)}  A third axis of concern is parallelization, which
 brings in some features that are unique to CSE codes, such as domain
 decomposition, aspects of synchronization and dependencies, and
 performance impact of the design choices. With appropriate separation
 of concerns not only do these aspects of software development not 
 interfere with one another, they help make the development tractable. 
 
-(KA NOTE: I re-wrote the paragraph above to the lines below.  Let me know what you think.  My thought is to remove references to 'separation of concerns' which I think is vague and not well known in the community.)
+\comment{(KA NOTE: I re-wrote the paragraph above to the lines below.  Let me know what you think.  My thought is to remove references to 'separation of concerns' which I think is vague and not well known in the community.)}
 When designing CSE software, it is especially important to create modular components wherever possible.  This is because in depth applied math and algorithms expertise may be required to understand each component, and thus a modular design allows application developers to focus on they areas they know best.  In addition, modular code allows various components to interface with each other in a clearer way.  Another challenge for CSE codes is that they run on large HPC systems and require code parallelization.  Parallel codes typically must implement a parallel domain decomposition and manage synchronization and load balancing between tasks or threads.  With appropriate code modularization, these different aspects of the code, do not need to interfere with one another and can help make application development more tractable.
 
 
@@ -73,33 +73,6 @@ to the users of the code.  And finally, with the addition of third party softwar
 % we can perhaps cross reference.
 %\item integrated and system level testing very critical
 %\item robustness and stability as important as accuracy
-\comment{KA NOTE: consider bringing this testing section, and section below on application portability up to be a section behind 1.2.3 Maintenance and Extensions.  Both testing and application portability seem like they would do better under Lifecycle (and are more general) rather than keeping them under section 1.3 Domain Challenges.}
-\response{AD: sure go ahead}
-Testing of CSE software needs to reflect the layered complexity that
-the codes themselves have. The first line of attack is to develop the unit tests which isolate testing of one component of the code.
-However, as mentioned in chapter \ref{chp: }, in CSE codes, often there are dependencies between different components of the code that can not be isolated, making unit testing more difficult. In these cases, testing should be done with a minimal possible combination of
-components.  In effect, these
-minimally combined tests play the same role in the testing regime that
-unit tests do because they focus on possible defects in a very narrow
-section of the code. In addition, multicomponent CSE software should test various 
-permutations and combination of components in different ways. Configuring tests in this manner will help verify
-that all configurations are within the accuracy and stability
-constraints.  
-
-%\item performance portability important
-\comment{KA NOTE: consider expanding and making own section.  KA can work on it.  Consider bringing up a level to follow section 1.2.3 Maintenance and Extensions}
-\response{AD: again, sure go ahead}
-Another aspect of multiphysics CSE software is its need for
-performance portability. HPC machines are expensive and rare resources and in order to achieve high application performance, codes need to be optimized for the unique HPC architectures.
- However, typical lifecycle of a
-multiphysics application spans many generations HPC systems which have a typical lifespan of about 4-5 years.  Depending upon the size of the
-code, optimization for a specific target platform can take a
-significant fraction of the platform lifecycle, time when the code may not be available for science runs.  Without careful planning and coordination,  a
-large fraction of scientists' time could be lost in porting and optimizing
-a code for a new system.  Developers have the choice of adding machine specific optimizations or creating more general optimization that will work for a broader class of systems.  CSE codes must consider the trade-offs and advantages of a highly optimized code for a single platform or a design 
-HPC CSE codes consider the trade-offs and opt to design their software
-using constructs that perform modestly well across a range of
-platforms. 
 
 
 %\end{itemize}

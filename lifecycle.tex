@@ -1,6 +1,6 @@
 \label{sec:lifecycle} 
 Scientific software is designed to model some phenomena in the
-physical world. The phenomena may be at microscopic level, for example
+physical world. The phenomena may be at the microscopic level, for example
 protein folding, or at extremely large scales, for example galaxy cluster
 mergers.  In some applications multiple scales are modeled.  (The term 'physical' used here includes chemical and
 biological systems since physical processes are underlying building
@@ -11,9 +11,7 @@ studied. These equations are then discretized, and numerical algorithms
 are used to solve them. This process requires diverse expertise and
 adds many stages in the development and lifecycle of scientific
 software that may not be encountered elsewhere. 
-\comment{KA NOTE: Do we have any thing to support this claim?  If not
-  I would just delete the sentence as it doesn't help our argument.} 
-\response{AD: Does that read better ?}
+
 
 \subsection{Development Cycle}
 \label{sec:dev-cycle}
@@ -70,10 +68,7 @@ equations.
 % Many of the errors introduced in one
 % stage have no correlation with those in other stages. A good verification and validation
 % methodology will exploit this knowledge .  
-\comment{KA NOTE: I don't know what the last sentence means...  can
-  you expand a bit?  It pretty vague.}
-\response{AD: Upon re-reading it seemed redundant, so I removed the
-whole argument}
+
 The terms verification and
 validation are often used interchangeably, but to some communities have specific definitions.  
 In one narrow definition, validation, ensures that the
@@ -124,22 +119,17 @@ discussed in greater detail in chapter \ref{chp:testing}.
 \subsection{Maintenance and Extensions}
 \label{sec:maintain}
 In a simplified view of software lifecycle, there is a design and development phase,
-followed by production and maintenance phase. \comment{KA NOTE:  I'm
-  not sure we want to make this claim.  I've softened it a bit.
-  Commercial codes are constantly releasing new features....}
-\response{AD: OK, I have further diluted it}   Even in well engineered
+followed by production and maintenance phase.  Even in well engineered
 codes this simplified view typically applies only to the
 infrastructure and API's which have a distinct development phase which
 has limited spill into the remainder of the lifecycle. The numerical
 algorithms and solvers can be in a continually evolving state
 reflecting the advances in their respective fields.  
-\comment{KA NOTE: NEED REF - can we claim 'most successful' here?} 
-\response{AD: see if you like the revised version'}
 The development of CSE software is
 usually responding to an immediate scientific need, so the codes get
 employed in production as soon as a minimal set of computational
 modules necessary for even one scientific project are
-built. Similarly, the development of computational modules almost
+built.  Similarly, the development of computational modules almost
 never stops all through the code lifecycle because new findings in science
 and math almost continuously place new demands on them. The additions
 are mostly incremental when they incorporate new findings into an
@@ -163,6 +153,40 @@ FLASH's example in section \ref{sec:FLASHSoftwareProcess} describes
 a couple of strategies that met the conflicting needs of developers and
 production users in both scenarios. Both required co-operation and
 buy-in from all the stakeholders to be successful. 
+
+
+\subsection{Testing}
+\label{sec:testing}
+\comment{KA NOTE: KA will expand this section}
+Testing of CSE software needs to reflect the layered complexity that
+the codes themselves have. The first line of attack is to develop the unit tests which isolate testing of one component of the code.
+However, as mentioned in chapter \ref{chp: }, in CSE codes, often there are dependencies between different components of the code that can not be isolated, making unit testing more difficult. In these cases, testing should be done with a minimal possible combination of
+components.  In effect, these
+minimally combined tests play the same role in the testing regime that
+unit tests do because they focus on possible defects in a very narrow
+section of the code. In addition, multicomponent CSE software should test various 
+permutations and combination of components in different ways. Configuring tests in this manner will help verify
+that all configurations are within the accuracy and stability
+constraints.  
+
+\subsection{Performance Portability}
+\label{sec:perfport}
+
+%\item performance portability important
+\comment{KA will expand this section}
+Another aspect of multiphysics CSE software is its need for
+performance portability. HPC machines are expensive and rare resources and in order to achieve high application performance, codes need to be optimized for the unique HPC architectures.
+ However, typical lifecycle of a
+multiphysics application spans many generations HPC systems which have a typical lifespan of about 4-5 years.  Depending upon the size of the
+code, optimization for a specific target platform can take a
+significant fraction of the platform lifecycle, time when the code may not be available for science runs.  Without careful planning and coordination,  a
+large fraction of scientists' time could be lost in porting and optimizing
+a code for a new system.  Developers have the choice of adding machine specific optimizations or creating more general optimization that will work for a broader class of systems.  CSE codes must consider the trade-offs and advantages of a highly optimized code for a single platform or a design 
+HPC CSE codes consider the trade-offs and opt to design their software
+using constructs that perform modestly well across a range of
+platforms. 
+
+
 
 \subsection{Using CSE Software}
 \input{using}
