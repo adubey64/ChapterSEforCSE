@@ -66,7 +66,7 @@ and using argument passing by reference in the API's. The LE's are
 attached to the block in the mesh that has the overlapping cell, an LE
 leaves its block when its location no longer overlaps with the
 block. Migration to a new block is an independent operation from
-everything else that goes on with the LE's In FLASH parlance this is
+everything else that goes on with the LE's. In FLASH parlance this is
 the Lagrangian framework (see \cite{Dubey2012} for more details). The
 combination of {\em Eulerian} and {\em Lagrangian} frameworks that
 interoperate well with one another has succeeded in largely meeting the
@@ -108,7 +108,7 @@ restart for the corresponding problem.
 FLASH selects problem setups for no-change testing using the matrix
 approach to provide full block coverage \cite{Qu2008}. The process of  
 selecting problem setups is manual and relies upon the combined
-knowledge and expertise of code developers and in-house users.
+knowledge and expertise of code developers and in-house users. 
 Following order is used for populating the matrix:
 \begin {enumerate}
 \item All unit tests.
@@ -128,7 +128,7 @@ exercise the vulnerable code sections without overwhelming the test
 suite resources. Sample smaller scale production runs are also done on
 the target platform for make informed estimates of cpu hours and disk
 space needed to complete the simulation. For more details on
-simulation planning see \cite{Dubey2013a}. For porting the code to
+simulation planning see \cite{Dubey2013}. For porting the code to
 a new platform a successful production run from the past is used as a
 benchmark for exercising the code on a new platform, along with using
 a subset of the standard test suite.
@@ -146,7 +146,7 @@ experiments at the major laser facilities in the US and
 Europe. Other forms of validation have been convergence tests for the
 flame model that is used for supernova simulations, and validation of
 various numerical algorithms against analytical solutions of some
-known problems. For example, the Sedov \cite{} problem, which is
+known problems. For example, the Sedov \cite{sedov} problem, which is
 seeded by a pressure spike in the center that sends out a spherical
 shock-wave into the domain has a known analytical solution. It is used
 to validate hydrodynamics in the code. There are several other similar
@@ -280,9 +280,9 @@ In any project, policies regarding attributions, contributions and
 licensing matter. In CSE arena intellectual property rights,
 and interdisciplinary interactions are additional policy
 areas that are equally important. Some of these policy requirements
-are a direct consequence of the cathedral model \cite{} of development that
+are a direct consequence of the strong gatekeeping regimes that
 majority of CSE publicly distributed software follow.  Many arguments
-are forwarded for dominance of the cathedral model in this domain, the
+are forwarded for dominance of this model in the domain, the
 most compelling one relates to maintaining the quality of
 software. Recollect that the developers in this domain are typically
 not trained in software engineering, and software quality control
@@ -325,7 +325,7 @@ model anyone can stage any FLASH compatible code on a site hosted by
 them. The code has no endorsement from the distributing entity, the
 Flash Center, which does not take any responsibility for its
 quality. The Flash Center maintains a list of externally hosted
-``as-is'' code sites, the support for these code sections are entirely
+`as-is' code sites, the support for these code sections are entirely
 the responsibility of hosting site. 
 
 The attribution practices in CSE are somewhat ad-hoc. For many

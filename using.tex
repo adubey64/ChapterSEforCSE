@@ -11,12 +11,9 @@ Eulerian equations to model the fluid. Similarly, they must know and
 understand the valid regimes for applicability of numerical
 algorithms, and also the accuracy and stability behavior of the
 algorithms. For example a numerical method that can resolve a smooth
-fluid flow only will fail if there are discontinuities. Similarly Fast
-Fourier Transform (FFT) methods work really well for periodic
-boundaries. For all other boundaries they either need some additional
-processing, or are not applicable. Also, in order to use the FFT
-method the user must know what is the highest mode they are
-resolving. If enough terms are not used in the Fourier series
+fluid flow only will fail if there are discontinuities. Similarly, in
+order to use the Fast Fourier Transform (FFT) method, user must know
+the highest mode being resolved. If enough terms are not used in the Fourier series
 approximation the computed result may filter out important information
 and lead to wrong results.
 
@@ -32,7 +29,7 @@ and lead to wrong results.
 % the simulation may be physically valid while being completely wrong
 % for the phenomenon being studied. 
 Similarly, sometimes equations have mathematically valid but
-physically invalid solution. A badly applied numerical scheme may
+physically invalid solutions. An inappropriately applied numerical scheme may
 converge to such a non-physical solution. At best any of the above
 situations may lead to a waste of computing resources if the defect in
 the solution is detected. At worst they may lead to wrong scientific
@@ -47,7 +44,6 @@ their capabilities and limitations.
 % situation it becomes obvious that the solution is not right, it may
 % happen after significant wasteful use of resources.
 These are some of the reasons that also play a role in tendency of scientific
-codes to do strict gatekeeping for contributions,  and mostly operate
-in the cathedral mode.  
+codes to do strict gatekeeping for contributions.
 
 %\comment{KA NOTE:  this is much better...}

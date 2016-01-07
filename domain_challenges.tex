@@ -3,8 +3,7 @@
 \label{sec:domainChallenges}
 Multiphysics codes, by their definition, have more than one
 mathematical model that they are solving. A typical code combines 3-4
-diverse models, the more extreme ones may employ as many as a
-dozen.
+diverse models, the more extreme ones may employ many more.
 %\comment[(KA NOTE: NEED REF)]  
 In a rare calculation all models work with the same
 discretization using similar algorithmic approach (for instance
@@ -68,7 +67,9 @@ each component, and thus a modular design allows application
 developers to focus on they areas they know best. For example, the
 numerical algorithms associated with physics operators require mathematical expertise, which is
 different from the code architecture which requires software
-engineering expertise. In addition, modular code allows various components to interface with each other in a clearer way.  Another challenge for CSE codes is that they run on large HPC systems and require code parallelization.  Parallel codes typically must implement a parallel domain decomposition and manage synchronization and load balancing between tasks or threads.  With appropriate code modularization, these different aspects of the code, do not need to interfere with one another and can help make application development more tractable.
+engineering expertise. In addition, modular code allows various
+components to interface with each other in a clearer way.  Another
+challenge for CSE codes is that many of them run on large HPC systems and require code parallelization.  Parallel codes typically must implement a parallel domain decomposition and manage synchronization and load balancing between tasks or threads.  With appropriate code modularization, these different aspects of the code do not need to interfere with one another and can help make application development more tractable.
 
 
 %\item need for third party software 

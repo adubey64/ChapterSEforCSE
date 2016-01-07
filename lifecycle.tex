@@ -1,10 +1,10 @@
 \label{sec:lifecycle} 
 Scientific software is designed to model some phenomena in the
-physical world. The phenomena may be at the microscopic level, for example
-protein folding, or at extremely large scales, for example galaxy cluster
-mergers.  In some applications multiple scales are modeled.  (The term 'physical' used here includes chemical and
+physical world. The term 'physical' used here includes chemical and
 biological systems since physical processes are underlying building
-blocks for those systems too.) The physical characteristics of the systems being modeled are
+blocks for those systems too. A phenomenon may be at a microscopic level, for example
+protein folding, or at extremely large scales, for example galaxy cluster
+mergers.  In some applications multiple scales are modeled.  The physical characteristics of the systems being modeled are
 translated into mathematical models that are said to describe the
 essential features of the behavior of the system being
 studied. These equations are then discretized, and numerical algorithms
@@ -16,17 +16,17 @@ software that may not be encountered elsewhere.
 \subsection{Development Cycle}
 \label{sec:dev-cycle}
 For scientific simulations, modeling begins with equations that describe the
-general class of behavior to be studied, for example the Navier-Stokes
+general class of behavior to be studied, for example, the Navier-Stokes
 equations describe the flow of compressible and incompressible
-fluids, and Van-der-vaal equations describe force interactions among
+fluids, and van der Waals equations describe interactions among
 molecules in a material. There may be more than one set of equations
-if there are behaviors that are not adequately captured by one set.
+if all behaviors of interest are not adequately captured by one set.
 In translating the model from mathematical representation to
 computational representation two processes go on simultaneously,
 discretization and approximation. One can argue that discretization is,
 by definition, an approximation because it is in effect sampling
-continuous behavior where information is lost between sampling
-intervals. This loss manifests itself as error terms in the discretized
+continuous behavior where information is lost in the sampling
+interval. This loss manifests itself as error terms in the discretized
 equations, but error terms are not the only
 approximations. Depending upon the level of understanding of specific
 sub-phenomena, and available compute resources, scientists also 
@@ -36,14 +36,14 @@ dropped. At other times some physical details may be dropped
 from the model because they are not understood well enough by the
 scientists.  Or the model itself may be an approximation.  
 
-The next stage in developing the code is finding the appropriate
-numerical methods for each of the models. Sometimes good methods exists that
-can be used ''as-is''.  Other times, they may need to be customized, or new
-methods may need to be developed. There may need to be validation of
-the method's applicability to the model if the method is new or
-significantly modified. Unless an implementation of the method is
-readily available as a third party software (stand-alone or in a
-library), it has to be implemented and verified. It is at this stage
+The next stage in developing the code is finding appropriate
+numerical methods for each of the models. Sometimes existing methods 
+can be used without modification,  but more often, customization or new
+method development is needed. A method's applicability to the model
+may need to be validated if the method is new or
+significantly modified. Unless a reliable implementation is
+already available as a third party software (stand-alone or in a
+library), the method has to be implemented and verified. It is at this stage
 that the development of a CSE code begins to resemble that of general
 software. The numerical algorithms are specified, the semantics are
 understood, and they need to be translated into executable
@@ -70,8 +70,8 @@ equations.
 % methodology will exploit this knowledge .  
 
 The terms verification and
-validation are often used interchangeably, but to some communities have specific definitions.  
-In one narrow definition, validation, ensures that the
+validation are often used interchangeably, but to some communities have specific meaning.  
+In one narrow definition, validation ensures that the
 mathematical model correctly defines the physical phenomena, while
 verification makes sure that the implementation of the model is
 correct. In other words, a model is validated against observations or
@@ -103,8 +103,7 @@ implementation over to software engineers or developers who do not have domain o
 collaboration with applied mathematicians and method developers is necessary because the process has to be iterative with
 scientific judgement applied at every iteration. 
 
-One other unique verification challenge in CSE software is the
-consequences of finite machine precision of floating point
+One other unique verification challenge in CSE software is because of finite machine precision of floating point
 numbers. Any change in compilers, optimization levels, and even order
 of operations can cause numerical drift in the solutions. Especially
 in applications that have a large range of scales, it can be extremely
@@ -178,14 +177,16 @@ buy-in from all the stakeholders to be successful.
 Another aspect of multiphysics CSE software is its need for
 performance portability. HPC machines are expensive and rare resources and in order to achieve high application performance, codes need to be optimized for the unique HPC architectures.
  However, typical lifecycle of a
-multiphysics application spans many generations HPC systems which have a typical lifespan of about 4-5 years.  Depending upon the size of the
+multiphysics application spans many generations of HPC systems which have a typical lifespan of about 4-5 years.  Depending upon the size of the
 code, optimization for a specific target platform can take a
 significant fraction of the platform lifecycle, time when the code may not be available for science runs.  Without careful planning and coordination,  a
 large fraction of scientists' time could be lost in porting and optimizing
-a code for a new system.  Developers have the choice of adding machine specific optimizations or creating more general optimization that will work for a broader class of systems.  CSE codes must consider the trade-offs and advantages of a highly optimized code for a single platform or a design 
-HPC CSE codes consider the trade-offs and opt to design their software
-using constructs that perform modestly well across a range of
-platforms. 
+a code for a new system.  Developers have the choice of adding machine
+specific optimizations or creating more general optimization that will
+work for a broader class of systems.  CSE codes must consider the
+trade-offs and advantages of a highly optimized code for a single
+platform versus designing their software using constructs that perform
+modestly well across a range of platforms. 
 
 
 
