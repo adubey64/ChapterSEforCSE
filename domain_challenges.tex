@@ -4,7 +4,9 @@
 Multiphysics codes, by their definition, have more than one
 mathematical model that they are solving. A typical code combines 3-4
 diverse models, the more extreme ones may employ as many as a
-dozen. \comment[(KA NOTE: NEED REF)]  In a rare calculation all models work with the same
+dozen.
+%\comment[(KA NOTE: NEED REF)]  
+In a rare calculation all models work with the same
 discretization using similar algorithmic approach (for instance
 stencil computations in explicit PDE solvers). More common is to have
 models with diverse discretizations and algorithms. In this case, each operator has
@@ -31,39 +33,51 @@ potential lateral interactions and make allowances for them.
 Similarly, the data structures have to take into account the diverse
 demands placed on them by different operators and carefully consider
 the trade-offs during software design. Considerations such as these
-are not common in software outside of CSE.  \comment[(KA NOTE: NEED REF - can we back up this claim?)}
+are not common in software outside of CSE.  
+%\comment[(KA NOTE: NEED REF - can we back up this claim?)}
 
 %\item less logical complexity more numerical complexity - hard to achieve data locality 
 
-In a CSE software design, separation of concerns is of utmost
-importance. \comment[(KA NOTE:  I don't know what this last sentence means.  Do you mean modular design is important?)}
-Orthogonalization of expertise requirements into different code
-components allows developers to focus on what they know best.  
-Another natural fallout of this approach is that different dimensions of
-complexities in the algorithm space are handled separately. The
-numerical algorithms associated with physics operators are complex
-because of accuracy and stability concerns, and require mathematical
-expertise. They are not logically as complex. Whereas machinery for
-managing the discretizations and interoperability among code
-components is likely to be less complex numerically, but could be very
-complex logically. \comment[(KA NOTE:  I don't think logically complex and accuracy complex are well known terms.  I think the point we're trying to make isn't coming through here.  Is it important?)}  A third axis of concern is parallelization, which
-brings in some features that are unique to CSE codes, such as domain
-decomposition, aspects of synchronization and dependencies, and
-performance impact of the design choices. With appropriate separation
-of concerns not only do these aspects of software development not 
-interfere with one another, they help make the development tractable. 
+% In a CSE software design, separation of concerns, where different
+% expertise addresses different aspects of code behavior, is of utmost
+% importance.
+% have little or no correlation with the numerical algorithm
+% implementation. 
+%\comment[(KA NOTE:  I don't know what this last sentence means.  Do you mean modular design is important?)}
+% This orthogonalization of expertise requirements into different code
+% components 
+% that allows developers to focus on what they know best.  
+% Another natural fallout of this approach is that different dimensions of
+% complexities in the algorithm space are handled separately. 
+% They are not logically as complex. Whereas machinery for
+% managing the discretizations and interoperability among code
+% components is likely to be less complex numerically, but could be very
+% complex logically. 
+% \comment[(KA NOTE:  I don't think logically complex and accuracy complex are well known terms.  I think the point we're trying to make isn't coming through here.  Is it important?)}
+% A third axis of concern is parallelization, which
+% brings in some features that are unique to CSE codes, such as domain
+% decomposition, aspects of synchronization and dependencies, and
+% performance impact of the design choices.
+% With appropriate separation of concerns not only do these aspects of software development not 
+% interfere with one another, they help make the development tractable. 
 
-\comment{(KA NOTE: I re-wrote the paragraph above to the lines below.  Let me know what you think.  My thought is to remove references to 'separation of concerns' which I think is vague and not well known in the community.)}
-When designing CSE software, it is especially important to create modular components wherever possible.  This is because in depth applied math and algorithms expertise may be required to understand each component, and thus a modular design allows application developers to focus on they areas they know best.  In addition, modular code allows various components to interface with each other in a clearer way.  Another challenge for CSE codes is that they run on large HPC systems and require code parallelization.  Parallel codes typically must implement a parallel domain decomposition and manage synchronization and load balancing between tasks or threads.  With appropriate code modularization, these different aspects of the code, do not need to interfere with one another and can help make application development more tractable.
+% \comment{(KA NOTE: I re-wrote the paragraph above to the lines below.  Let me know what you think.  My thought is to remove references to 'separation of concerns' which I think is vague and not well known in the community.)}
+When designing CSE software, it is especially important to create
+modular components wherever possible.  This is because different expertise may be required to understand
+each component, and thus a modular design allows application
+developers to focus on they areas they know best. For example, the
+numerical algorithms associated with physics operators require mathematical expertise, which is
+different from the code architecture which requires software
+engineering expertise. In addition, modular code allows various components to interface with each other in a clearer way.  Another challenge for CSE codes is that they run on large HPC systems and require code parallelization.  Parallel codes typically must implement a parallel domain decomposition and manage synchronization and load balancing between tasks or threads.  With appropriate code modularization, these different aspects of the code, do not need to interfere with one another and can help make application development more tractable.
 
 
 %\item need for third party software 
-Multiphysics multiscale codes are often require tight integration with third party software, which comes
+Multiphysics multiscale codes often require tight integration with third party software, which comes
 in the form of numerical libraries. Because multiphysics codes combine
 expertise from many domains, the numerical solvers they use also
 require diverse applied mathematics expertise. It can be challenging 
 for any one team to assemble all the necessary expertise to develop their own software and so many turn to third party math libraries for highly optimized routines.  However, as mentioned in section \ref{sec:using}, the use of
-third party does not absolve them from understanding its appropriate
+third party software does not absolve them from understanding its appropriate
 use.  Additionally, information about appropriate use of third party
 software within the context of a larger code must also be communicated
 to the users of the code.  And finally, with the addition of third party software into an application, the team is now dependent on an outside party for optimizations and porting to new platforms.
