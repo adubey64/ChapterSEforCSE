@@ -20,7 +20,7 @@ requirements, dependences on other code units etc. A ``setup tool''
 parsed this information to configure a consistent ``application''. The
 setup tool also interpreted the configuration DSL to implement 
 inheritance using the directory structure. For more details about
-FLASH's object oriented framework see \cite{Dubey2009, Fryxell2000}.   
+FLASH's object oriented framework see \cite{Dubey2009}.   
 
 FLASH design is aware of the need for separation of concerns and
 achieves it by separating the infrastructural components
@@ -82,8 +82,9 @@ a battery of standard hydrodynamics verification tests
 an automated regression test suite run on a few local
 workstations. Since then the test suite has evolved into a
 combination of variety of tests that aim to provide comprehensive
-coverage for verifying correct operation of the code \cite{Dubey2013,
-  Calder2005}. Because FLASH is in a constant state of production and
+coverage for verifying correct operation of the code
+\cite{Dubey2013,Calder2005}. Because FLASH is in a constant state of
+production and 
 development, verification of its correctness on a regular basis is a
 critical requirement.  The testing is complicated both by the variety 
 of environments in which FLASH is run, and the sheer number of ways in
@@ -127,7 +128,7 @@ exercise the vulnerable code sections without overwhelming the test
 suite resources. Sample smaller scale production runs are also done on
 the target platform for make informed estimates of cpu hours and disk
 space needed to complete the simulation. For more details on
-simulation planning see \cite{Dubey2012}. For porting the code to
+simulation planning see \cite{Dubey2013a}. For porting the code to
 a new platform a successful production run from the past is used as a
 benchmark for exercising the code on a new platform, along with using
 a subset of the standard test suite.
@@ -239,7 +240,7 @@ acceptable range. Because of a
 large space of possible valid and useful combinations selection of tests
 is challenging. FLASH's methodology for test design and
 selection is described in detail in \cite{Dubey2015}, and follows the
-matrix method described in chapter \ref{chp:testing}
+matrix method described earlier.
 
 FLASH's documentation takes a comprehensive approach with a
 user's guide, a developer's guide, robodoc API, inline documentation,

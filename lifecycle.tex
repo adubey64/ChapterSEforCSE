@@ -114,7 +114,22 @@ rarely a sufficient method for verifying the continued correctness of
 an application behavior. Robust diagnostics (such as statistics or
 conservation of physical quantities) need to be built into the
 verification process.  This issue is
-discussed in greater detail in chapter \ref{chp:testing}.
+discussed in greater detail in the chapter {\em Testing in CSE Software} .
+
+\subsubsection{Testing}
+\label{sec:testing}
+%\comment{KA NOTE: KA will expand this section}
+Testing of CSE software needs to reflect the layered complexity that
+the codes themselves have. The first line of attack is to develop the unit tests which isolate testing of one component of the code.
+However, in CSE codes, often there are dependencies between different
+components of the code that can not be meaningfully isolated, making unit testing more difficult. In these cases, testing should be done with a minimal possible combination of
+components.  In effect, these
+minimally combined tests play the same role in the testing regime that
+unit tests do because they focus on possible defects in a very narrow
+section of the code. In addition, multicomponent CSE software should test various 
+permutations and combination of components in different ways. Configuring tests in this manner will help verify
+that all configurations are within the accuracy and stability
+constraints.  
 
 \subsection{Maintenance and Extensions}
 \label{sec:maintain}
@@ -154,20 +169,6 @@ a couple of strategies that met the conflicting needs of developers and
 production users in both scenarios. Both required co-operation and
 buy-in from all the stakeholders to be successful. 
 
-
-\subsection{Testing}
-\label{sec:testing}
-%\comment{KA NOTE: KA will expand this section}
-Testing of CSE software needs to reflect the layered complexity that
-the codes themselves have. The first line of attack is to develop the unit tests which isolate testing of one component of the code.
-However, as mentioned in chapter \ref{chp: }, in CSE codes, often there are dependencies between different components of the code that can not be isolated, making unit testing more difficult. In these cases, testing should be done with a minimal possible combination of
-components.  In effect, these
-minimally combined tests play the same role in the testing regime that
-unit tests do because they focus on possible defects in a very narrow
-section of the code. In addition, multicomponent CSE software should test various 
-permutations and combination of components in different ways. Configuring tests in this manner will help verify
-that all configurations are within the accuracy and stability
-constraints.  
 
 \subsection{Performance Portability}
 \label{sec:perfport}
