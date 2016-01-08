@@ -70,7 +70,7 @@ equations.
 % methodology will exploit this knowledge .  
 
 The terms verification and
-validation are often used interchangeably, but to some communities have specific meaning.  
+validation are often used interchangeably, but to some communities they have specific meaning.  
 In one narrow definition, validation ensures that the
 mathematical model correctly defines the physical phenomena, while
 verification makes sure that the implementation of the model is
@@ -90,14 +90,14 @@ implementation.
 There are many degrees of freedom in the process of deriving a
 model as discussed in the previous section, therefore, the validation of the
 model must be carefully calibrated by scientific experts. Similarly,
-verification of a numerical method requires applied math expertise
-because the method needs verification of its stability, accuracy and
-order of convergence, in addition to correctness. Numerical methods
-have their own error analysis because of approximations and many of
-these methods are themselves objects of ongoing research, so their
+verification of a numerical method requires applied math expertise,
+because, in addition to correctness the method needs verification of its stability, accuracy and
+order of convergence. Many numerical methods
+%have their own error analysis because of approximations and many of these methods 
+are themselves objects of ongoing research, so their
 implementation may need modifications from time to time. Whenever
 this happens, the entire gamut of verification and validation needs to
-be applied again. This is an instance of a particular challenge in the
+be applied again. This is an instance of a particular challenge in 
 CSE software where no amount of specification is enough to hand the
 implementation over to software engineers or developers who do not have domain or method knowledge. A close
 collaboration with applied mathematicians and method developers is necessary because the process has to be iterative with
@@ -135,8 +135,8 @@ constraints.
 In a simplified view of software lifecycle, there is a design and development phase,
 followed by production and maintenance phase.  Even in well engineered
 codes this simplified view typically applies only to the
-infrastructure and API's which have a distinct development phase which
-has limited spill into the remainder of the lifecycle. The numerical
+infrastructure and API's which have a distinct development phase with
+limited spill into the remainder of the lifecycle. The numerical 
 algorithms and solvers can be in a continually evolving state
 reflecting the advances in their respective fields.  
 The development of CSE software is
