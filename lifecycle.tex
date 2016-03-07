@@ -2,16 +2,18 @@
 Scientific software is designed to model phenomena in the
 physical world. The term 'physical' used here includes chemical and
 biological systems since physical processes are underlying building
-blocks for those systems too. A phenomenon may be at a microscopic level, for example
-protein folding, or at extremely large scales, for example galaxy cluster
-mergers.  In some applications multiple scales are modeled.  The physical characteristics of the systems being modeled are
-translated into mathematical models that are said to describe the
-essential features of the behavior of the system being
+blocks for those systems too. A phenomenon may be at a microscopic
+level, for example protein folding, or at extremely large scales, for
+example galaxy cluster mergers.  In some applications multiple scales
+are modeled.  The physical characteristics of the systems being
+modeled are translated into mathematical models that are said to
+describe the essential features of the behavior of the system being 
 studied. These equations are then discretized, and numerical algorithms
-are used to solve them. This process requires diverse expertise and
-adds many stages in the development and lifecycle of scientific
-software that may not be encountered elsewhere. 
-
+are used to solve them. One or more parts of this process may
+themselves be subjects of active research. Therefore the simulation
+software development requires diverse expertise and
+adds many stages in the development and lifecycle described below that
+may not be encountered elsewhere.  
 
 \subsection{Development Cycle}
 \label{sec:dev-cycle}
@@ -88,9 +90,8 @@ validated against an analytically obtained solution for some model if
 the same solver can be applied and the analytical solution is also
 known, though this is not always possible
 \cite{oberkampf2010verification}.  Irrespective of  specific
-definitions, what is true is that  
-correctness must be assured at all the stages from model to
-implementation.    
+definitions, what is true is that   correctness must be assured at all
+the stages from model to implementation.     
 
 There are many degrees of freedom in the process of deriving a
 model as discussed in the previous section, therefore, the validation of the
