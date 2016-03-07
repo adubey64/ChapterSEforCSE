@@ -12,7 +12,8 @@ intractable. As more codes cross the threshold into increasing
 complexity, software engineering processes are being adopted from
 practices derived outside of the scientific and engineering domain.
 State-of-the-art for software engineering practices in CSE codes often lags
-behind that in the commercial software space. 
+behind that in the commercial software space
+\cite{segal2008developing,basili2008understanding, hochstein2008asc}. 
 % \comment{KA NOTE: Do we have any
 % reference for this claim? AD: I don't know of one, though this seems
 % to be the consensus.  Let's just soften a little then.  I added "often"}
@@ -21,7 +22,28 @@ that not all software engineering practices can actually be adopted by
 the CSE code developers.  Secondly, there is often little funding for
 code development and maintenance. And finally, there is very little
 research in the software engineering community targeted to specific
-needs of CSE codes. 
+needs of CSE codes. This chapter elaborates on the above challenges and
+how they were addressed in FLASH and Amanzi, two codes with very
+different develepment timeframe and therefore very different
+development paths. 
+
+FLASH was originally designed for computational
+astrophysics in the late 1990's. It has been almost continuously been
+under production and development since 2000 with three major
+revisions. It has exploited an extensible framework to expand its
+reach a community code for over half a dozen scientific
+communities. The software engineering practices for the code have
+evolved with time, and their adoption has grown with the complexity of
+the code. Amanzi, on the other hand, started in 2012 and has developed
+from the ground up in C++ using relatively modern software engineering
+practices. It still has one major target community, but is also
+designed with extensibility as an objective. There are many other
+similarities and some difference described later in the chapter.
+In particular, we address the issues related to software
+architecture and modularization, design of a testing regime,
+unique documentation needs and challenges, use of versioning system 
+for managing projects, and the tension between intellectual property
+management and open science.
 
 Many software best practices are not well-suited for CSE codes without
 modification and/or customization.  In particular, multiphysics and
@@ -43,21 +65,31 @@ growth.
 The standard practices adopted by the CSE codes include
 repositories for code version control, modular code design, licensing
 process, regular testing, documentation, release and distribution
-policies, and contribution policies. Less frequently used practices
-include code-review, code-deprecation, and adoption of development
-methodologies such as Agile \cite{agile}. 
-%Agile developmenet methods \cite{}
+policies, and contribution policies \cite{cc2012, carver2012software,
+Dubey2014}. Less frequently used practices include code-review,
+code-deprecation, and adoption of development methodologies such as
+Agile \cite{agile}.  
+%Agile development methods \cite{}
 %tend to have limited usefulness in the CSE lifecycle.
 % only a 
 %select subset of those have met with success.  (KA NOTE: NEED REF) 
-The degree of adoption and
-sophistication in using software engineering practices varies among teams. Many of
-the reasons for lower penetration of more formal software engineering practices are discussed in section
-\ref{sec:instChallenges}. Even among the widely adopted
-practices, most are modified and customized by the developers for
-their own needs. The next few sections outline the challenges that
+The degree of adoption and sophistication in using software
+engineering practices varies among teams. Many of the reasons for
+lower penetration of more formal software engineering practices are
+discussed in section \ref{sec:instChallenges}. Even among the widely
+adopted practices, most are modified and customized by the developers
+for their own needs. The next few sections outline the challenges that  
 are either unique to, or are more dominant in this domain than
-elsewhere.  
+elsewhere. This is followed by a section describing experiences of
+FLASH and amanzi development teams. FLASH belongs in the first generation of
+codes that adopted a software process. This was in the era when the
+advantages of software engineering were almost unknown in the
+scientific world. Amanzi is from the ``enlightened'' era (by
+scientific codes standards) where a minimal set of software practices are
+adopted by most code projects intending long term use. A study of
+software engineering of two codes from differen different
+eras of scientific software development highlight how these practices
+and the communities have evolved.   
 
 
 % For example,

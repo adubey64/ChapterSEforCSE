@@ -1,5 +1,5 @@
 \label{sec:lifecycle} 
-Scientific software is designed to model some phenomena in the
+Scientific software is designed to model phenomena in the
 physical world. The term 'physical' used here includes chemical and
 biological systems since physical processes are underlying building
 blocks for those systems too. A phenomenon may be at a microscopic level, for example
@@ -27,7 +27,7 @@ discretization and approximation. One can argue that discretization is,
 by definition, an approximation because it is in effect sampling
 continuous behavior where information is lost in the sampling
 interval. This loss manifests itself as error terms in the discretized
-equations, but error terms are not the only
+equations, but error terms are not the only 
 approximations. Depending upon the level of understanding of specific
 sub-phenomena, and available compute resources, scientists also 
 use their judgement to make other approximations. Sometimes, to focus on a
@@ -47,7 +47,10 @@ library), the method has to be implemented and verified. It is at this stage
 that the development of a CSE code begins to resemble that of general
 software. The numerical algorithms are specified, the semantics are
 understood, and they need to be translated into executable
-code. Figure \ref{Fig:dev-cycle} gives an example of the development
+code. Even then there are difference because scientific code
+developers work iteratively \cite{segal2005software}, requirement
+specifications evolve through the development cycle. 
+Figure \ref{Fig:dev-cycle} gives an example of the development
 cycle of a multiphysics application modeled using partial differential
 equations. 
 
@@ -69,66 +72,75 @@ equations.
 % stage have no correlation with those in other stages. A good verification and validation
 % methodology will exploit this knowledge .  
 
-The terms verification and
-validation are often used interchangeably, but to some communities they have specific meaning.  
-In one narrow definition, validation ensures that the
-mathematical model correctly defines the physical phenomena, while
-verification makes sure that the implementation of the model is
-correct. In other words, a model is validated against observations or
-experiments from the physical world, whereas a model is verified by
-other forms of testing.   Other definitions give broader scope to 
-validation. For example, validation of a numerical
-method may be constructed through code-to-code comparisons, and its
-order can be validated through convergence studies. Similarly, the
-implementation of a solver can be validated against an analytically
-obtained solution for some model if the same solver can be
-applied and the analytical solution is also known, though this is not
-always possible.  Irrespective of  specific definitions, what is true is that
+The terms verification and validation are often used interchangeably,
+but to many scientific domains they have specific meaning.   
+In their narrow definition, validation ensures that the mathematical
+model correctly defines the physical phenomena, while verification
+makes sure that the implementation of the model is correct. In other
+words, a model is validated against observations or experiments from
+the physical world, whereas a model is verified by other forms of
+testing \cite{oberkampf2002verification}.   Other definitions give
+broader scope to  verfication and validation (i.e. \cite{sargent1998verification}). For
+example, validation of a numerical method may be constructed through
+code-to-code comparisons, and its order can be validated through
+convergence studies. Similarly, the implementation of a solver can be
+validated against an analytically obtained solution for some model if
+the same solver can be applied and the analytical solution is also
+known, though this is not always possible
+\cite{oberkampf2010verification}.  Irrespective of  specific
+definitions, what is true is that  
 correctness must be assured at all the stages from model to
-implementation.  
+implementation.    
 
 There are many degrees of freedom in the process of deriving a
 model as discussed in the previous section, therefore, the validation of the
 model must be carefully calibrated by scientific experts. Similarly,
 verification of a numerical method requires applied math expertise,
 because, in addition to correctness the method needs verification of its stability, accuracy and
-order of convergence. Many numerical methods
+order of convergence. Many numerical methods 
 %have their own error analysis because of approximations and many of these methods 
 are themselves objects of ongoing research, so their
 implementation may need modifications from time to time. Whenever
 this happens, the entire gamut of verification and validation needs to
 be applied again. This is an instance of a particular challenge in 
 CSE software where no amount of specification is enough to hand the
-implementation over to software engineers or developers who do not have domain or method knowledge. A close
-collaboration with applied mathematicians and method developers is necessary because the process has to be iterative with
-scientific judgement applied at every iteration. 
+implementation over to software engineers or developers who do not
+have domain or method knowledge. A close collaboration with applied
+mathematicians and method developers is necessary because the process
+has to be iterative with scientific judgement applied at every
+iteration.  
 
-One other unique verification challenge in CSE software is because of finite machine precision of floating point
-numbers. Any change in compilers, optimization levels, and even order
-of operations can cause numerical drift in the solutions. Especially
-in applications that have a large range of scales, it can be extremely
-difficult to differentiate between a legitimate bug and a numerical
-drift. Therefore, relying upon bitwise reproducibility of the solution is
-rarely a sufficient method for verifying the continued correctness of
-an application behavior. Robust diagnostics (such as statistics or
-conservation of physical quantities) need to be built into the
-verification process.  This issue is
-discussed in greater detail in the chapter {\em Testing in CSE Software} .
+One other unique verification challenge in CSE software is because of
+finite machine precision of floating point numbers. Any change in
+compilers, optimization levels, and even order of operations can cause
+numerical drift in the solutions
+\cite{monniaux2008pitfalls}. Especially in applications that have a
+large range of scales, it can be extremely difficult to differentiate
+between a legitimate bug and a numerical drift \cite{Dubey2015}. Therefore, relying
+upon bitwise reproducibility of the solution is rarely a sufficient
+method for verifying the continued correctness of an application
+behavior. Robust diagnostics (such as statistics or conservation of
+physical quantities) need to be built into the verification process.
+This issue is discussed in greater detail in the chapter {\em Testing
+  in CSE Software} .  
 
 \subsubsection{Testing}
 \label{sec:testing}
 %\comment{KA NOTE: KA will expand this section}
 Testing of CSE software needs to reflect the layered complexity that
-the codes themselves have. The first line of attack is to develop the unit tests which isolate testing of one component of the code.
-However, in CSE codes, often there are dependencies between different
-components of the code that can not be meaningfully isolated, making unit testing more difficult. In these cases, testing should be done with a minimal possible combination of
-components.  In effect, these
-minimally combined tests play the same role in the testing regime that
-unit tests do because they focus on possible defects in a very narrow
-section of the code. In addition, multicomponent CSE software should test various 
-permutations and combination of components in different ways. Configuring tests in this manner will help verify
-that all configurations are within the accuracy and stability
-constraints.  
+the codes themselves have. The first line of attack is to develop the
+unit tests which isolate testing of one component of the
+code. However, in CSE codes, often there are dependencies between
+different components of the code that can not be meaningfully
+isolated, making unit testing more difficult. In these cases, testing
+should be done with a minimal possible combination of components.  In
+effect, these minimally combined tests play the same role in the
+testing regime that unit tests do because they focus on possible
+defects in a very narrow section of the code. In addition,
+multicomponent CSE software should test various  permutations and
+combination of components in different ways. Configuring tests in this
+manner will help verify that all configurations are within the
+accuracy and stability constraints \cite{Dubey2015}.   
 
 \subsection{Maintenance and Extensions}
 \label{sec:maintain}
@@ -139,20 +151,19 @@ infrastructure and API's which have a distinct development phase with
 limited spill into the remainder of the lifecycle. The numerical 
 algorithms and solvers can be in a continually evolving state
 reflecting the advances in their respective fields.  
-The development of CSE software is
-usually responding to an immediate scientific need, so the codes get
-employed in production as soon as a minimal set of computational
-modules necessary for even one scientific project are
-built.  Similarly, the development of computational modules almost
-never stops all through the code lifecycle because new findings in science
-and math almost continuously place new demands on them. The additions
-are mostly incremental when they incorporate new findings into an
-existing feature, they can also be substantial when new capabilities
-are added. The need for new capabilities may arise from 
-greater model fidelity, or from trying to simulate a more complex
-model. Sometimes a code designed for one scientific field may have
-enough in common with another field that capabilities may be added to
-enable it for the new field.   
+The development of CSE software is usually responding to an immediate
+scientific need, so the codes get employed in production as soon as a
+minimal set of computational modules necessary for even one scientific
+project are built.  Similarly, the development of computational
+modules almost never stops all through the code lifecycle because new
+findings in science and math almost continuously place new demands on
+them. The additions are mostly incremental when they incorporate new
+findings into an existing feature, they can also be substantial when
+new capabilities are added. The need for new capabilities may arise
+from  greater model fidelity, or from trying to simulate a more
+complex model. Sometimes a code designed for one scientific field may
+have enough in common with another field that capabilities may be
+added to enable it for the new field \cite{Dubey2016}.    
 
 Whatever may be the cause, co-existence of development and
 production/maintenance phases is a constant challenge to the code
