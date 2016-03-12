@@ -1,0 +1,260 @@
+----------------------- REVIEW 1 ---------------------
+PAPER: 10
+TITLE: Software Process for Multiphysics Multicomponent Codes
+AUTHORS: Anshu Dubey, Katie Antypas, Katherine Riley and Ethan Coon
+
+
+----------- REVIEW -----------
+While the article “Software Process for Multiphysics Multicomponent Codes” is overall well readable, its main intention remains unclear to me (see “If practical lessons learned or guidance are not clearly articulated, how could the authors improve the chapter?”) and Sections 1.2 to 1.4 lack many important citations (see “What changes do the authors need to make to the chapter to make it more interesting or useful?”).
+
+0. Stray observations:
+referee comment - On page 1 the authors write “… model some phenomena …”; delete “some.”
+
+authors' response - done
+
+referee comment - On page 5 “some communities they have specific meaning. In one narrow definition, ...”; too vague. Which communities? Whose definition?
+
+authors' response 
+
+referee comment - The reference to the xkcd cartoon on page 11 is included in an unfortunate way; I have to look at the cartoon to make sense of the sentence but in order to do so I have to copy and paste a link that could stop working etc.
+authors' response - 
+
+referee comment - On page 23 “most codes are freely available to download along with their source.”: This is, for example, not true for the large climate modeling community where you regularly have to apply to get a copy of the model source code and most model parametrizations are not even available on request.
+referee comment - On page 24 “The degree to which teams from vastly different scientific domains producing community codes have arrived at essentially similar solutions is remarkable. It points to a possibility that seemingly diverse problems can have a uniform solution if they are trying to achieve similar objectives.”: How is it remarkable that different people with similar tools achieve similar solutions when they have similar objectives?
+
+authors' response - 
+
+1. What changes do the authors need to make to the chapter to make it more understandable (e.g. adding more background details)?
+referee comment - The introduction should state more clearly what the main intention of the chapter is. What am I going to learn by reading this chapter? What is the structure of the chapter?
+
+authors' response - This has been done.
+
+referee comment - What is FLASH? The section about FLASH should not begin with a discussion about code design but with an introduction to FLASH.
+
+authors' response - This is done.
+
+referee comment - It should be explained in Section 1.5 and in the introduction (Section 1.1) what the purpose of reporting the case studies is. Why should I be interested in reading about them? What makes them special? What can I learn from them?
+
+authors' response - We have done this.
+
+2. What changes do the authors need to make to the chapter to make it more interesting or useful?
+referee comment - I miss citations throughout Sections 1.2 to 1.4. For example, there is lots of literature regarding the verification and validation of scientific software that could be cited here to provide further reading material for the interested reader. Furthermore, many if not most of the claims that are made about software development in CSE have been expressed previously in research papers (see the works of Judith Segal, Jeffrey Carver, Victor Basili, Steve Easterbrook et al.) that should be given credit by citing them. Currently, it appears as if all of this is the authors’ original work when almost half of the chapter essentially is a literature survey without proper citations.
+
+authors' response - We agree that we were light on citations, and we have added some. However, this chapter was written in the spirit of a book chapter rather than a research paper. Many statements are direct result of authors' experiences and also observations from having been immersed in the scientific software community. So while we do see the usefulness of adding references which point to further reading, we do not believe that exhaustive references need to be given to substantiate every claim as one would in a research paper.
+
+3. If practical lessons learned or guidance are not clearly articulated, how could the authors improve the chapter?
+referee comment - The generalizations in Section 1.6 seem vague to me. What is the “broader design philosophy of all multiphysics codes” in detail? What can I learn from this for my own CSE projects? Is this “design philosophy” any good? Should I do it the same way?
+
+authors' response - 
+
+referee comment - The use of versioning repositories and the testing methodologies employed by scientists have previously been analyzed (in greater detail than in this chapter) by others. The respective papers should be cited (see “What changes do the authors need to make to the chapter to make it more interesting or useful?”).
+
+authors' response - Please see the response to comment 2 above.
+
+4. Is there any information in the chapter that is not necessary (i.e. too basic, too much background, irrelevant, information that should be moved to the book introduction, etc…)?
+referee comment - I like how the introduction (Section 1.1) of the chapter describes the reasons for the lacking adoption of software engineering practices in CSE but I think that since this probably sets a general theme for the whole book, it could be moved to the introduction of the book.
+authors' response - We would be happy with that.
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 10
+TITLE: Software Process for Multiphysics Multicomponent Codes
+AUTHORS: Anshu Dubey, Katie Antypas, Katherine Riley and Ethan Coon
+
+
+----------- REVIEW -----------
+referee comment -  Overall, this is an interesting chapter on a topic that should be included in a book on software engineering for science. The chapter describes very well the issues that Multiphysics codes are facing. It is also well structured. Overall, I find the chapter very interesting. I find the software examples, including the mentioned ‘lessons learned’ very useful.  I learned a lot about the software process and challenges for multi physics codes.
+It mostly requires some stylistic and grammatical changes.
+I liked the xkcd cartoon mentioned on Page 9, but it would be better if it could actually included (I don’t know about the copyright situation of course). It took me a while to get to it. If this book is mainly an e-book, the link would most likely be sufficient.
+authors' response - 
+
+referee comment -  I found in various places (too many to list) that ‘the’ and ‘a’ were missing or sometimes they occurred where they should not have. Also in various places forms of ‘do’ could be replaced with ‘perform’ or other less simple words.
+I suggest the following (mostly) stylistic changes:
+On Page 4, 3rd paragraph, change ‘because of’ to ‘caused by’.
+Rephrase the beginning of Section 1.2.2.1 as follows:
+Testing of CSE software needs to reflect the layered complexity of the codes. The first line of attack is to develop unit tests that isolate testing of individual components of the code …
+Change ‘done’ to ‘performed’ and ‘that unit tests do’ to ‘as unit tests’ in the first paragraph of 1.2.2.1
+Remove ‘all’ between ‘stops’ and ‘through’ in 1st paragraph of 1.2.3.
+authors' response - 
+
+referee comment - In line 8 of 1.2.5, replace ‘they’ with ‘users’, and in line 9-10, change ‘and also the accuracy and stability behavior of the algorithms’ to ‘as well as their accuracy and stability behavior”.
+Change the beginning of the last sentence in the 1st paragraph of 1.2.5 to “If an insufficient number of terms is used …’.
+authors' response - 
+
+referee comment - Change the first sentences in Section 1.3 to “Multiphysics codes, by definition, solve more than one mathematical model. A typical code combines 3-4 diverse models, in extreme cases, codes may employ many more. Rarely, all models …”
+authors' response - 
+
+referee comment - Change the 3rd sentence in the 2nd paragraph of 1.3 to “These dependencies and tight couplings are transferred into the mathematical models and hinder the elimination of lateral interactions …”
+In Section 1.4, “spoke to” seems to not quite fit, better might be “involved”.
+On Page 9, 2nd (complete) paragraph, change sentence starting with “Even otherewise” to “The depth of domain expertise required to correctly model the phenomenon is hard to come by. Change ‘to other members of the team’ to ‘to team members’. Change ‘great deal’ to ‘lot’.
+authors' response - 
+
+referee comment - On Page 3, 3rd paragraph, change the first sentence to “The above institutional challenges are one of the reasons why it is hard and often even undesirable to adopt any set software development methodology in CSE application projects.” Change “where focus is” to “with focus”. Change “is … process” to “are … processes”. Sentence starting with “The code development …” could be changed to “The code is simultaneously developed and used for science, so that when requirements change there is fast feedback.”
+authors' response - 
+
+referee comment - On Page 10, 2nd paragraph should start with “Due to”
+On bottom of Page 11, Sentences starting with “In some applications” could be changed to “They may have to apply near- and far-filed forces, have to pass some information along to the mesh, and/or need to be redistributed after advancing in time.”
+authors' response - 
+
+referee comment - On Page 12: What is the matrix approach? A small explanation would be helpful here, unless it is explained elsewhere in the book and could be referred to.
+authors' response -  
+
+referee comment - On Page 13, line 6, change ‘done’ to ‘performed’, and remove ‘make’ on line 7.
+authors' response -  
+
+referee comment - On Page 14, second paragraph, change “the new version also tried to keep itself…” to “An effort was made to also keep the new version …”
+authors' response -  
+
+referee comment - On page 14, 3rd paragraph, ‘tack’ is a strange word here. Maybe you could say instead “… the second transition was executed in a completely different way …”
+authors' response -  
+
+referee comment - On the bottom of Page 14, insert “written in” before “F90”.
+Page 15, first paragraph: see earlier comment about matrix method.
+authors' response -  
+
+referee comment - Page 15, 2nd paragraph, insert “The” before “user’s guide, and replace “The user’s guide” in the following sentence with “It.” At the end of the 2nd paragraph, is “so” missing before “that”?
+authors' response -  
+
+referee comment - Page 15, 3rd paragraph, change “is signal” to “signals”.
+On Page 18, do you have any figures to illustrate the tree you describe? While not required, it would be nice to have one.
+authors' response -  
+
+referee comment - On Page 18, 2nd paragraph insert “of” after “coupling”.
+authors' response -  
+
+referee comment - On Page 18, 3rd paragraph, eliminate “Then” in the third sentence. Also, it would be better understandable if it is broken up into 3 sentences.
+authors' response -  
+
+referee comment - On Page 19, SE, which I assume stands for software engineering, should be spelled out the first time it is used.
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 10
+TITLE: Software Process for Multiphysics Multicomponent Codes
+AUTHORS: Anshu Dubey, Katie Antypas, Katherine Riley and Ethan Coon
+
+
+----------- REVIEW -----------
+referee comment - This paper describes the history of the development of different multi physics multicomponent codes.  Over time the code is shown to incorporate more sophisticated software engineering tools and methods.  The paper attempts to describe the domain challenges and how they were overcome.
+
+The feedback below is divided into two sections.  The first consists of overall issues and concerns, while the second lists minor edits.
+
+Issues
+
+referee comment - 1. There are multiple instances in the paper where the authors are vague when a more detailed description would be helpful to the reader.  Examples where the authors should incorporate more detail are as follows:
+
+referee comment - 1.1 Introduction, First Paragraph: The paper states: “not all software engineering practices can actually be adopted by the CSE code developers.” The paper does not include an explicit list of practices that cannot be adopted.  Moreover, the reason why the practices cannot be adopted is not given.  This information might be implicit in the text of the paper, but it would be better if the reader did not have to deduce it.
+
+authors' response - The text has been changed with greater clarity about practices that are less welcome in the scientific community.
+
+
+referee comment - 1.2 Introduction Second Paragraph.  The statement is made that “it necessary to sacrifice some known software engineering best practices.”  Besides the problem with the missing “is,” this statement is also missing detail.  Which best practices are being sacrificed?  Why is it necessary.
+authors' response - The text has been altered and an example is included, forward referencing appropriate sections for greater details.
+
+
+referee comment - 1.3 Section 1.2: “This process requires diverse expertise and adds many stages in the development and lifecycle of scientific software that may not be encountered elsewhere.”  What are the many stages?  Why aren’t they encountered elsewhere?
+authors' response - 
+
+
+referee comment - 1.4 Section 1.2.2.1.: “In addition, multicomponent CSE software should test various permutations and combination of components in different ways.”  What are the different ways?
+authors' response - 
+
+
+referee comment - 1.5 Section 1.3: “With appropriate code modularization, these different aspects of the code do not need to interfere with one another…”  What is the appropriate modularization?
+authors' response - 
+
+
+referee comment - 1.6 Section 1.5.1.3: “The general releases undergo some amount of code pruning, get checked for compliance with coding and documentation standards and meet stringent requirements from the testing process.“  What are the stringent requirements?
+authors' response - 
+
+
+referee comment - 2. The paper makes many statements about CSE practice, but evidence is rarely presented to support the statements.  Ideally the statements would be supported by citations, survey data, or other evidence.  If evidence is lacking, it should be made explicit at the outset that the statements made in the paper are based on the collected experience of the authors.  This should be accompanied by a statement that clarifies the experience of the authors, possibly by stating their combined number of years of experience with CSE development?  A sample of the unsupported statements includes the following:
+authors' response - 
+
+
+referee comment - 2.1 Although it sounds reasonable, the readers are not given any evidence for the following statements: “The standard practices adopted by the CSE codes include repositories for code version control, modular code design, licensing process, regular testing, documentation, release and distribution policies, and contribution policies. Less frequently used practices include code-review, code-deprecation, and adoption of development methodologies such as Agile [1].”
+authors' response - 
+
+
+referee comment - 2.2 The statement is made that HPC systems “have a typical lifespan of about 4-5 years.”  Is there evidence to support this statement?  Is this just opinion?
+authors' response - 
+
+referee comment - The authors should look to existing papers that summarize the state of practice for CSE software.  Authors to consult include Carver, Kelly and Segal.
+authors' response - 
+
+referee comment - 2.3 Section 1.4: “The “xkcd”^1 cartoon is essentially the truth of how git is used by many scientific software developers.”  Where is the evidence for this?  There are papers that present data on the use of software tools by CSE developers.
+authors' response - 
+
+referee comment - 3. The paper would benefit from doing a better job in orienting the reader.  In particular, “roadmaps” could be incorporated into the paper to tell the reader what is coming.  As it is now, the entire paper has to be read to get a sense of what the authors are trying to accomplish.  Why not tell the readers this in the final section of the introduction?  Another example where the reader should have a description of what is coming is in Section 1.5.  Rather than have section headings without text between them, text could be given between Sections 1.5 and 1.5.1 to tell the reader why there are two subsections in this section, and what these sections are trying to accomplish.
+authors' response - 
+
+
+referee comment - 4. The paper mentions the challenge of maintainability, but there does not seem to be mention of the importance of traceability to improve maintainability.  When changes are made, the developers should have information on the consequences of these changes.  What other code is effected?  What test cases?  What documentation?  How is traceability handled in FLASH?
+authors' response - 
+
+
+referee comment - 5. The paper mentions the problem of portable performance, but no mention is made of a successful project that deals with this problem: ATLAS.  Details on ATLAS can be found at: http://math-atlas.sourceforge.net/
+authors' response - 
+
+
+referee comment - 6. Section 1.4 discusses the need for funding software development and maintenance.  The authors should read and cite Gewaltig and Cannon, since they make this same point in the context of software tools for neuroscience.  A preprint of their paper on this topic is available at:
+
+@article{GewaltigAndCannon2012,
+	Author = {Marc-Oliver Gewaltig and Robert Cannon},
+	Journal = {Cornell University Library},
+	Month = {May},
+	Pages = {20 pp},
+	Title = {Quality and sustainability of software tools in neuroscience},
+	Year = {2012}}
+
+authors' response - 
+
+referee comment - 7. The discussion of best practices should be contrasted with the work of Wilson et al:
+
+@article{WilsonEtAl2013,
+	Author = {Greg Wilson and D.A. Aruliah and C. Titus Brown and Neil P. Chue Hong and Matt Davis and Richard T. Guy and Steven H.D. Haddock and Kathryn D. Huff and Ian M. Mitchell and Mark D. Plumblet and Ben Waugh and Ethan P. White and Paul Wilson},
+	Bibsource = {DBLP, http://dblp.uni-trier.de},
+	Ee = {http://arxiv.org/abs/1210.0530},
+	Journal = {CoRR},
+	Title = {Best Practices for Scientific Computing},
+	Volume = {abs/1210.0530},
+	Year = {2013}}
+authors' response - 
+
+referee comment - 8. Section 1.4 suggests that agile methods are not an option and either is the waterfall model.  With respect to agile methods, this contradicts authors such as Easterbrook and Carver who suggest that CSE software is developed following agile methods.  Moreover, although a pure waterfall is not realistic, it is possible to start an iterative “faked” waterfall process with an initial specification.  While the specific details and assumptions will change, the laws of physics are stable; they are almost universally accepted, well understood, and slow to change. At the appropriate abstraction level, many problems have significant commonality, since a large class of physical models are instances of a relatively small number of conservation equations (conservation of energy, mass and momentum.) As long as the process facilitates change, an iterative waterfall process can work.  
+
+Although the authors criticize other development processes, they do not actually say what process they are using, even though the title of the paper suggests that a software process will be presented.
+authors' response - 
+
+referee comment - 9. What is FLASH?  The paper uses this example throughout, but very little information is presented on it.  Is FLASH an acronym for something?  Section 1.5.1 should at least include references to FLASH.
+
+authors' response - 
+Minor Edits
+
+referee comment - 1. Section 1.2.2 has only one subsection (1.2.2.1 Testing).  Style guides on writing suggest that one subsection is not a good structure.  Since testing is a technique for verification and validation, the material in this subsection could likely be combined with its supersection, eliminating the need for a subsection.
+authors' response - 
+
+referee comment - 2. Introduction, Paragraph 1. A period (or semicolon) is missing in the following text: “There are many reasons for it, first, is that not all software engineering practices can actually be adopted by the CSE code developers.”  The text should be something like: “There are many reasons for it.  First is that not all software engineering practices can actually be adopted by the CSE code developers.”
+authors' response - 
+
+referee comment - 3. There are some LaTeX issues.  For instance, the left quotation marks are facing in the wrong direction.  Text such as ‘physical’ should be `physical.’
+authors' response - 
+
+referee comment - 4. Page 4, Paragraph 2, Sentence 1: A semicolon is missing in “There are many degrees of freedom in the process of deriving a model as discussed in the previous section, therefore, the validation of the model must be carefully calibrated by scientific experts.”  The text should be “There are many degrees of freedom in the process of deriving a model as discussed in the previous section; therefore, the validation of the model must be carefully calibrated by scientific experts.”
+authors' response - 
+
+referee comment - 5. The apostrophe (‘) is misused for plural nouns.  For example, API’s should be APIs.
+The text includes many more typos and grammar errors than listed here.  The authors need to carefully proof read their text.
+authors' response - 
+
+referee comment - 6. “in order to” should simply be “to.”
+authors' response - 
+
+referee comment - 7. When there are multiple citations, they should be listed in order.  For instance, [17, 5] should be [5, 17].
+authors' response - 
+
+referee comment - 8. Why do Sections 1.6 and 1.7 start with a full colon (:)?
+authors' response - 
+
+referee comment - 9. The Bibliography is not complete.  For instance the year is missing for references [1], [2], [3], [8], and [28].  The author field is also missing for several references, such as [1] and [2].
+authors' response - 
+
