@@ -1,16 +1,17 @@
 %\begin{itemize}
 %item diverse algorithms - different data layout needs
 \label{sec:domain-challenges}
-Multiphysics codes, by their definition, have more than one
-mathematical model that they are solving. A typical code combines 3-4
-diverse models, the more extreme ones may employ many more.
+Multiphysics codes, by their definition, solve more than one
+mathematical model. A typical code combines 3-4
+diverse models, in extreme cases codes may employ many more.
 %\comment[(KA NOTE: NEED REF)]  
-In a rare calculation all models work with the same
+Rarely, all models work with the same
 discretization using similar algorithmic approach (for instance
-stencil computations in explicit PDE solvers). More common is to have
-models with diverse discretizations and algorithms. In this case, each operator has
-its own preferred data layout and movement, and it usually differs
-from those needed by the other operators.  Normally these challenges
+stencil computations in explicit PDE solvers).
+Models with diverse discretizations and algorithms are more common. In
+such cases, each operator has
+its own preferred data layout and movement that may differ
+from those needed by other operators.  Normally these challenges
 can be mitigated through encapsulation and well defined API's. The outer
 wrapper layers of the operators can carry out data transformations as
 needed. There are two factors against taking this approach in CSE
@@ -22,17 +23,17 @@ significantly degrades performance.
 The CSE simulation codes model the physical world which does not
 have neat modularization. Various phenomena have tightly coupled
 dependencies that are hard to break. These dependencies and tight
-couplings also translate into their mathematical models and it becomes
-hard to eliminate lateral interactions among code modules implementing
-the models. An attempt to force encapsulations by hoisting up the
-lateral interactions to the API level can explode the size of the
-API. And if not done carefully this can also lead to extra data
-movement. The module designs, therefore, have to be cognizant of
-potential lateral interactions and make allowances for them.
-Similarly, the data structures have to take into account the diverse
-demands placed on them by different operators and carefully consider
-the trade-offs during software design. Considerations such as these
-are not common in software outside of CSE.  
+couplings are transferred into the mathematical models and hinder the
+elimination of lateral interactions among code modules. An attempt to
+force encapsulations by hoisting up the lateral interactions to the
+API level can explode the size of the API. And if not done carefully
+this can also lead to extra data movement. The module designs,
+therefore, have to be cognizant of potential lateral interactions and
+make allowances for them. Similarly, the data structures have to take
+into account the diverse demands placed on them by different operators
+and carefully consider the trade-offs during software
+design. Considerations such as these are not common in software
+outside of CSE.   
 %\comment[(KA NOTE: NEED REF - can we back up this claim?)}
 
 %\item less logical complexity more numerical complexity - hard to achieve data locality 
@@ -69,7 +70,13 @@ numerical algorithms associated with physics operators require mathematical expe
 different from the code architecture which requires software
 engineering expertise. In addition, modular code allows various
 components to interface with each other in a clearer way.  Another
-challenge for CSE codes is that many of them run on large HPC systems and require code parallelization.  Parallel codes typically must implement a parallel domain decomposition and manage synchronization and load balancing between tasks or threads.  With appropriate code modularization, these different aspects of the code do not need to interfere with one another and can help make application development more tractable.
+challenge for CSE codes is that many of them run on large HPC systems
+and require code parallelization.  Parallel codes typically must
+implement a parallel domain decomposition and manage synchronization
+and load balancing between tasks or threads.  With appropriate code
+modularization that enables separation of concerns these different
+aspects of the code do not need to interfere with one another and can
+help make application development more tractable. 
 
 
 %\item need for third party software 

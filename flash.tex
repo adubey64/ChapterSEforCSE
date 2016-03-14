@@ -1,22 +1,24 @@
 \subsection{FLASH}
+The FLASH code \cite{FLASH,Dubey2009}  has been under development for nearly two decades at the
+Flash Center at the University of Chicago. The code was originally
+developed to simulate thermonuclear runaways in astrophysics such as
+novae and supernova. It was created out of an amalgamation of three
+legacy codes, Prometheus for 
+shock hydrodynamics, PARAMESH for adaptive mesh refinement (AMR) and
+locally developed equation of state and nuclear burn code. It has
+slowly evolved into a well-architected extensible software with user
+base in over half a dozen scientific communities. FLASH has been
+applied to a variety of problems including supernovae, X-ray bursts,
+galaxy clusters, and stellar structure, fluid instabilities,
+turbulence, laser experiements design and analysis and nuclear reactor
+rods. It supports an Eulerian mesh combined with a Lagrangian
+framework to cover a large class of applications. Physics capabilities
+include compressible hydrodynamics and magnetohydrodynamics solvers,
+nuclear burning, various forms of equations of state, radiation, laser
+drive, fluid-structure interactions and many more.   
+
 \subsubsection{Code Design}
 \label{sec:FLASHdesign}
-The FLASH code has been under development for over 15 years at the
-Flash Center at the University of Chicago. The code was originally
-designed to simulate thermonuclear runaways in astrophysics, and was
-created out of an amalgamation of three legacy codes, Prometheus for
-shock hydrodynamics, PARAMESH for AMR and locally developed equation
-of state and nuclear burn code. It has slowly evolved into a
-well-architected extensible software with user base in over half a
-dozen scientific communities. FLASH has been applied to a variety of
-problems including supernovae, X-ray bursts, galaxy clusters, and
-stellar structure, fluid instabilities, turbulence, laser experiements
-design and analysis and nuclear reactor rods. It supports an Eulerian
-mesh combined with a Lagrangian framework to cover a large class of
-applications. Physics capabilities include compressible hydrodynamics
-and magnetohydrodynamics solvers, nuclear burning, various forms of
-equations of state, radiation, laser drive, fluid-structure
-interactions and many more.  
 
 From the outset FLASH was required to have composability because the
 simulations of interest needed capabilities in different permutations
@@ -24,7 +26,7 @@ and combinations. For example, most simulations needed compressible
 hydrodynamics, but with different equations of state. Some needed to
 include self-gravity while others did not. An 
 obvious solution was to use object-oriented programming model with
-common API's and specializations to account for the different
+common APIs and specializations to account for the different
 models. However, the physics capabilities were mostly legacy with F77
 implementations. Rewriting the code in an object oriented language was
 not an option. A compromise was found by exploiting the unix directory
@@ -68,23 +70,21 @@ for the bounds and extent of the block they are operating on, and
 get a pointer to the physical data. This arrangement works in most
 cases, but gets tricky where  the data access pattern does not conform
 to the underlying mesh. An example is any physics dealing with
-Lagrangian entities (LE's). They need a different data structure, and
-the movement of data has nothing in common with the way the data moves
-on the mesh. The added difficulty is that the entities do need to
-interact with the mesh, so physical proximity of the corresponding
-mesh cell is important in distributing the LE's. This is one of the
-examples of unavoidable lateral interaction between modules. In order
-to advance, LE's need to get some field quantities from the mesh and
-then determine their new locations internally. In some applications
-they have to apply near- and far-field forces, and in some
-applications they have to pass some information along to the mesh. And
-after advancing in time they may need to be redistributed. FLASH solves
+Lagrangian entities (LEs). They need a different data structure, and
+the data movement is dissimilar from that of the mesh. Additionally,
+the LEs interact with the mesh, so maintaining physical proximity of
+the corresponding mesh cell is important in their distribution. This
+is an example of unavoidable lateral interaction between modules. In order
+to advance, LEs need to get field quantities from the mesh and
+then determine their new locations internally. They may
+need to apply near- and far-field forces, or pass some information
+along to the mesh, or redistributed after advancing in time. FLASH solves 
 this conundrum through keeping the LE data structure extremely simple,
-and using argument passing by reference in the API's. The LE's are
+and using argument passing by reference in the APIs. The LEs are
 attached to the block in the mesh that has the overlapping cell, an LE
 leaves its block when its location no longer overlaps with the
 block. Migration to a new block is an independent operation from
-everything else that goes on with the LE's. In FLASH parlance this is
+everything else that happens to the LEs. In FLASH parlance this is
 the Lagrangian framework (see \cite{Dubey2012} for more details). The
 combination of {\em Eulerian} and {\em Lagrangian} frameworks that
 interoperate well with one another has succeeded in largely meeting the
@@ -102,11 +102,10 @@ workstations. Since then the test suite has evolved into a
 combination of variety of tests that aim to provide comprehensive
 coverage for verifying correct operation of the code
 \cite{Dubey2013,Calder2005}. Because FLASH is in a constant state of
-production and 
-development, verification of its correctness on a regular basis is a
-critical requirement.  The testing is complicated both by the variety 
-of environments in which FLASH is run, and the sheer number of ways in
-which it can be configured. 
+production and development, verification of its correctness on a
+regular basis is a critical requirement.  The testing is complicated
+both by the variety of environments in which FLASH is run, and the
+sheer number of ways in which it can be configured. 
 
 FLASH's testing can be broadly classified into
 three categories: the daily testing to verify ongoing correctness of
@@ -115,7 +114,7 @@ and finally porting to and testing on new platforms. Daily testing is
 performed on multiple combinations of platforms and software
 stacks. It includes unit tests where possible, and a modified version
 of no-change tests elsewhere. Because of floating point related issues
-mentioned in section \ref{sec:lifecycle} a drift within a specified
+mentioned in section \ref{sec:lifecycle}, a drift within a specified
 tolerance is accepted as {\em no-change}. These tests also include
 {\em restart} tests, because a typical simulation is larger than one
 instance of batch queue allocation. It is imperative that the
@@ -124,10 +123,11 @@ no-change tests for FLASH also incorporate verification of transparent
 restart for the corresponding problem. 
 
 FLASH selects problem setups for no-change testing using the matrix
-approach to provide full block coverage \cite{Qu2008}. The process of  
-selecting problem setups is manual and relies upon the combined
-knowledge and expertise of code developers and in-house users. 
-Following order is used for populating the matrix:
+approach where capabilities are placed along the rows and columns and
+a test placed in the matrix reflects interoperability between the
+capabilities. The process of selecting problem setups is manual and
+relies upon the combined knowledge and expertise of code developers
+and in-house users.  Following order is used for populating the matrix:
 \begin {enumerate}
 \item All unit tests.
 \item Where possible problem setups corresponding to ongoing research
@@ -143,10 +143,11 @@ trouble spots. Scientists and developers work closely to devise
 meaningful weak scaling tests (which can be difficult because of
 non-linearity and adaptive mesh refinement), and tests that can 
 exercise the vulnerable code sections without overwhelming the test
-suite resources. Sample smaller scale production runs are also done on
-the target platform for make informed estimates of cpu hours and disk
-space needed to complete the simulation. For more details on
-simulation planning see \cite{Dubey2013}. For porting the code to
+suite resources. Sample smaller scale production runs are also
+performed on the target platform to help make informed estimates of cpu
+hours and disk space needed to complete the simulation. For more
+details on simulation planning see \cite{Dubey2013}. For porting the
+code to 
 a new platform a successful production run from the past is used as a
 benchmark for exercising the code on a new platform, along with using
 a subset of the standard test suite.
@@ -204,8 +205,8 @@ One of the biggest challenges in managing a code like FLASH occurs
 during major version changes, when the infrastructure of the code
 undergoes deep changes. FLASH has undergone two such changes where the
 first transition took the approach of keeping the development branch
-synchronized with the main branch at all times. The new version also
-tried to keep itself backward compatible with the old version. During
+synchronized with the main branch at all times. An effort was made to
+keep new version backward compatible with the old version. During
 and after the process the team realized many shortcomings of this
 approach. One was that the code needed to have deeper structural
 changes than were possible under this approach. Also, the attempt to keep the development and
@@ -216,9 +217,9 @@ because keeping up with the ongoing modifications to the older version
 the transition into a moving target. 
 
 Because of these lessons learned the second transition took a
-completely different tack and was much more successful. The
-infrastructural backbone/framework for the new version were built in
-isolation from the code base in a new repository. The framework design
+completely different approach and was much more successful. The
+infrastructural backbone/framework for the new version was built in
+isolation from the old version in a new repository. The framework design
 leveraged the knowledge gained by the developers about the
 idiosyncracies of the solvers in earlier versions and focussed on
 the needs of the future version. There was no attempt at backward
@@ -233,18 +234,18 @@ point had to be made simultaneously in the new version as well. Though
 it sounds like a lot of duplicate effort, in reality such instances
 were rare. This version transition was adopted by the scientists very quickly.
 
-Testing is another area where the standard practices do not adequately
+Testing is an area where the standard practices do not adequately
 meet the needs of the code. Many multiphysics codes have legacy
 components in them that are written in early versions of
 Fortran. Contrary to popular belief, a great deal of new development
 continues in Fortran because it still is the best HPC language
 in which to express mathematical algorithms. All of solver code in
-FLASH is F90, so the general unit test harnesses aren't available for
+FLASH is written in F90, so popular unit test harnesses aren't available for
 use. Small scale unit tests can only be devised for infrastructural
 code because all the physics has to interact with the mesh. Also,
 because regular testing became a part of FLASH development process
 long before formal incorporation of software engineering practices in
-the process, FLASH's designation of tests only loosely follows the
+the development process, FLASH's designation of tests only loosely follows the
 standard definitions. So a unit test in FLASH can rely on other parts
 of the code, as long as the feature being tested is isolated. For
 example testing for correct filling of halo cells uses a lot of AMR
@@ -255,7 +256,7 @@ integration testing, where more than one code capability is combined to
 configure an executable. The results of the run are compared against
 pre-approved results to verify that changes are within a specified
 acceptable range. Because of a
-large space of possible valid and useful combinations selection of tests
+large space of possible valid and useful combinations, selection of tests
 is challenging. FLASH's methodology for test design and
 selection is described in detail in \cite{Dubey2015}, and follows the
 matrix method described earlier.
@@ -265,22 +266,22 @@ user's guide, a developer's guide, robodoc API, inline documentation,
 and online resources. Each type of documentation serves a different
 purpose and is indispensable to the developers and users of the code.  
 There are scripts in place that look for violations of coding
-standards and documentation requirements. User's guide documents the
+standards and documentation requirements. The user's guide documents the
 mathematical formulation, algorithms used and instructions on using
-various code components. The user's guide also includes examples of
+various code components. It also includes examples of
 relevant applications explaining the use of each code module. The
 developer's guide specifies the design principles and coding standards
 with an extensive example of the module architecture. Each function in
 the API is required to have a robodoc header explaining the
 input/output, function and special features of the function. Except
 for the third party software, every non-trivial function in the code
-is required to have sufficient inline documentation that a non-expert
+is required to have sufficient inline documentation so that a non-expert
 can understand and maintain the code.
 
 FLASH effectively has two versions of release - internal, which
 is close to the agile model, and general, which is no more than twice
 a year. The internal release amounts to tagging a stable version in
-the repository for the internal users of the code. This is signal to
+the repository for the internal users of the code. This signals to
 the users that a forward merge into their production branch is not
 going to break the code. The general releases have a more rigorous
 process which makes them infrequent. The general releases undergo some
@@ -306,7 +307,7 @@ software. Recollect that the developers in this domain are typically
 not trained in software engineering, and software quality control
 varies greatly between individuals and/or groups of
 developers. Because of tight, and sometimes lateral, coupling between
-functionalities of code modules a lower quality component introduced
+functionalities of code modules, a lower quality component introduced
 into the code base can have disproportionate impact on the overall
 reliability of output produced by the code. Strong gate-keeping is
 desirable, and that implies having policies in place for accepting
@@ -343,11 +344,11 @@ model anyone can stage any FLASH compatible code on a site hosted by
 them. The code has no endorsement from the distributing entity, the
 Flash Center, which does not take any responsibility for its
 quality. The Flash Center maintains a list of externally hosted
-`as-is' code sites, the support for these code sections are entirely
+`as-is' code sites, the support for these code sections is entirely
 the responsibility of hosting site. 
 
 The attribution practices in CSE are somewhat ad-hoc. For many
-developers, the only metric of importance are the scientific
+developers, the only metric of importance is scientific
 publications that result from using the software. When a team is
 dominated by such developers proper attribution for code development
 is not given enough importance or thought. Other teams also employ

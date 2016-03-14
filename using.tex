@@ -7,15 +7,14 @@ approximations, and they must know which questions can be validly
 addressed by these models. For example, Eulerian equations of
 hydrodynamics do not account for viscosity. If one is modeling a fluid
 where viscosity is important, one should not use a code that uses
-Eulerian equations to model the fluid. Similarly, they must know and
+Eulerian equations to model the fluid. Similarly, the users must know and
 understand the valid regimes for applicability of numerical
-algorithms, and also the accuracy and stability behavior of the
-algorithms. For example a numerical method that can resolve a smooth
+algorithms, as well as their accuracy and stability behavior. For
+example a numerical method that can resolve a smooth 
 fluid flow only will fail if there are discontinuities. Similarly, in
-order to use the Fast Fourier Transform (FFT) method, user must know
-the highest mode being resolved. If enough terms are not used in the Fourier series
-approximation the computed result may filter out important information
-and lead to wrong results.
+order to use the Fast Fourier Transform (FFT) method, users must
+ensure that their sampling interval resolves all modes. Failure to do
+so may filter out important information and lead to wrong results.
 
 % It is very possible to apply the  
 % methods in inappropriate ways and obtain scientifically useless

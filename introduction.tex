@@ -18,14 +18,13 @@ behind that in the commercial software space
 % reference for this claim? AD: I don't know of one, though this seems
 % to be the consensus.  Let's just soften a little then.  I added "often"}
 There are many reasons for it: lack of incentives, support and
-funding; reward system favors scientific results but not software 
-development; many software engineering practices need customization
-for use in scientific communities but there is very little
-research in the software engineering community targeted to specific
-needs of such codes. 
+funding; reward system favoring scientific results over software 
+development; limited understanding of how software engineering
+should be promoted to communities that have their own 
+specific needs and sociology.
 
 Some software engineering practices have been better accepted 
-among developers of scientific codes than others. The ones that are
+among the developers of scientific codes than others. The ones that are
 used quite often include repositories for code version control,
 licensing process, regular testing, documentation, release and distribution
 policies, and contribution policies \cite{cc2012, carver2012software,
@@ -33,10 +32,10 @@ Dubey2014}. Less accepted practices include code-review,
 code-deprecation, and adoption of development methodologies such as
 Agile \cite{agile}. Software best practices that may be very effective in commercial
 software development environments are not always suited for scientific
-enviroments partly because of sociology and partly because of technical
+environments partly because of sociology and partly because of technical
 challenges. Sociology manifests itself as suspicion of too rigid a
 process or not seeing the point of adopting a practice. The
-technical challenges arise from the nature of problems being addresssed by
+technical challenges arise from the nature of problems being addressed by
 these codes. For example, multiphysics and multicomponents  
 codes that run on large High Performance Computing 
 (HPC) platforms put a large premium on performance. It is our
@@ -44,11 +43,11 @@ experience that good performance is most often achieved by sacrificing
 some of the modularity in software architecture
 (i.e. \cite{Dubey1999}). Similarly lateral interactions in physics get
 in the way of encapsulations (See sections \ref{sec:domain-challenges}
-and \ref{sec:institutional-challenges} for details).
+and \ref{sec:institutional-challenges} for more examples and details).
 
 This chapter elaborates on the above challenges and how they were
 addressed in FLASH and Amanzi, two codes with very  
-different develepment timeframe and therefore very different
+different development timeframe and therefore very different
 development paths. FLASH, whose development began in the late 1990's,
 is among the first generation of codes that
 adopted a software process. This was in the era when the advantages of
@@ -57,14 +56,14 @@ world. Amanzi is from the ``enlightened'' era (by scientific software
 standards) where a minimal set of software practices are adopted by
 most code projects intending long term use. A study of software
 engineering of two codes from different eras of scientific software
-development highlight how these practices  and the communities have
+development highlight, how these practices  and the communities have
 evolved.    
 
 FLASH was originally designed for computational
 astrophysics. It has been almost continuously 
 under production and development since 2000 with three major
 revisions. It has exploited an extensible framework to expand its
-reach as a community code for over half a dozen scientific
+reach and is now a community code for over half a dozen scientific
 communities. The adoption of software engineering practices has
 grown with each version change and expansion of capabilities. The
 adopted practices themselves have evolved to meet the needs of the
@@ -76,8 +75,7 @@ designed with extensibility as an objective. There are many other
 similarities and some differences described later in the chapter.
 In particular, we address the issues related to software
 architecture and modularization, design of a testing regime,
-unique documentation needs and challenges, use of versioning system 
-for managing projects, and the tension between intellectual property
+unique documentation needs and challenges, and the tension between intellectual property
 management and open science.
 
 %and due to the type of institutions where
@@ -103,12 +101,12 @@ software than elsewhere. Section \ref{sec:lifecycle} describes the
 typical lifecycle of a scientific code, followed by domain specific
 technical challenges in section \ref{sec:domain-challenges}. This is
 followed by a description in section \ref{sec:institutional-challenges}
-of technical and sociologicial challenges posed by the institutions
+of technical and sociological challenges posed by the institutions
 where such codes are typically developed. Section
-\ref{sec:case-studies} describes experiences of FLASH and amanzi
-development teams. The last two sections provide some general
-observations and additional future considerations for adapting the
-codes to the end of Moore's Law.
+\ref{sec:case-studies} is the case study of FLASH and Amanzi
+developments, and the last two sections provide some general
+observations and additional considerations for adapting the
+codes for the more challenging platforms expected in future.
 
 % For example,
 % sometimes modularity and encapsulation principles are challenged by

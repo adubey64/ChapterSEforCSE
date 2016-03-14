@@ -2,12 +2,11 @@
 %\begin{itemize}
 %\item resources are rarely available for software infrastructure - carved out of scientific goal oriented funding
 \label{sec:institutional-challenges}
-Many adaptations in the software engineering for CSE applications described in the previous
-section pertained to software design and testing. In particular they
-spoke to challenges of modularity, performance and unit-testing because of the
-intertwined nature of the problems being tackled by these
-codes. However, there are a number of challenges that arise in developing and maintaining CSE codes outside of architectural and performance challenges.  Many challenges are specific to the kind of organizations and the research communities
-where these codes are developed. The most crippling and pervasive
+Many adaptations in software engineering for CSE applications
+described in the previous section pertained to software design and
+testing. A number of challenges also arise because of the kind of
+organizations and the research communities where these codes are
+developed. The most crippling and pervasive 
 challenge faced by CSE codes in general, and multiphysics codes in
 particular, is that funding for software development and maintenance is difficult to attain. 
 There is evidence that when software is designed well
@@ -41,7 +40,7 @@ long term planning and design.
 The cost of future lost productivity may not be appreciated until much
 later when code base has  grown too large to remove the deficiencies
 in any easy way.  Software engineering is forcibly imposed on the
-code, which it at best a band-aid solution. This is another reason why
+code, which is at best a band-aid solution. This is another reason why
 many of the software practices are not embraced by the CSE community.  
 
 %\item concepts learned on the job
@@ -53,13 +52,14 @@ engineering skills is an added requirement.  Often experts in a domain
 science who develop CSE codes are not trained in software engineering
 and many learn skills on the job through reading, or talking to
 colleagues. Practices are applied as they understand them, usually
-picking only what is of most importance for their own development. A
-very good example is the use of repositories. The ``xkcd''
-\footnote{https://xkcd.com/1597/} cartoon is
-essentially the truth of how git is used by many scientific software
-developers. 
+picking only what is of most importance for their own development.
+%  A
+% very good example is the use of repositories. The ``xkcd''
+% \footnote{https://xkcd.com/1597/} cartoon is
+% essentially the truth of how git is used by many scientific software
+% developers. 
 %\comment{(KA NOTE: Do we have any reference?)}
-This can be both good and bad. Good because it sifts out the unnecessary aspects of the SE
+This can be both good and bad. Good because it sifts out the unnecessary aspects of SE
 practice, and bad because it is not always true that the sifted out
 aspects were really not necessary. It just means that the person
 adopting the practice did not understand the usefulness and impact of
@@ -74,27 +74,27 @@ resources. The domain and numerical algorithmic
 expertise is rarely replicated in a team developing the multiphysics
 CSE application.  Even otherwise, deep expertise in the domain may be
 needed to model the phenomenon right, and that kind of expertise is
-hard to come by. Then there is the challenge of communicating the
+relatively rare. Then there is the challenge of communicating the
 model to the software engineer, if there is one on the team, or to
-other members of the team with some other domain expertise. It requires at least a
+team members with some other domain expertise. It requires at least a
 few developers in the team who can act as interpreters for various
 domain expertise and are able to integrate them. Such abilities take a
-great deal of time and effort to develop, neither of which are
-possible in academic institutions where these codes are typically
+lot of time and effort to develop, neither of which are
+easy in academic institutions where these codes are typically
 organically grown. The available human resources in these institutions
-are post-docs and students who move on, so there is no retention of
+are post-docs and students who move on, so there is little retention of
 institutional knowledge about the code.  A few projects that do see
 the need for software professionals struggle to find ways of funding
-them or to provide a path to professional growth. 
+them or providing a path for their professional growth. 
 %(KA NOTE: I think this section could use some examples.)
 
-The above institutional challenges also provide a clue about why any
-set software development methodology is hard, and often even
-undesirable, to adopt in such projects. For example, the principles
+The above institutional challenges are among the reasons why it is
+hard and often even undesirable to adopt any set software development
+methodology in CSE application projects. For example, the principles
 behind the agile manifesto apply, but not all the formalized processes
 do. Agile software methods \cite{agile} are lightweight evolutionary development
-methods where focus is on adaptability and flexibility, as opposed to
-waterfall methods which is a sequential development process where
+methods with focus on adaptability and flexibility, as opposed to
+waterfall methods which are sequential development processes where
 progress is perceived as a downward flow \cite{waterfall}. 
 % \comment {KA NOTE: Need to describe what the agile methods are
 % here... because you refer to them later in the paragraph without
@@ -105,26 +105,30 @@ within the lifecycle and improve it based upon user feedback and
 changing needs. These aims fit well with the objectives of scientific
 software development as well. 
 These codes are developed by interdisciplinary teams where
-interactions and collaborations are preferred over regimented process. The code
-development and its use for science go on in parallel, so the
-requirements change and there is quick feedback when they do.  For the
+interactions and collaborations are preferred over regimented
+process. The code is simultaneously developed and used for science, so
+that when requirements change there is quick feedback.  For the 
 same reason, the code needs to be in working condition almost all the
 time. However, scarcity of resources does not allow the professional roles in
 the agile process to be played out efficiently.  There is no clear
 separation between the developer and the client, many developers of
-the code are also the scientists who use it for their research. 
-Because software development goes hand in hand with research and
-exploration of the algorithms it is impossible to do either within
+the code are also scientists who use it for their research. 
+Because software development goes hand-in-hand with research and
+exploration of algorithms, it is impossible to do either within
 fixed time-frames. This constraint effectively eliminates using agile
 methods such as {\em sprints} \cite{agile}. Similarly, extreme
-programming, another component of Agile, is impossible to implement in an environment which has to
-incorporate research into the process. The waterfall model is even less
-useful because it is impossible to do a full specification ahead of
-time. The code has to grow and alter organically as the scientific
-understanding grows, the effect of using technologies are digested and
-requirements change. 
+programming, another component of Agile, is impossible to implement in
+an environment which has to incorporate research into the process. The
+waterfall model is even less useful because it is not cost-effective
+or even possible to have a full specification ahead of time. The code
+has to grow and alter organically as the scientific understanding
+grows, the effect of using technologies are digested and requirements
+change. A reasonable solution is to adopt those elements of the
+methodologies that match the needs and objectives of the team,
+adjust them where needed, and develop their own processes and
+methodologies where none of the available options apply.
 
-The need for deep expertise, and the fact that the developer of a
+Due to the need for deep expertise, and the fact that the developer of a
 complex physics module is almost definitely going to leave with
 possibly no replacement, documentation of various kind takes on a
 crucial role. It becomes necessary to document the algorithm, the

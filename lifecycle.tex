@@ -6,19 +6,19 @@ blocks for those systems too. A phenomenon may be at a microscopic
 level, for example protein folding, or at extremely large scales, for
 example galaxy cluster mergers.  In some applications multiple scales
 are modeled.  The physical characteristics of the systems being
-modeled are translated into mathematical models that are said to
-describe the essential features of the behavior of the system being 
-studied. These equations are then discretized, and numerical algorithms
-are used to solve them. One or more parts of this process may
-themselves be subjects of active research. Therefore the simulation
-software development requires diverse expertise and
+studied are translated into mathematical models that are said to
+describe the essential features of the behavior of those
+systems. These equations are then discretized, and numerical
+algorithms are used to solve them. One or more parts of this process
+may themselves be subjects of active research. Therefore the
+simulation software development requires diverse expertise and 
 adds many stages in the development and lifecycle described below that
 may not be encountered elsewhere.  
 
 \subsection{Development Cycle}
 \label{sec:dev-cycle}
 For scientific simulations, modeling begins with equations that describe the
-general class of behavior to be studied, for example, the Navier-Stokes
+general class of behavior to be studied. For example, the Navier-Stokes
 equations describe the flow of compressible and incompressible
 fluids, and van der Waals equations describe interactions among
 molecules in a material. There may be more than one set of equations
@@ -82,7 +82,7 @@ makes sure that the implementation of the model is correct. In other
 words, a model is validated against observations or experiments from
 the physical world, whereas a model is verified by other forms of
 testing \cite{oberkampf2002verification}.   Other definitions give
-broader scope to  verfication and validation (i.e. \cite{sargent1998verification}). For
+broader scope to  verification and validation (i.e. \cite{sargent1998verification}). For
 example, validation of a numerical method may be constructed through
 code-to-code comparisons, and its order can be validated through
 convergence studies. Similarly, the implementation of a solver can be
@@ -91,7 +91,7 @@ the same solver can be applied and the analytical solution is also
 known, though this is not always possible
 \cite{oberkampf2010verification}.  Irrespective of  specific
 definitions, what is true is that   correctness must be assured at all
-the stages from model to implementation.     
+the stages, from modeling to implementation.     
 
 There are many degrees of freedom in the process of deriving a
 model as discussed in the previous section, therefore, the validation of the
@@ -111,7 +111,7 @@ mathematicians and method developers is necessary because the process
 has to be iterative with scientific judgement applied at every
 iteration.  
 
-One other unique verification challenge in CSE software is because of
+One other unique verification challenge in CSE software is caused by 
 finite machine precision of floating point numbers. Any change in
 compilers, optimization levels, and even order of operations can cause
 numerical drift in the solutions
@@ -128,20 +128,20 @@ This issue is discussed in greater detail in the chapter {\em Testing
 \subsubsection{Testing}
 \label{sec:testing}
 %\comment{KA NOTE: KA will expand this section}
-Testing of CSE software needs to reflect the layered complexity that
-the codes themselves have. The first line of attack is to develop the
-unit tests which isolate testing of one component of the
-code. However, in CSE codes, often there are dependencies between
+Testing of CSE software needs to reflect the layered complexity of
+the codes. The first line of attack is to develop 
+unit tests that isolate testing of individual components. However, in
+CSE codes, often there are dependencies between 
 different components of the code that can not be meaningfully
 isolated, making unit testing more difficult. In these cases, testing
-should be done with a minimal possible combination of components.  In
-effect, these minimally combined tests play the same role in the
-testing regime that unit tests do because they focus on possible
+should be performed with a minimal possible combination of components.  In
+effect, these minimally combined tests behave like unit tests because they focus on possible
 defects in a very narrow section of the code. In addition,
 multicomponent CSE software should test various  permutations and
 combination of components in different ways. Configuring tests in this
-manner will help verify that all configurations are within the
-accuracy and stability constraints \cite{Dubey2015}.   
+manner will help verify that the configurations of interest are within the
+accuracy and stability constraints \cite{Dubey2015} (see section
+\ref{sec:test-example} for an example from FLASH).   
 
 \subsection{Maintenance and Extensions}
 \label{sec:maintain}
@@ -156,7 +156,7 @@ The development of CSE software is usually responding to an immediate
 scientific need, so the codes get employed in production as soon as a
 minimal set of computational modules necessary for even one scientific
 project are built.  Similarly, the development of computational
-modules almost never stops all through the code lifecycle because new
+modules almost never stops through the code lifecycle because new
 findings in science and math almost continuously place new demands on
 them. The additions are mostly incremental when they incorporate new
 findings into an existing feature, they can also be substantial when
@@ -170,7 +170,7 @@ Whatever may be the cause, co-existence of development and
 production/maintenance phases is a constant challenge to the code
 teams. It becomes acute when the code needs to undergo major version
 changes. The former can be managed with some repository
-discipline in the team coupled with a solid testing regime. The latter
+discipline in the team coupled with a robust testing regime. The latter
 is a much bigger challenge where the plan has to concern itself with
 questions such as how much backward compatibility is suitable, how
 much code can go offline, and how to reconcile ongoing development in
