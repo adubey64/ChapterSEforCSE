@@ -28,13 +28,13 @@ The process tree describes the hierarchical coupling between equations and syste
 Each leaf node of the tree is a single (partial) differential equation, such as conservation of mass.
 Each interior node of the tree couples the children below it into a system of equations.
 Every node presents a common interface to the nodes above it.
-Much of the coupling internal nodes can be automated using this interface -- sequential couplers can be fully automated, while globally implicit coupled schemes can be nearly automated (with off-diagonal blocks of preconditioners and globalization of nonlinear solvers the lone exceptions).
+Much of the coupling of internal nodes can be automated using this interface -- sequential couplers can be fully automated, while globally implicit coupled schemes can be nearly automated (with off-diagonal blocks of preconditioners and globalization of nonlinear solvers the lone exceptions).
 This representation of multiphysics models is natural to the coupled physical system, and implicitly exists in most codes; Arcos makes this explicit while providing hooks for customization to the specific system.
 
 A second view of the system of equations is stored in the dependency graph, much like that of \cite{Notz2012}.
 The dependency graph is a directed, acyclic graph (DAG) where each node is a variable (either primary, secondary, or independent), and each edge indicates a dependency.
-Then the graph is built up from the leafs of the DAG, which are primary variables (those variables to be solved for) and independent variables (data provided to the model), through secondary variables, to the roots of the DAG, which are, for instance, corrections to the primary variable formed through a nonlinear solve, or time derivatives of primary variables used in time integrators.
-Each interior node is then a secondary variable, and consists of both data and an \emph{evaluator}, or small, stateless (functional) unit of code that stores the physics of how to evaluate the variable given its dependencies.
+The graph is built up from the leafs of the DAG, which are primary variables (those variables to be solved for) and independent variables (data provided to the model).  Roots of the DAG are, for instance, corrections to the primary variable formed through a nonlinear solve, or time derivatives of primary variables used in time integrators.
+Between these, each interior node is a secondary variable, and consists of both data and an \emph{evaluator}, or small, stateless (functional) unit of code that stores the physics or numerics of how to evaluate the variable given its dependencies.
 
 Finally, a state object is a glorified container used to manage data.
 Through the state's interface, \emph{const} access is allowed to all evalutors, and non-\emph{const} access is strictly limited to the evaluator of that variable.
@@ -69,7 +69,7 @@ Once past an initial developer learning curve, Amanzi/ATS developers are able to
 \label{sec:amanzi:testing}
 %
 Testing is an extremely sensitive subject in computational software engineering -- so much so that it merits its own chapter: \ref{}.
-Few CSE codes are sufficiently tested by SE standards, and many CSE developers are aware of the shortcoming.
+Few CSE codes are sufficiently tested by convential Software Engineering (SE) standards, and many CSE developers are aware of the shortcoming.
 As discussed above, frequently CSE codes are limited to component-level tests, as it can be difficult to write sufficiently fine-grained unit tests.
 %TODO -- is ``component-level'' the right name here?  Check with Ross chapter
 SE techniques such as mocking objects are almost never practiced, as mocked objects would require nearly all of the same functionality of the real object in order to properly test the physics component.
