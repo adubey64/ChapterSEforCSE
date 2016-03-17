@@ -120,15 +120,16 @@ authors' response -  done
 
 referee comment - Page 15, 3rd paragraph, change “is signal” to “signals”.
 On Page 18, do you have any figures to illustrate the tree you describe? While not required, it would be nice to have one.
-authors' response -  
+authors' response -  done
 
 referee comment - On Page 18, 2nd paragraph insert “of” after “coupling”.
-authors' response -  
+authors' response -  done
 
 referee comment - On Page 18, 3rd paragraph, eliminate “Then” in the third sentence. Also, it would be better understandable if it is broken up into 3 sentences.
-authors' response -  
+authors' response -  done
 
-referee comment - On Page 19, SE, which I assume stands for software engineering, should be spelled out the first time it is used.
+referee comment - On Page 19, SE, which I assume stands for software engineering, should be spelled out the first time it is used. 
+authors' response - done
 
 
 ----------------------- REVIEW 3 ---------------------
@@ -173,7 +174,7 @@ authors' response -
 referee comment - 2. The paper makes many statements about CSE practice, but evidence is rarely presented to support the statements.  Ideally the statements would be supported by citations, survey data, or other evidence.  If evidence is lacking, it should be made explicit at the outset that the statements made in the paper are based on the collected experience of the authors.  This should be accompanied by a statement that clarifies the experience of the authors, possibly by stating their combined number of years of experience with CSE development?  A sample of the unsupported statements includes the following:
 
 referee comment - 2.1 Although it sounds reasonable, the readers are not given any evidence for the following statements: “The standard practices adopted by the CSE codes include repositories for code version control, modular code design, licensing process, regular testing, documentation, release and distribution policies, and contribution policies. Less frequently used practices include code-review, code-deprecation, and adoption of development methodologies such as Agile [1].”
-authors' response - though we have provided a reference to a community codes workshops that provides some evidence, we questions whether this degree of substantiation should be required of a book chapter, which is different from a research paper. 
+authors' response - though we have provided a reference to a community codes workshops that provides some evidence, we questions whether this degree of substantiation should be required of a book chapter, which is different from a research paper. This chapter in particular is talking about in-depth experiences rather than breadth. Additionally, the chapter does mention the length of time these codes have been in development, which speaks of the amount of experience that authors have.
 
 
 referee comment - 2.2 The statement is made that HPC systems “have a typical lifespan of about 4-5 years.”  Is there evidence to support this statement?  Is this just opinion?
@@ -194,7 +195,7 @@ authors' response - Testing for interoperability that is part of the daily test-
 
 
 referee comment - 5. The paper mentions the problem of portable performance, but no mention is made of a successful project that deals with this problem: ATLAS.  Details on ATLAS can be found at: http://math-atlas.sourceforge.net/
-authors' response - That a project has dealt with this problem for current platforms is no guarantee that it will work in future. No one can make that assertion when the platforms themselves ar uncertain.
+authors' response - ATLAS's strategies for performance portability are not really related to multiphysics codes. Additionally, in the chapter we are talking about performance portability in future. That a project has dealt with this problem for current platforms is no guarantee that it will work in future. No one can make that assertion when the platforms themselves are uncertain. 
 
 
 referee comment - 6. Section 1.4 discusses the need for funding software development and maintenance.  The authors should read and cite Gewaltig and Cannon, since they make this same point in the context of software tools for neuroscience.  A preprint of their paper on this topic is available at:
