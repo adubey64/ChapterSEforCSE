@@ -6,7 +6,7 @@ novae and supernova. It was created out of an amalgamation of three
 legacy codes, Prometheus for 
 shock hydrodynamics, PARAMESH for adaptive mesh refinement (AMR) and
 locally developed equation of state and nuclear burn code. It has
-slowly evolved into a well-architected extensible software with user
+slowly evolved into a well-architected extensible software with a user
 base in over half a dozen scientific communities. FLASH has been
 applied to a variety of problems including supernovae, X-ray bursts,
 galaxy clusters, and stellar structure, fluid instabilities,
@@ -47,9 +47,9 @@ achieves it by separating the infrastructural components
 from physics. The abstraction that permits this approach is very
 well known in CSE, that of decomposing a physical domain into
 rectangular blocks surrounded by halo cells copied over from the
-surrounding neighboring blocks. To a physics operator whole domain is
+surrounding neighboring blocks. To a physics operator, the whole domain is
 not distinguishable from a box. Another necessary aspect of the abstraction 
-is not to let any of the  physics own the state
+is not to let any of the physics modules own the state
 variables. They are owned by the infrastructure that 
 decomposes the domain into blocks. A further separation of concern
 takes place within the units handling the infrastructure, that of
