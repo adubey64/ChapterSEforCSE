@@ -37,7 +37,7 @@ The graph is built up from the leafs of the DAG, which are primary variables (th
 Between these, each interior node is a secondary variable, and consists of both data and an \emph{evaluator}, or small, stateless (functional) unit of code that stores the physics or numerics of how to evaluate the variable given its dependencies.
 
 Finally, a state object is a glorified container used to manage data.
-Through the state's interface, \emph{const} access is allowed to all evalutors, and non-\emph{const} access is strictly limited to the evaluator of that variable.
+Through the state's interface, \emph{const} access is allowed to all evaluators, and non-\emph{const} access is strictly limited to the evaluator of that variable.
 
 This framework, while at times seeming heavy-handed, results in several important implications from a software engineering perspective.
 Here we focus on the dependency graph as used in Amanzi/ATS, and how it encourages and enables good software engineering practices.
@@ -69,7 +69,7 @@ Once past an initial developer learning curve, Amanzi/ATS developers are able to
 \label{sec:amanzi:testing}
 %
 Testing is an extremely sensitive subject in computational software engineering -- so much so that it merits its own chapter: \ref{}.
-Few CSE codes are sufficiently tested by convential Software Engineering (SE) standards, and many CSE developers are aware of the shortcoming.
+Few CSE codes are sufficiently tested by conventional Software Engineering (SE) standards, and many CSE developers are aware of the shortcoming.
 As discussed above, frequently CSE codes are limited to component-level tests, as it can be difficult to write sufficiently fine-grained unit tests.
 %TODO -- is ``component-level'' the right name here?  Check with Ross chapter
 SE techniques such as mocking objects are almost never practiced, as mocked objects would require nearly all of the same functionality of the real object in order to properly test the physics component.
@@ -91,7 +91,7 @@ By greatly lowering the bar for new users, this collection of dual-purpose examp
 % TODO -- same as above
 
 In Amanzi/ATS, unit and component granularity tests are automated using ctest and run sufficiently fast to be run prior to every commit.
-While Amanzi/ATS does not practice true continuous integration, it is expected that all developers run this testsuite prior to commiting to the main repository.
+While Amanzi/ATS does not practice true continuous integration, it is expected that all developers run this testsuite prior to committing to the main repository.
 
 
 \subsubsection{Performance Portability}

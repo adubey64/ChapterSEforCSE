@@ -30,14 +30,14 @@ common APIs and specializations to account for the different
 models. However, the physics capabilities were mostly legacy with F77
 implementations. Rewriting the code in an object oriented language was
 not an option. A compromise was found by exploiting the unix directory
-structure for inheritance, where, for a code unit the top level
-directory defined the API and the subdirectories contained the
-multiple alternative implementations of the API.  Meta-information
+structure for inheritance, where, the top level directory of the unit
+defined its API and the subdirectories implemented it.
+Meta-information 
 about the role of a particular directory level in the object oriented framework
 was encoded in a very limited domain-specific language (configuration
 DSL). The meta-information also included state and runtime variables
-requirements, dependences on other code units etc. A ``setup tool''
-parsed this information to configure a consistent ``application''. The
+requirements, dependences on other code units etc. A {\em setup tool}
+parsed this information to configure a consistent {\em application}. The
 setup tool also interpreted the configuration DSL to implement 
 inheritance using the directory structure. For more details about
 FLASH's object oriented framework see \cite{Dubey2009}.   
@@ -55,8 +55,8 @@ decomposes the domain into blocks. A further separation of concern
 takes place within the units handling the infrastructure, that of
 isolating parallelism from the bulk of the code. Parallel
 operations such as ghost cell fill, refluxing or regridding have
-minimal interleaving with state update in the blocks from application
-of physics operators. To distance the solvers from their parallel
+minimal interleaving with state update obtained from applying
+physics operators. To distance the solvers from their parallel
 constructs, the required parallel operations provide an API with
 corresponding functions implemented as a subunit. The implementation
 of numerical algorithms for physics operators is sequential,
@@ -78,8 +78,8 @@ is an example of unavoidable lateral interaction between modules. In order
 to advance, LEs need to get field quantities from the mesh and
 then determine their new locations internally. They may
 need to apply near- and far-field forces, or pass some information
-along to the mesh, or redistributed after advancing in time. FLASH solves 
-this conundrum through keeping the LE data structure extremely simple,
+along to the mesh, or be redistributed after advancing in time. FLASH solves 
+this conundrum by keeping the LE data structure extremely simple,
 and using argument passing by reference in the APIs. The LEs are
 attached to the block in the mesh that has the overlapping cell, an LE
 leaves its block when its location no longer overlaps with the
@@ -150,11 +150,11 @@ stages, and has a comparison {\em benchmark} for each stage. A {\em
   benchmark} in FLASH testsuite is a full state checkpoint. Composite
 test benchmarks are checkpoints at two distinct timesteps $M$ and $N$ where
 $M < N$. Both are analyzed and approved as producing expected results
-by a domain expert, if there is a legitimate cause for change in the
+by a domain expert. If there is a legitimate cause for change in the
 results (i.e. and improved method) benchmarks have to be
 re-approved. The first stage of a composite  test verifies that no
 errors have been introduced into the covered code units and their interactions
-covered by comparing against the benchmark at time $M$. The second
+by comparing against the benchmark at time $M$. The second
 stage restarts the execution from checkpoint at $M$ and runs up to
 time $N$. This stage of the test verifies that the covered code can
 correctly start from a checkpoint without any loss of state
@@ -166,24 +166,28 @@ available application configuration whose union provides
 very good code coverage, the task of building a test suite is simplified
 to selection among existing applications. In many applications the
 real challenge is picking parameters that exercise the targeted
-features without running for too long. As mentioned earlier a matrix
-is used to ensure maximum coverage. For each selected test all the
-covered features are marked off in the matrix. Following order is used
+features without running for too long. We use a matrix
+to ensure maximum coverage, where infrastructure features are placed
+along the rows and physics modules are placed along columns. For each
+selected test all the covered features are marked off in the
+matrix. Marking by the same test in two more places in the same row of
+same column represents interoperability among the corresponding
+entities. Following order is used
 for filling the matrix:
 \begin{itemize}
 \item unit tests
 \item setups used in science production runs
 \item setups known to be sensitive to perturbations
-\item simplest and fastest setups that provide the remaining coverage. 
+\item simplest and fastest setups that fill the remaining gaps. 
 \end{itemize} 
 
 FLASH's testing can be broadly classified into
-three categories: the daily testing, described above, to verify
-ongoing correctness of the code, more targeted testing  related to
-science production runs, and finally porting to and testing on new
+three categories: the daily testing, to verify
+ongoing correctness of the code; more targeted testing  related to
+science production runs; and porting to and testing on new
 platforms. Daily testing is performed on multiple combinations of
-platforms and software stacks.
-In preparing for a  production schedule, testing is a combination of
+platforms and software stacks and uses the methodology described above. In preparing for a  production
+schedule, testing is a combination of 
 scaling tests, cost estimation tests, and looking for potential
 trouble spots. Scientists and developers work closely to devise
 meaningful weak scaling tests (which can be difficult because of
@@ -193,7 +197,7 @@ suite resources. Sample smaller scale production runs are also
 performed on the target platform to help make informed estimates of cpu
 hours and disk space needed to complete the simulation. For more
 details on simulation planning see \cite{Dubey2013}. For porting the
-code to a new platform a successful production run from the past is used as a
+code to a new platform, a successful production run from the past is used as a
 benchmark for exercising the code on a new platform, along with using
 a subset of the standard test suite.
 
@@ -351,7 +355,7 @@ questions on users mailing list. The contributors can negotiate the
 terms of release, a code section can be excluded from the release for
 a mutually agreed period of time to enable the contributor to complete
 their research and publish their work before the code becomes
-public. This policy permits the potential contributors to be freed
+public. This policy permits potential contributors to be freed
 from the necessity of maintaining their code independently, while
 still retaining control over their software until agreed upon
 release time.  As a useful side effect their code remains in sync with

@@ -11,29 +11,55 @@ stencil computations in explicit PDE solvers).
 Models with diverse discretizations and algorithms are more common. In
 such cases, each operator has
 its own preferred data layout and movement that may differ
-from those needed by other operators.  Normally these challenges
-can be mitigated through encapsulation and well defined API's. The outer
-wrapper layers of the operators can carry out data transformations as
-needed. There are two factors against taking this approach in CSE
-codes: (1) physics is not always friendly to encapsulation, and (2)
-the codes are performance sensitive and wholesale data movement
-significantly degrades performance. 
+from those needed by other operators. Different models may also need
+different developer expertise. Therefore, when designing CSE software,
+it is especially important to create  modular components wherever
+possible.  This is because different expertise may be required to
+understand each component, and thus a modular design allows
+application developers to focus on the areas they know best. For
+example, the numerical algorithms associated with physics operators
+require mathematical expertise, which is different from the code
+architecture which requires software engineering expertise. In
+addition, modular code allows various components to interface with
+each other in a clearer way.  % There is another concern for CSE codes 
+% that use large HPC systems and require code parallelization.  Parallel
+% codes typically must implement a parallel domain decomposition and
+% manage synchronization and load balancing between tasks or threads.
 
-%\item physics is messy - encapsulation can be challenging
-The CSE simulation codes model the physical world which does not
+Though desirable, modularization can also be difficult to achieve in
+multi-model codes. Normally challenges related to different data
+layout and memory and communication access patterns 
+can be mitigated through encapsulation and well defined APIs. The outer
+wrapper layers of the operators can carry out data transformations as
+needed. There are two factors that work against this approach in CSE
+codes. One is that CSE simulation codes model the physical world which does not
 have neat modularization. Various phenomena have tightly coupled
 dependencies that are hard to break. These dependencies and tight
 couplings are transferred into the mathematical models and hinder the
 elimination of lateral interactions among code modules. An attempt to
 force encapsulations by hoisting up the lateral interactions to the
 API level can explode the size of the API. And if not done carefully
-this can also lead to extra data movement. The module designs,
+this can also lead to extra data movement. The second is that 
+the codes are performance sensitive and wholesale data movement
+significantly degrades performance. 
+% Parallelization models and management of
+% load distribution are additional class of concerns that the codes
+% using HPC platforms face. % and  With appropriate code
+% modularization that enables separation of concerns these different
+% aspects of the code do not need to interfere with one another and can
+% help make application development more tractable. 
+The module designs,
 therefore, have to be cognizant of potential lateral interactions and
 make allowances for them. Similarly, the data structures have to take
 into account the diverse demands placed on them by different operators
 and carefully consider the trade-offs during software
 design. Considerations such as these are not common in software
 outside of CSE.   
+Section \ref{sec:case-studies} describes how these challenges have
+been met by FLASH and Amanzi.
+
+
+%\item physics is messy - encapsulation can be challenging
 %\comment[(KA NOTE: NEED REF - can we back up this claim?)}
 
 %\item less logical complexity more numerical complexity - hard to achieve data locality 
@@ -62,21 +88,6 @@ outside of CSE.
 % interfere with one another, they help make the development tractable. 
 
 % \comment{(KA NOTE: I re-wrote the paragraph above to the lines below.  Let me know what you think.  My thought is to remove references to 'separation of concerns' which I think is vague and not well known in the community.)}
-When designing CSE software, it is especially important to create
-modular components wherever possible.  This is because different expertise may be required to understand
-each component, and thus a modular design allows application
-developers to focus on the areas they know best. For example, the
-numerical algorithms associated with physics operators require mathematical expertise, which is
-different from the code architecture which requires software
-engineering expertise. In addition, modular code allows various
-components to interface with each other in a clearer way.  Another
-challenge for CSE codes is that many of them run on large HPC systems
-and require code parallelization.  Parallel codes typically must
-implement a parallel domain decomposition and manage synchronization
-and load balancing between tasks or threads.  With appropriate code
-modularization that enables separation of concerns these different
-aspects of the code do not need to interfere with one another and can
-help make application development more tractable. 
 
 
 %\item need for third party software 

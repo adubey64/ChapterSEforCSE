@@ -19,12 +19,12 @@ authors' response - we have modified the language for greater clarity.
 referee comment - The reference to the xkcd cartoon on page 11 is included in an unfortunate way; I have to look at the cartoon to make sense of the sentence but in order to do so I have to copy and paste a link that could stop working etc.
 authors' response - we have eliminated the cartoon
 
-referee comment - On page 23 “most codes are freely available to download along with their source.”: This is, for example, not true for the large climate modeling community where you regularly have to apply to get a copy of the model source code and most model parametrizations are not even available on request.
+referee comment - On page 23 “most codes are freely available to download along with their source.”: This is, for example, not true for the large climate modeling community where you regularly have to apply to get a copy of the model source code and most model parameterizations are not even available on request.
 authors' response - this is a general observation, but there are many exceptions
 
 referee comment - On page 24 “The degree to which teams from vastly different scientific domains producing community codes have arrived at essentially similar solutions is remarkable. It points to a possibility that seemingly diverse problems can have a uniform solution if they are trying to achieve similar objectives.”: How is it remarkable that different people with similar tools achieve similar solutions when they have similar objectives?
 
-authors' response - we have removed the offending term.
+authors' response - we have removed the term.
 
 1. What changes do the authors need to make to the chapter to make it more understandable (e.g. adding more background details)?
 referee comment - The introduction should state more clearly what the main intention of the chapter is. What am I going to learn by reading this chapter? What is the structure of the chapter?
@@ -51,7 +51,7 @@ authors' response - Philosophy many have been the misleading term here, we meant
 
 referee comment - The use of versioning repositories and the testing methodologies employed by scientists have previously been analyzed (in greater detail than in this chapter) by others. The respective papers should be cited (see “What changes do the authors need to make to the chapter to make it more interesting or useful?”).
 
-authors' response - Please see the response to comment 2 above.
+authors' response - Please see the response to comment 2 above. 
 
 4. Is there any information in the chapter that is not necessary (i.e. too basic, too much background, irrelevant, information that should be moved to the book introduction, etc…)?
 referee comment - I like how the introduction (Section 1.1) of the chapter describes the reasons for the lacking adoption of software engineering practices in CSE but I think that since this probably sets a general theme for the whole book, it could be moved to the introduction of the book.
@@ -157,7 +157,7 @@ authors' response - The text has been altered and an example is included, and th
 
 
 referee comment - 1.3 Section 1.2: “This process requires diverse expertise and adds many stages in the development and lifecycle of scientific software that may not be encountered elsewhere.”  What are the many stages?  Why aren’t they encountered elsewhere?
-authors' response - We do not understand this comment. The stages are explicitly described in section 1.2.1, and the point at which the development process begins to resemble other domains is clearly stated. There is also a figure (1.1) which shows an example development cycle.
+authors' response - We are puzzled by this comment. The stages are explicitly described in section 1.2.1, and the point at which the development process begins to resemble other domains is clearly stated. There is also a figure (1.1) which shows an example development cycle.
 
 referee comment - 1.4 Section 1.2.2.1.: “In addition, multicomponent CSE software should test various permutations and combination of components in different ways.”  What are the different ways?
 authors' response - we have included an example and given a pointer to it. 
@@ -168,7 +168,7 @@ authors' response - we have further clarified it.
 
 
 referee comment - 1.6 Section 1.5.1.3: “The general releases undergo some amount of code pruning, get checked for compliance with coding and documentation standards and meet stringent requirements from the testing process.“  What are the stringent requirements?
-authors' response - 
+authors' response - a full discussion would be lengthy, and would add little value to the chapter, because they are specific to FLASH.
 
 
 referee comment - 2. The paper makes many statements about CSE practice, but evidence is rarely presented to support the statements.  Ideally the statements would be supported by citations, survey data, or other evidence.  If evidence is lacking, it should be made explicit at the outset that the statements made in the paper are based on the collected experience of the authors.  This should be accompanied by a statement that clarifies the experience of the authors, possibly by stating their combined number of years of experience with CSE development?  A sample of the unsupported statements includes the following:
@@ -191,7 +191,7 @@ authors' response - this was a very good suggestion, we have done this.
 
 
 referee comment - 4. The paper mentions the challenge of maintainability, but there does not seem to be mention of the importance of traceability to improve maintainability.  When changes are made, the developers should have information on the consequences of these changes.  What other code is effected?  What test cases?  What documentation?  How is traceability handled in FLASH?
-authors' response - Testing for interoperability that is part of the daily test-suite handles this. 
+authors' response - testing for interoperability that is part of the daily test-suite handles this. 
 
 
 referee comment - 5. The paper mentions the problem of portable performance, but no mention is made of a successful project that deals with this problem: ATLAS.  Details on ATLAS can be found at: http://math-atlas.sourceforge.net/
@@ -240,27 +240,25 @@ referee comment - 1. Section 1.2.2 has only one subsection (1.2.2.1 Testing).  S
 authors' response - that is a good suggestion, we have incorporated it.
 
 referee comment - 2. Introduction, Paragraph 1. A period (or semicolon) is missing in the following text: “There are many reasons for it, first, is that not all software engineering practices can actually be adopted by the CSE code developers.”  The text should be something like: “There are many reasons for it.  First is that not all software engineering practices can actually be adopted by the CSE code developers.”
-authors' response - 
+authors' response - this sentence has been altered.
 
 referee comment - 3. There are some LaTeX issues.  For instance, the left quotation marks are facing in the wrong direction.  Text such as ‘physical’ should be `physical.’
-authors' response - 
+authors' response - we have put in italics instead of quotation marks to highlight the text.
 
 referee comment - 4. Page 4, Paragraph 2, Sentence 1: A semicolon is missing in “There are many degrees of freedom in the process of deriving a model as discussed in the previous section, therefore, the validation of the model must be carefully calibrated by scientific experts.”  The text should be “There are many degrees of freedom in the process of deriving a model as discussed in the previous section; therefore, the validation of the model must be carefully calibrated by scientific experts.”
-authors' response - 
+
 
 referee comment - 5. The apostrophe (‘) is misused for plural nouns.  For example, API’s should be APIs.
 The text includes many more typos and grammar errors than listed here.  The authors need to carefully proof read their text.
 authors' response - fixed
 
 referee comment - 6. “in order to” should simply be “to.”
-authors' response - 
 
 referee comment - 7. When there are multiple citations, they should be listed in order.  For instance, [17, 5] should be [5, 17].
-authors' response - 
 
 referee comment - 8. Why do Sections 1.6 and 1.7 start with a full colon (:)?
 authors' response - fixed
 
 referee comment - 9. The Bibliography is not complete.  For instance the year is missing for references [1], [2], [3], [8], and [28].  The author field is also missing for several references, such as [1] and [2].
-authors' response - 
+authors' response - many of these are urls that do not have specific years, or information about authors.
 
