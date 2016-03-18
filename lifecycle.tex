@@ -49,7 +49,7 @@ library), the method has to be implemented and verified. It is at this stage
 that the development of a CSE code begins to resemble that of general
 software. The numerical algorithms are specified, the semantics are
 understood, and they need to be translated into executable
-code. Even then there are difference because scientific code
+code. Even then there are differences because scientific code
 developers work iteratively \cite{segal2005software}, requirement
 specifications evolve through the development cycle. 
 Figure \ref{Fig:dev-cycle} gives an example of the development
@@ -123,7 +123,7 @@ method for verifying the continued correctness of an application
 behavior. Robust diagnostics (such as statistics or conservation of
 physical quantities) need to be built into the verification process.
 This issue is discussed in greater detail in the chapter {\em Testing
-  in CSE Software} .  
+  in Scientific Software} .  
 
 \subsubsection{Testing}
 \label{sec:testing}
@@ -139,16 +139,16 @@ effect, these minimally combined tests behave like unit tests because they focus
 defects in a very narrow section of the code. In addition,
 multicomponent CSE software should test various  permutations and
 combination of components in different ways. Configuring tests in this
-manner will help verify that the configurations of interest are within the
-accuracy and stability constraints \cite{Dubey2015} (see section
-\ref{sec:test-example} for an example from FLASH).   
+manner can help verify that the configurations of interest are within the
+accuracy and stability constraints (see section
+\ref{sec:FLASHvandv} for an example of test-suite configuration for FLASH).   
 
 \subsection{Maintenance and Extensions}
 \label{sec:maintain}
 In a simplified view of software lifecycle, there is a design and development phase,
 followed by production and maintenance phase.  Even in well engineered
 codes this simplified view typically applies only to the
-infrastructure and API's which have a distinct development phase with
+infrastructure and APIs which have a distinct development phase with
 limited spill into the remainder of the lifecycle. The numerical 
 algorithms and solvers can be in a continually evolving state
 reflecting the advances in their respective fields.  
@@ -164,9 +164,9 @@ new capabilities are added. The need for new capabilities may arise
 from  greater model fidelity, or from trying to simulate a more
 complex model. Sometimes a code designed for one scientific field may
 have enough in common with another field that capabilities may be
-added to enable it for the new field \cite{Dubey2016}.    
+added to enable it for the new field \cite{Dubey2016Pasc}.    
 
-Whatever may be the cause, co-existence of development and
+Irrespective of the cause, co-existence of development and
 production/maintenance phases is a constant challenge to the code
 teams. It becomes acute when the code needs to undergo major version
 changes. The former can be managed with some repository
@@ -186,9 +186,10 @@ buy-in from all the stakeholders to be successful.
 
 %\item performance portability important
 %\comment{KA will expand this section}
-Another aspect of multiphysics CSE software is its need for
-performance portability. HPC machines are expensive and rare resources and in order to achieve high application performance, codes need to be optimized for the unique HPC architectures.
- However, typical lifecycle of a
+Performance portability is an important requirement of multiphysics
+CSE software. HPC machines are expensive and rare resources and in
+order to achieve high application performance, codes need to be
+optimized for the unique HPC architectures. However, typical lifecycle of a
 multiphysics application spans many generations of HPC systems which have a typical lifespan of about 4-5 years.  Depending upon the size of the
 code, optimization for a specific target platform can take a
 significant fraction of the platform lifecycle, time when the code may not be available for science runs.  Without careful planning and coordination,  a
