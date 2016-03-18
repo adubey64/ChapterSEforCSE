@@ -1,9 +1,9 @@
 \label{sec:future}
 
 An aspect of software design that is a unique requirement of
-the CSE domain is fast becoming its biggest challenge - performance
+the CSE domain is fast becoming a great challenge - performance
 portability. In the past, machine architectures were fairly uniform
-across the board for large stretches of time. The first set of
+across the board for large stretches of time.  The first set of
 effective HPC machines in routine use for scientific computing were
 all vectors machines. They later gave way to parallel machines with
 {\em risc} processor as their main processing element. A code written
@@ -13,23 +13,21 @@ model to which the codes of the era were programming was essentially
 the same for all machines of that era. It is true that wholesale changes had to occur
 in codes for transitioning from vector to risc-parallel machines, but
 it was a transition from one long-term stable paradigm to another
-long-term stable paradigm. And the codes were not as large as the
+long-term stable paradigm.  In addition, the codes were not as large as the
 multiphysics codes of today. So although the transitions took time, the
 codes that adapted well to the prevailing machine model thrived for
 several years.  
 
-That landscape is about to change completely. Now there are machines
+The computing landscape is undergoing significant changes. Now there are machines
 in the pipeline that have deep enough architectural differences among
-them that one machine model cannot describe their behavior. Even
-within a machine heterogeneity of various kinds may exist. Because
+them that one machine model cannot necessarily describe their behavior.  A look at the top supercomputers in the world shows a variety of architectures from accelerator models, to many-core systems.  Even though many different vendors are moving to architectures with lighter and smaller cores, the different cache and memory hierarchies on these systems make portability across architectures difficult.  In addition, the lack of a high performing, common programming model across architectures poses an even greater challenge for application developers.  And, because
 the codes are significantly larger than they were during the last
-architecture paradigm shift, the challenge is of a
-completely different magnitude. More importantly, some aspects of the
+architecture paradigm shift, the transition will be even more challenging.  More importantly, some aspects of the
 challenges are not unique to the large multiphysics codes. Because the
 deep architectural changes are occurring at the level of nodes that
 will go into all platforms, the change is ubiquitous and will
-affect everyone. Portability in general and performance
-portability in particular is an issue for everyone. At this writing
+affect everyone. Portability in general, and performance
+portability in particular, is an issue for everyone. At this writing
 the impact of this paradigm shift is not fully understood. Means of
 combating this challenge are understood even less. There is a general
 consensus that more programming abstractions are necessary not just
@@ -38,8 +36,7 @@ is which abstraction or combination of abstractions will deliver the
 solution. Many solutions have been proposed, for example \cite{PADAL14} (also
 see \cite{IDEAS} for a more comprehensive and updated
 list). Of these, some have undergone more testing and exercise under
-realistic application instances than others. None of the approaches
-provide a good road map for a general solution that can be broadly
+realistic application instances than others. Currently, no approach has been shown to provide a general solution that can be broadly
 applicable in the ways that optimizing compilers and MPI were
 in the past. This is an urgent serious challenge facing the CSE
 community today, future viability of CSE codes depends upon
