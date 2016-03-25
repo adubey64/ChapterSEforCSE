@@ -69,8 +69,8 @@ Once past an initial developer learning curve, Amanzi/ATS developers are able to
 \label{sec:amanzi:testing}
 %
 Testing is an extremely sensitive subject in computational software engineering -- so much so that it merits its own chapter: \ref{}.
-Few CSE codes are sufficiently tested by conventional Software Engineering (SE) standards, and many CSE developers are aware of the shortcoming.
-As discussed above, frequently CSE codes are limited to component-level tests, as it can be difficult to write sufficiently fine-grained unit tests.
+Few scientific codes are sufficiently tested by conventional Software Engineering (SE) standards, and many scientific code developers are aware of the shortcoming.
+As discussed above, frequently scientific codes are limited to component-level tests, as it can be difficult to write sufficiently fine-grained unit tests.
 %TODO -- is ``component-level'' the right name here?  Check with Ross chapter
 SE techniques such as mocking objects are almost never practiced, as mocked objects would require nearly all of the same functionality of the real object in order to properly test the physics component.
 The claim is that most physics code cannot be tested without including discretizations, solvers, meshes, and other components.
@@ -86,7 +86,7 @@ Amanzi/ATS still makes extensive use of medium-grained component tests for discr
 Amanzi/ATS additionally maintains a large list of coarse-grained system-level tests.
 %TODO -- again, be consistent with testing chapter
 These test the full capability, and serve additionally as documentation and example problems for new users.
-This strategy, of providing large suites of sample problems for both testing and documentation has become extremely common in the CSE community, and is widely considered a CSE best practice.
+This strategy, of providing large suites of sample problems for both testing and documentation has become extremely common in the scientific community, and is widely considered a scientific best practice.
 By greatly lowering the bar for new users, this collection of dual-purpose examples encourages community; in ATS, each new physics contribution must be accompanied by a new system-level test for inclusion in these test suites.
 % TODO -- same as above
 

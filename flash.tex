@@ -42,10 +42,10 @@ setup tool also interpreted the configuration DSL to implement
 inheritance using the directory structure. For more details about
 FLASH's object oriented framework see \cite{Dubey2009}.   
 
-FLASH design is aware of the need for separation of concerns and
-achieves it by separating the infrastructural components
+FLASH is designed with separation of concerns as an objective, which
+is achieved by separating the infrastructural components
 from physics. The abstraction that permits this approach is very
-well known in CSE, that of decomposing a physical domain into
+well known in scientific codes, that of decomposing a physical domain into
 rectangular blocks surrounded by halo cells copied over from the
 surrounding neighboring blocks. To a physics operator, the whole domain is
 not distinguishable from a box. Another necessary aspect of the abstraction 
@@ -145,7 +145,7 @@ methodology for test design and selection is described below, for more
 details see \cite{Dubey2015}.
 
 FLASH's testsuite consists of about a dozen {FLASH-unit-tests} and
-over $80$ multi-purpose composite tests. A composite test runs in two
+$85$ multi-purpose composite tests. A composite test runs in two
 stages, and has a comparison {\em benchmark} for each stage. A {\em
   benchmark} in FLASH testsuite is a full state checkpoint. Composite
 test benchmarks are checkpoints at two distinct timesteps $M$ and $N$ where
@@ -162,7 +162,7 @@ information. FLASH testsuite configures and builds each test every
 time it is run, therefore, build and configuration tests are
 built-in. Progress of a test is reported at every stage, the final
 stage being the outcome of the comparison. Because FLASH has many
-available application configuration whose union provides  
+available application configurations whose union provides  
 very good code coverage, the task of building a test suite is simplified
 to selection among existing applications. In many applications the
 real challenge is picking parameters that exercise the targeted
@@ -172,8 +172,7 @@ along the rows and physics modules are placed along columns. For each
 selected test all the covered features are marked off in the
 matrix. Marking by the same test in two more places in the same row of
 same column represents interoperability among the corresponding
-entities. Following order is used
-for filling the matrix:
+entities. The following order is used for filling the matrix:
 \begin{itemize}
 \item unit tests
 \item setups used in science production runs
@@ -319,11 +318,11 @@ projects.
 \subsubsection{Policies}
 \label{sec:FLASHPolicies}
 In any project, policies regarding attributions, contributions and
-licensing matter. In CSE arena intellectual property rights,
+licensing matter. In scientific domains intellectual property rights,
 and interdisciplinary interactions are additional policy
 areas that are equally important. Some of these policy requirements
 are a direct consequence of the strong gatekeeping regimes that
-majority of CSE publicly distributed software follow.  Many arguments
+majority of publicly distributed scientific software follow.  Many arguments
 are forwarded for dominance of this model in the domain, the
 most compelling one relates to maintaining the quality of
 software. Recollect that the developers in this domain are typically
@@ -370,8 +369,8 @@ quality. The Flash Center maintains a list of externally hosted
 `as-is' code sites, the support for these code sections is entirely
 the responsibility of hosting site. 
 
-The attribution practices in CSE are somewhat ad-hoc. For many
-developers, the only metric of importance is scientific
+The attribution practices in computational science and engineering are
+somewhat ad-hoc. For many developers, the only metric of importance is scientific
 publications that result from using the software. When a team is
 dominated by such developers proper attribution for code development
 is not given enough importance or thought. Other teams also employ

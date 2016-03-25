@@ -46,7 +46,7 @@ may need to be validated if the method is new or
 significantly modified. Unless a reliable implementation is
 already available as a third party software (stand-alone or in a
 library), the method has to be implemented and verified. It is at this stage
-that the development of a CSE code begins to resemble that of general
+that the development of a scientific code begins to resemble that of general
 software. The numerical algorithms are specified, the semantics are
 understood, and they need to be translated into executable
 code. Even then there are differences because scientific code
@@ -104,14 +104,14 @@ are themselves objects of ongoing research, so their
 implementation may need modifications from time to time. Whenever
 this happens, the entire gamut of verification and validation needs to
 be applied again. This is an instance of a particular challenge in 
-CSE software where no amount of specification is enough to hand the
+scientific software where no amount of specification is enough to hand the
 implementation over to software engineers or developers who do not
 have domain or method knowledge. A close collaboration with applied
 mathematicians and method developers is necessary because the process
 has to be iterative with scientific judgement applied at every
 iteration.  
 
-One other unique verification challenge in CSE software is caused by 
+One other unique verification challenge in scientific software is caused by 
 finite machine precision of floating point numbers. Any change in
 compilers, optimization levels, and even order of operations can cause
 numerical drift in the solutions
@@ -128,16 +128,16 @@ This issue is discussed in greater detail in the chapter {\em Testing
 \subsubsection{Testing}
 \label{sec:testing}
 %\comment{KA NOTE: KA will expand this section}
-Testing of CSE software needs to reflect the layered complexity of
+Testing of scientific software needs to reflect the layered complexity of
 the codes. The first line of attack is to develop 
 unit tests that isolate testing of individual components. However, in
-CSE codes, often there are dependencies between 
+scientific codes, often there are dependencies between 
 different components of the code that can not be meaningfully
 isolated, making unit testing more difficult. In these cases, testing
 should be performed with a minimal possible combination of components.  In
 effect, these minimally combined tests behave like unit tests because they focus on possible
 defects in a very narrow section of the code. In addition,
-multicomponent CSE software should test various  permutations and
+multicomponent scientific software should test various  permutations and
 combination of components in different ways. Configuring tests in this
 manner can help verify that the configurations of interest are within the
 accuracy and stability constraints (see section
@@ -152,7 +152,7 @@ infrastructure and APIs which have a distinct development phase with
 limited spill into the remainder of the lifecycle. The numerical 
 algorithms and solvers can be in a continually evolving state
 reflecting the advances in their respective fields.  
-The development of CSE software is usually responding to an immediate
+The development of scientific software is usually responding to an immediate
 scientific need, so the codes get employed in production as soon as a
 minimal set of computational modules necessary for even one scientific
 project are built.  Similarly, the development of computational
@@ -187,7 +187,7 @@ buy-in from all the stakeholders to be successful.
 %\item performance portability important
 %\comment{KA will expand this section}
 Performance portability is an important requirement of multiphysics
-CSE software. HPC machines are expensive and rare resources and in
+scientific software. HPC machines are expensive and rare resources and in
 order to achieve high application performance, codes need to be
 optimized for the unique HPC architectures. However, typical lifecycle of a
 multiphysics application spans many generations of HPC systems which have a typical lifespan of about 4-5 years.  Depending upon the size of the
@@ -196,12 +196,12 @@ significant fraction of the platform lifecycle, time when the code may not be av
 large fraction of scientists' time could be lost in porting and optimizing
 a code for a new system.  Developers have the choice of adding machine
 specific optimizations or creating more general optimization that will
-work for a broader class of systems.  CSE codes must consider the
+work for a broader class of systems.  scientific codes must consider the
 trade-offs and advantages of a highly optimized code for a single
 platform versus designing their software using constructs that perform
 modestly well across a range of platforms. 
 
 
 
-\subsection{Using CSE Software}
+\subsection{Using scientific Software}
 \input{using}

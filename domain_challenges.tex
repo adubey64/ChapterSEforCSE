@@ -12,7 +12,7 @@ Models with diverse discretizations and algorithms are more common. In
 such cases, each operator has
 its own preferred data layout and movement that may differ
 from those needed by other operators. Different models may also need
-different developer expertise. Therefore, when designing CSE software,
+different developer expertise. Therefore, when designing scientific software,
 it is especially important to create  modular components wherever
 possible.  This is because different expertise may be required to
 understand each component, and thus a modular design allows
@@ -21,7 +21,7 @@ example, the numerical algorithms associated with physics operators
 require mathematical expertise, which is different from the code
 architecture which requires software engineering expertise. In
 addition, modular code allows various components to interface with
-each other in a clearer way.  % There is another concern for CSE codes 
+each other in a clearer way.  % There is another concern for scientific codes 
 % that use large HPC systems and require code parallelization.  Parallel
 % codes typically must implement a parallel domain decomposition and
 % manage synchronization and load balancing between tasks or threads.
@@ -31,8 +31,8 @@ multi-model codes. Normally challenges related to different data
 layout and memory and communication access patterns 
 can be mitigated through encapsulation and well defined APIs. The outer
 wrapper layers of the operators can carry out data transformations as
-needed. There are two factors that work against this approach in CSE
-codes. One is that CSE simulation codes model the physical world which does not
+needed. There are two factors that work against this approach in scientific
+codes. One is that scientific simulation codes model the physical world which does not
 have neat modularization. Various phenomena have tightly coupled
 dependencies that are hard to break. These dependencies and tight
 couplings are transferred into the mathematical models and hinder the
@@ -54,7 +54,7 @@ make allowances for them. Similarly, the data structures have to take
 into account the diverse demands placed on them by different operators
 and carefully consider the trade-offs during software
 design. Considerations such as these are not common in software
-outside of CSE.   
+outside of scientific domains.   
 Section \ref{sec:case-studies} describes how these challenges have
 been met by FLASH and Amanzi.
 
@@ -64,7 +64,7 @@ been met by FLASH and Amanzi.
 
 %\item less logical complexity more numerical complexity - hard to achieve data locality 
 
-% In a CSE software design, separation of concerns, where different
+% In a scientific software design, separation of concerns, where different
 % expertise addresses different aspects of code behavior, is of utmost
 % importance.
 % have little or no correlation with the numerical algorithm
@@ -81,7 +81,7 @@ been met by FLASH and Amanzi.
 % complex logically. 
 % \comment[(KA NOTE:  I don't think logically complex and accuracy complex are well known terms.  I think the point we're trying to make isn't coming through here.  Is it important?)}
 % A third axis of concern is parallelization, which
-% brings in some features that are unique to CSE codes, such as domain
+% brings in some features that are unique to scientific codes, such as domain
 % decomposition, aspects of synchronization and dependencies, and
 % performance impact of the design choices.
 % With appropriate separation of concerns not only do these aspects of software development not 
