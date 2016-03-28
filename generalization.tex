@@ -2,26 +2,26 @@
 \label{sec:generalization}
 
 Not all of the solutions described in the earlier sections for
-computational science
-specific challenges are generalizable to all scientific software, but
-the vast majority of them are. This is borne out by the fact that at a
-workshop on community codes in 2012 \cite{cc2012}, all represented codes
-had nearly identical stories to tell about their motivation for
-adopting software engineering practices and the ones that they
-adopted. This was true irrespective of the science domains these codes
-served, the algorithms and discretization methods they used and
-communities they represented. Even their driving design principles
-were similar at the fundamental level though the details differed. The
-codes represented state-of-the-art in their respective communities in
-terms of both model and algorithmic research incorporated and the
-software engineering practices. Note that these are the codes that
-have stood the test of time and won the respect in their respective
+computational science specific challenges are generalizable to all
+scientific software, but the vast majority of them are. This is borne
+out by the fact that at a workshop on community codes in 2012
+\cite{cc2012}, all represented codes had nearly identical stories to
+tell about their motivation for adopting software engineering
+practices and the ones that they adopted. This was true irrespective
+of the science domains these codes served, the algorithms and
+discretization methods they used and communities they
+represented. Even their driving design principles were similar at the
+fundamental level though the details differed. The codes represented
+state-of-the-art in their respective communities in terms of both
+model and algorithmic research incorporated and the software
+engineering practices. Note that these are the codes that have stood
+the test of time and won the respect in their respective
 communities. They are widely used and supported, and have more
 credibility for producing reproducible reliable results than smaller
-individualistic efforts. Therefore, it is worthwhile to discuss
-those practices in this chapter. At a minimum they provide a snapshot
-of the state of large scale computing and its dependence on software
-engineering in the era of relatively uniform computing platforms. 
+individualistic efforts. Therefore, it is worthwhile to discuss those
+practices in this chapter. At a minimum they provide a snapshot of the
+state of large scale computing and its dependence on software
+engineering in the era of relatively uniform computing platforms.  
 
 One practice that is universally adopted by all community codes and
 other large scale codes is versioning repositories. That is worthy of
@@ -39,7 +39,7 @@ and user support practices in place. They also have well defined code
 contribution policies. 
 
 Another feature that stands out is similarity in high level design of
-all multiphysics codes. Every code exercises separation of concerns
+all multi-physics codes. Every code exercises separation of concerns
 between mathematical and structural parts and between sequential and
 parallel parts. In almost all cases this separation is dictated by the
 need to reduce complexity for efforts needing specific
@@ -69,3 +69,17 @@ the individual problem. It is not beyond the realm of possibility that
 similar generalized solution will emerge for the next generation
 software faced with heterogeneous computing described in the next
 section.
+
+\subsection*{Key Insights}
+\label{caseStudies-insights}
+\begin{itemize}
+\item High level framework design of multiphysics codes follow
+componentization and composability, and are cognizant of trade-offs
+with raw performance.
+\item Extensibility in the code is critical for long term adoption of
+scientific codes because as scientific understanding grows it places
+new demands on the code.
+\item Open development is benefitial.
+\item To balance continuous developement with ongoing production,
+good contribution and distribution policies are important. 
+\end{itemize}

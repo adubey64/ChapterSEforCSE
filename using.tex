@@ -1,13 +1,7 @@
 \label{sec:using}
-There is a fundamental requirement from the users of scientific
-software that rarely comes into play for users of other kinds of
-software. For obtaining valid scientific results the users must 
-have a basic understanding of the phenomena being modeled and the
-approximations, and they must know which questions can be validly 
-addressed by these models. For example, Eulerian equations of
-hydrodynamics do not account for viscosity. If one is modeling a fluid
-where viscosity is important, one should not use a code that uses
-Eulerian equations to model the fluid. Similarly, the users must know and
+Users of scientific software must have a basic understanding of the
+models, the approximations and the numerical methods they are using to
+obtain valid scientific results. They must know and
 understand the valid regimes for applicability of numerical
 algorithms, as well as their accuracy and stability behavior. For
 example a numerical method that can resolve a smooth 
@@ -15,35 +9,19 @@ fluid flow only will fail if there are discontinuities. Similarly, in
 order to use the Fast Fourier Transform (FFT) method, users must
 ensure that their sampling interval resolves all modes. Failure to do
 so may filter out important information and lead to wrong results.
-% It is very possible to apply the  
-% methods in inappropriate ways and obtain scientifically useless
-% results. Even worse, one may obtain wrong results and not even know
-% that they are wrong. 
-% This is because some phenomena are very sensitive
-% to perturbations (KA NOTE: in the model?  in what?  need to explain
-% perturbations in this context.) 
-% If one applies a method without sufficient
-% resolution, the perturbations may be filtered out and the outcome of
-% the simulation may be physically valid while being completely wrong
-% for the phenomenon being studied. 
-Additionally, sometimes equations have mathematically valid but
-physically invalid solutions. An inappropriately applied numerical scheme may
-converge to such a non-physical solution. 
+Sometimes equations have mathematically valid but physically invalid
+solutions. An inappropriately applied numerical scheme may converge to
+such a non-physical solution.  
 
-At best any of the above
-situations may lead to a waste of computing resources if the defect in
+At best any of the above situations lead to a waste of computing resources if the defect in
 the solution is detected. At worst they may lead to wrong scientific
 conclusions being drawn. Some in the scientific community even argue
-that those who have not written at least some basic version of their
-own code for their problem should not be using other's public or
-community code. Though that argument goes too far, it embodies a
-general belief in the scientific community that users of scientific
-codes have a great responsibility to know their tools and understand
-their capabilities and limitations. 
-% Even though in this 
-% situation it becomes obvious that the solution is not right, it may
-% happen after significant wasteful use of resources.
+that those who have not written at least a simplistic version of the
+code for their application should not be using other's code. Though
+that argument goes too far, it embodies a general belief in the
+scientific community that users of scientific codes have a great
+responsibility to know their tools and understand their capabilities
+and limitations.  
 These are some of the reasons that also play a role in tendency of scientific
 codes to do strict gatekeeping for contributions.
 
-%\comment{KA NOTE:  this is much better...}

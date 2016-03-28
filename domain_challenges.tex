@@ -1,10 +1,7 @@
-%\begin{itemize}
-%item diverse algorithms - different data layout needs
 \label{sec:domain-challenges}
-Multiphysics codes, by their definition, solve more than one
+Multi-physics codes, by their definition, solve more than one
 mathematical model. A typical code combines 3-4
 diverse models, in extreme cases codes may employ many more.
-%\comment[(KA NOTE: NEED REF)]  
 Rarely, all models work with the same
 discretization using similar algorithmic approach (for instance
 stencil computations in explicit PDE solvers).
@@ -21,10 +18,7 @@ example, the numerical algorithms associated with physics operators
 require mathematical expertise, which is different from the code
 architecture which requires software engineering expertise. In
 addition, modular code allows various components to interface with
-each other in a clearer way.  % There is another concern for scientific codes 
-% that use large HPC systems and require code parallelization.  Parallel
-% codes typically must implement a parallel domain decomposition and
-% manage synchronization and load balancing between tasks or threads.
+each other in a clearer way.  
 
 Though desirable, modularization can also be difficult to achieve in
 multi-model codes. Normally challenges related to different data
@@ -42,74 +36,35 @@ API level can explode the size of the API. And if not done carefully
 this can also lead to extra data movement. The second is that 
 the codes are performance sensitive and wholesale data movement
 significantly degrades performance. 
-% Parallelization models and management of
-% load distribution are additional class of concerns that the codes
-% using HPC platforms face. % and  With appropriate code
-% modularization that enables separation of concerns these different
-% aspects of the code do not need to interfere with one another and can
-% help make application development more tractable. 
-The module designs,
-therefore, have to be cognizant of potential lateral interactions and
-make allowances for them. Similarly, the data structures have to take
-into account the diverse demands placed on them by different operators
-and carefully consider the trade-offs during software
-design. Considerations such as these are not common in software
-outside of scientific domains.   
+The module designs, therefore, have to be cognizant of potential
+lateral interactions and make allowances for them. Similarly, the data
+structures have to take into account the diverse demands placed on
+them by different operators and carefully consider the trade-offs
+during software design. Considerations such as these are not common in
+software outside of scientific domains.    
 Section \ref{sec:case-studies} describes how these challenges have
 been met by FLASH and Amanzi.
 
+Multi-physics multi-scale codes often require tight integration with
+third party software, which comes in the form of numerical
+libraries. Because multi-physics codes combine expertise from many
+domains, the numerical solvers they use also require diverse applied
+mathematics expertise. It can be challenging  for any one team to
+assemble all the necessary expertise to develop their own software and
+so many turn to third party math libraries for highly optimized
+routines.  However, as mentioned in section \ref{sec:using}, the use
+of third party software does not absolve them from understanding its
+appropriate use.  Additionally, information about appropriate use of
+third party software within the context of a larger code must also be
+communicated to the users of the code. 
 
-%\item physics is messy - encapsulation can be challenging
-%\comment[(KA NOTE: NEED REF - can we back up this claim?)}
-
-%\item less logical complexity more numerical complexity - hard to achieve data locality 
-
-% In a scientific software design, separation of concerns, where different
-% expertise addresses different aspects of code behavior, is of utmost
-% importance.
-% have little or no correlation with the numerical algorithm
-% implementation. 
-%\comment[(KA NOTE:  I don't know what this last sentence means.  Do you mean modular design is important?)}
-% This orthogonalization of expertise requirements into different code
-% components 
-% that allows developers to focus on what they know best.  
-% Another natural fallout of this approach is that different dimensions of
-% complexities in the algorithm space are handled separately. 
-% They are not logically as complex. Whereas machinery for
-% managing the discretizations and interoperability among code
-% components is likely to be less complex numerically, but could be very
-% complex logically. 
-% \comment[(KA NOTE:  I don't think logically complex and accuracy complex are well known terms.  I think the point we're trying to make isn't coming through here.  Is it important?)}
-% A third axis of concern is parallelization, which
-% brings in some features that are unique to scientific codes, such as domain
-% decomposition, aspects of synchronization and dependencies, and
-% performance impact of the design choices.
-% With appropriate separation of concerns not only do these aspects of software development not 
-% interfere with one another, they help make the development tractable. 
-
-% \comment{(KA NOTE: I re-wrote the paragraph above to the lines below.  Let me know what you think.  My thought is to remove references to 'separation of concerns' which I think is vague and not well known in the community.)}
-
-
-%\item need for third party software 
-Multiphysics multiscale codes often require tight integration with third party software, which comes
-in the form of numerical libraries. Because multiphysics codes combine
-expertise from many domains, the numerical solvers they use also
-require diverse applied mathematics expertise. It can be challenging 
-for any one team to assemble all the necessary expertise to develop their own software and so many turn to third party math libraries for highly optimized routines.  However, as mentioned in section \ref{sec:using}, the use of
-third party software does not absolve them from understanding its appropriate
-use.  Additionally, information about appropriate use of third party
-software within the context of a larger code must also be communicated
-to the users of the code. 
-% And finally, with the addition of third
-% party software into an application, the team is now dependent on an
-% outside party for optimizations and porting to new platforms. 
-
-%\item unit testing insufficient, not even always possible
-% Some of these issues are addressed in the chapter on testing,
-% we can perhaps cross reference.
-%\item integrated and system level testing very critical
-%\item robustness and stability as important as accuracy
-
-
-%\end{itemize}
-
+\subsection*{Key Insights}
+\label{domain-insights}
+\begin{itemize}
+\item Multi-physics codes need modularization for separation of
+concerns, but modularization can be hard to achieve because of lateral
+interactions inherent in the application.
+\item Codes can use third party libraries to fill their own expertise
+gap, but they must understand the characteristics and limitations of
+the third party software 
+\end {itemize}

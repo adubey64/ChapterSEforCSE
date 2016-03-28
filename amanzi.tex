@@ -10,18 +10,14 @@ ATS was largely developed by one person, post-docs, and a growing set of collabo
 Amanzi/ATS's history makes it a good contrast to FLASH.
 Developed from the ground up in C++ using relatively modern software engineering practices, there are few legacy code issues.
 Unlike FLASH, Amanzi/ATS makes extensive use of ``third party libraries'', with associated advantages and disadvantages (currently Amanzi/ATS uses nearly 10k lines of cmake to build it and its libraries).
-% TODO -- Anshu, is this correct?
 However, they also share a lot of commonalities.
 Like FLASH, version control has played a critical role in the development process, especially as developers are spread across multiple physical locations and networks.
 Like FLASH, Amanzi/ATS makes extensive use of module-level and regression-level testing to ensure correctness and enable refactoring.
 And like FLASH, Amanzi/ATS has found the open source strategy to be incredibly useful; in particular, the open source nature of the code has eliminated some of the natural competition between research groups at different DOE national laboratories and helped establish a growing community of users and developers.
-% TODO --- check terminology to make sure consistent with Ross chapter
-% TODO --- any other ties to make?  
 
-\subsubsection{Multiphysics management through Arcos}
+\subsubsection{Multi-physics management through Arcos}
 \label{sec:amanzi:arcos}
-%
-Recognizing early the wide variety of multiphysics applications that would be targeted with Amanzi/ATS, a formal multiphysics framework was designed, implemented, and adopted.
+Recognizing early the wide variety of multi-physics applications that would be targeted with Amanzi/ATS, a formal multi-physics framework was designed, implemented, and adopted.
 This framework, later named Arcos \cite{CoonMP16}, consists of three main components: a \emph{process tree}, a \emph{dependency graph}, and a \emph{state/data manager}.
 
 The process tree describes the hierarchical coupling between equations and systems of equations to be solved.
@@ -29,9 +25,9 @@ Each leaf node of the tree is a single (partial) differential equation, such as 
 Each interior node of the tree couples the children below it into a system of equations.
 Every node presents a common interface to the nodes above it.
 Much of the coupling of internal nodes can be automated using this interface -- sequential couplers can be fully automated, while globally implicit coupled schemes can be nearly automated (with off-diagonal blocks of preconditioners and globalization of nonlinear solvers the lone exceptions).
-This representation of multiphysics models is natural to the coupled physical system, and implicitly exists in most codes; Arcos makes this explicit while providing hooks for customization to the specific system.
+This representation of multi-physics models is natural to the coupled physical system, and implicitly exists in most codes; Arcos makes this explicit while providing hooks for customization to the specific system.
 
-A second view of the system of equations is stored in the dependency graph, much like that of \cite{Notz2012}.
+A second view of the system of equations is stored in the dependency graph, much like that of Notz et al \cite{Notz2012}.
 The dependency graph is a directed, acyclic graph (DAG) where each node is a variable (either primary, secondary, or independent), and each edge indicates a dependency.
 The graph is built up from the leafs of the DAG, which are primary variables (those variables to be solved for) and independent variables (data provided to the model).  Roots of the DAG are, for instance, corrections to the primary variable formed through a nonlinear solve, or time derivatives of primary variables used in time integrators.
 Between these, each interior node is a secondary variable, and consists of both data and an \emph{evaluator}, or small, stateless (functional) unit of code that stores the physics or numerics of how to evaluate the variable given its dependencies.
@@ -44,21 +40,20 @@ Here we focus on the dependency graph as used in Amanzi/ATS, and how it encourag
 
 \subsubsection{Code Re-use and Extensibility}
 \label{sec:amanzi:modularity}
-%
 The first observation of this framework is that it results in extremely fine-grained modularity for physical equations.
 Most computational physics codes are modular at the level of equations; Amanzi/ATS is modular at the level of terms in the equation.
 
-An example illustrates the usefulness of this in multiphysics applications.
+An example illustrates the usefulness of this in multi-physics applications.
 In a thermal hydrology code, the liquid saturation is a variable describing the volume fraction of pore space that is water.
 This is a secondary variable, and is a function of either liquid pressure (in isothermal cases) or of liquid pressure and temperature (in non-isothermal cases).
 By explicitly forming a dependency graph, terms that depend upon the liquid saturation need not know whether the model is isothermal or not.
-Furthermore, there is no concern of ``order of equation evaluation'' that is common in other multiphysics codes.
+Furthermore, there is no concern of ``order of equation evaluation'' that is common in other multi-physics codes.
 As both the energy and mass conservation equations need liquid saturation, this model should be evaluated when it is first needed, but is likely not necessarily evaluated in both equations, as its dependencies have not changed.
 Optimization of evaluating a model only when its dependencies have changed results in tightly coupled, monolithic physics implementations.
 Often codes will have ``modes'' which reimplement the same mass conservation equation twice, once to support the isothermal case and once to support the non-isothermal case as coupled to an energy conservation equation.
 
 By storing these dependencies in an explicit graph, the framework can keep track of when dependencies have changed, and lazily evaluate models exactly when needed.
-In tightly coupled multiphysics, a dependency graph eliminates the need for an omnipotent programmer to carefully orchestrate when and where each equation term is evaluated.
+In tightly coupled multi-physics, a dependency graph eliminates the need for an omnipotent programmer to carefully orchestrate when and where each equation term is evaluated.
 As a result, a dependency graph eliminates code duplication and discourages monolithic physics code.
 
 Furthermore, this strategy greatly improves code extensibility.
@@ -112,3 +107,15 @@ Finally, Arcos's evaluators are a functional programming concept, and are statel
 As a result, they abstract ``what is evaluated'' from ``on what data and chip is it evaluated.''
 This design decision allows the implementation of multiple versions of the latter (i.e. GPU, many-core) without touching any of the former code.
 
+\subsection*{Key Insights}
+\label{caseStudies-insights}
+\begin{itemize}
+\item Both codes took long term view and are designed for extensibility
+\item Bothe codes have found open development benefitial for many reasons, including
+robustness of results and community penetration.
+\item FLASH takes a broader view of unit testing, similar tests are described as component tests by Amanzi.
+\item Both codes use different levels of granularity in testing to obtain coverage.
+\item FLASH adopted and evolved software engineering practices over time, Amanzi started with many more practices
+in place.
+\item Because of its age and code accumulation over time refactoring FLASH is a large undertaking. It has a big challenge in adapting for future heterogeneous platforms. 
+\end{itemize}
