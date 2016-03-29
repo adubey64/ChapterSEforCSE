@@ -19,18 +19,11 @@
 
 \makeindex
 
-%\bibpunct{[}{]}{;}{n}{,}{,} % square brackets
-% "Greater/Less than or of order" symbols
 \def \la {\mathrel{\vcenter
      {\hbox{$<$}\nointerlineskip\hbox{$\sim$}}}}
 \def \ga {\mathrel{\vcenter
      {\hbox{$>$}\nointerlineskip\hbox{$\sim$}}}}
 
-% \textwidth 6.1in
-% \textheight 8.25in
-% \oddsidemargin 0.24in
-%\evensidemargin -0.5in
-%\topmargin -0.25in
 
 \begin{document}
 
@@ -54,58 +47,6 @@
 
 
 
-% \begin{abstract}
-% Multiphysics multicomponent scientific codes have increasingly been 
-% adopting software processes derived from outside the scientific
-% domain. The driving force behind adoption is usually the realization
-% that without using software engineering practices, the development,
-% verification and maintenance of code becomes intractable. However,
-% many software best practices need modification and/or customization.
-% Sometimes the inherent physics of scientific applications require
-% different software methodologies, while other times a premium is
-% placed on performance rather than architecture.  Still others are more
-% sociological and due to the type of institutions that are the typical
-% homes for such codes. The challenges for scientific applications range
-% from their architecture to the process for their maintenance and
-% growth. For example, sometimes modularity and encapsulation principles
-% are challenged by the need to tightly couple physics solvers to data
-% structures.  Scientific codes are designed to explore phenomena that
-% are not very well understood, so their verification strategies have to
-% be customized. % The components of scientific codes must also consider
-% % accuracy and stability, and interoperability between components must not
-% % violate physical constraints. These constraints are particularly challenging for
-% % numerical software because a wrong answer may not be detected to be wrong
-% % because of the exploratory nature of the problems being addressed.  Finally, as
-% % the research in the field evolves, codes may have to undergo radical
-% % changes in base algorithms to include the newly acquired knowledge. And
-% % the metrics of success are harder to define. 
-% The institutional challenges in developing and maintaining scientific codes arise because the 
-% research institutions in which they are developed often have an unreliable
-% funding model and a transient developer population of graduate
-% students. 
-% % There are
-% % rarely enough resources  to have any redundancy in expertise which makes
-% % procedures like code review difficult. 
-% Intellectual ownership, code 
-% distribution, attribution of credit and contribution policies can all
-% become thorny issues because there is often a lack of communication
-% and sometimes even distrust among the stakeholders. 
-% % Documentation
-% % takes on a different kind of urgency because of transient expertise,
-% % and yet it is notoriously difficult to persuade the 
-% % developers in the field to spend their limited time providing
-% % exhaustive documentation. 
-% We elaborate on the above challenges and
-% how they were addressed in FLASH, a code that has been extremely
-% successful as a community code for several research communities. We
-% outline specific solutions used by FLASH, and discuss their possible
-% generalizations that are usable by other similar software 
-% efforts. In particular, we address the issues related to software
-% architecture and modularization, design of a testing regime,
-% unique documentation needs and challenges, use of versioning system 
-% for managing projects, and the tension between intellectual property
-% management and open science. 
-% \end{abstract}
 
 \chapter{Software Process for Multiphysics Multicomponent Codes}
 \section {Introduction} 
@@ -125,6 +66,21 @@
 \section{Additional Future Considerations} 
 %How the software, design and policies might need to change in Future.
 \input{future}
+\section*{Acknowledgements}
+This work was supported by the U.S. Department of
+Energy, Office of Science, under contract number DE-AC02-06CH11357;  
+National Energy Research Scientific Computing Center, a DOE Office
+of Science User Facility under Contract No. DE-AC02-05CH11231;  
+Department of Energy at Los Alamos National Laboratory under contracts
+DE-AC52-06NA25396 and the DOE Office of Science Biological and
+Environmental Research (BER) program in Subsurface Biogeochemical
+Research. Support was also provided through the IDEAS
+scientific software productivity project (www.ideas-productivity.org),
+funded by the U.S. Department of Energy Office of Science, Advanced
+Scientific Computing Research and Biological and Environmental
+Research programs. One software described in this work was in part
+developed by the DOE-supported ASC / Alliance Center for Astrophysical
+Thermonuclear Flashes at the University of Chicago under grant B523820. 
 \bibliographystyle{plain}
 \bibliography{SEforCSE}
 \end{document}
